@@ -2,6 +2,8 @@ using System.Text.Json;
 
 namespace AIKernel.Control.Core.Bonsai;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer']" />
 public sealed class BonsaiTokenizer
 {
     private readonly Dictionary<string, int> _tokenToId;
@@ -15,8 +17,12 @@ public sealed class BonsaiTokenizer
         _idToToken = idToToken;
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize']" />
     public int VocabularySize => _idToToken.Length;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse']" />
     public static BonsaiTokenizer Parse(string json)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(json);
@@ -62,6 +68,8 @@ public sealed class BonsaiTokenizer
         return new BonsaiTokenizer(tokenToId, idToToken);
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst']" />
     public int TokenizeFirst(ReadOnlySpan<char> text)
     {
         if (text.IsEmpty)
@@ -87,6 +95,8 @@ public sealed class BonsaiTokenizer
         return (int)(hash % (uint)Math.Max(1, _idToToken.Length));
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode']" />
     public string Decode(int tokenId)
     {
         if ((uint)tokenId >= (uint)_idToToken.Length)

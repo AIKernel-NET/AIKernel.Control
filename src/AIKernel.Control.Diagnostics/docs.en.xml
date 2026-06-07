@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="T:AIKernel.Control.Diagnostics.ReplayApprovalRecord">
+      <summary>Represents the ReplayApprovalRecord public reference surface for AIKernel package consumers.</summary>
+    </member>
+  </members>
+</doc>

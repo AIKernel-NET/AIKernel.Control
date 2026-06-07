@@ -2,6 +2,8 @@ using System.Text.Json;
 
 namespace AIKernel.Control.Core.Bonsai;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig']" />
 public sealed record BonsaiModelConfig(
     int LayerCount,
     int HiddenSize,
@@ -9,6 +11,8 @@ public sealed record BonsaiModelConfig(
     int VocabularySize,
     int ContextLength)
 {
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse']" />
     public static BonsaiModelConfig Parse(string json)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(json);
@@ -24,6 +28,8 @@ public sealed record BonsaiModelConfig(
             ReadRequiredInt32(root, "max_position_embeddings", "context_length", "n_ctx"));
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount']" />
     public long EstimateActivationFloatCount()
     {
         checked

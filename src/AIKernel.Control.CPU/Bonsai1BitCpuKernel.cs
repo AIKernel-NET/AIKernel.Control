@@ -5,21 +5,39 @@ using System.Runtime.Intrinsics.X86;
 
 namespace AIKernel.Control.CPU;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.CPU.Bonsai1BitCpuKernel']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.CPU.Bonsai1BitCpuKernel']" />
 public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
 {
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements']" />
     public const int Q1BlockElements = 256;
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes']" />
     public const int Q1ScaleBytes = 2;
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes']" />
     public const int Q1PayloadBytes = Q1BlockElements / 8;
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes']" />
     public const int Q1BlockBytes = Q1ScaleBytes + Q1PayloadBytes;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
     public string KernelId => Avx2.IsSupported
         ? "bonsai.q1_0.cpu.avx2"
         : "bonsai.q1_0.cpu.scalar";
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount']" />
     public int Q1BlockElementCount => Q1BlockElements;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount']" />
     public int Q1BlockByteCount => Q1BlockBytes;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward']" />
     public void Forward(
         BonsaiModelState state,
         ReadOnlySpan<int> inputTokenIds,
@@ -43,6 +61,8 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
         logits[rowCount..].Clear();
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0']" />
     public static float DotRowQ1_0(
         ReadOnlySpan<byte> q1Blocks,
         ReadOnlySpan<float> input)
@@ -74,6 +94,8 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
         return sum;
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0']" />
     public static void DequantizeRowQ1_0(
         ReadOnlySpan<byte> q1Blocks,
         Span<float> destination)

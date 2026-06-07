@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId">
+      <summary>Provides the EngineId value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.AllowAllControlPolicy.EvaluateAsync">
+      <summary>Executes the EvaluateAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync">
+      <summary>Executes the ExecuteAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.DeterministicNodeScheduler.ScheduleAsync">
+      <summary>Executes the ScheduleAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.EmulatedExecutionNode.#ctor">
+      <summary>Executes the #ctor operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Emulator.EmulatedExecutionNode.FaultMessage">
+      <summary>Gets or sets the FaultMessage value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.AllowAllControlPolicy">
+      <summary>Represents the AllowAllControlPolicy public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.ControlEmulatorEngine">
+      <summary>Represents the ControlEmulatorEngine public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.DeterministicNodeScheduler">
+      <summary>Represents the DeterministicNodeScheduler public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.EmulatedExecutionGraph">
+      <summary>Represents the EmulatedExecutionGraph public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.EmulatedExecutionNode">
+      <summary>Represents the EmulatedExecutionNode public reference surface for AIKernel package consumers.</summary>
+    </member>
+  </members>
+</doc>

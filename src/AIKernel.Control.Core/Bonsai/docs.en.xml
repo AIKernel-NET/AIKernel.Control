@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey">
+      <summary>Provides the ApiKey value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot">
+      <summary>Provides the DefaultModelRoot value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized">
+      <summary>Provides the IsInitialized value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name">
+      <summary>Provides the Name value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal">
+      <summary>Provides the OperationChatLocal value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize">
+      <summary>Provides the OperationTokenize value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId">
+      <summary>Provides the ProviderId value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token">
+      <summary>Provides the Token value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username">
+      <summary>Provides the Username value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version">
+      <summary>Provides the Version value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.EmbeddingDimensions">
+      <summary>Provides the EmbeddingDimensions value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.MaxConcurrentConnections">
+      <summary>Provides the MaxConcurrentConnections value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.MaxQueryParts">
+      <summary>Provides the MaxQueryParts value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.RateLimit">
+      <summary>Provides the RateLimit value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedDataTypes">
+      <summary>Provides the SupportedDataTypes value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedEmbeddingModels">
+      <summary>Provides the SupportedEmbeddingModels value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedOperations">
+      <summary>Provides the SupportedOperations value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedQueryProcessingOperations">
+      <summary>Provides the SupportedQueryProcessingOperations value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsEmbedding">
+      <summary>Provides the SupportsEmbedding value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryAugmentation">
+      <summary>Provides the SupportsQueryAugmentation value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryDecomposition">
+      <summary>Provides the SupportsQueryDecomposition value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryRouting">
+      <summary>Provides the SupportsQueryRouting value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize">
+      <summary>Provides the VocabularySize value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor">
+      <summary>Executes the #ctor operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync">
+      <summary>Executes the ExecuteNodeAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities">
+      <summary>Executes the GetCapabilities operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync">
+      <summary>Executes the GetHealthAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync">
+      <summary>Executes the InitializeAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync">
+      <summary>Executes the IsAvailableAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync">
+      <summary>Executes the ShutdownAsync operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount">
+      <summary>Executes the EstimateActivationFloatCount operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse">
+      <summary>Executes the Parse operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelState.#ctor">
+      <summary>Executes the #ctor operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelState.MarkInitialized">
+      <summary>Executes the MarkInitialized operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.GetCapabilityProfile">
+      <summary>Executes the GetCapabilityProfile operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.GetDynamicCapacities">
+      <summary>Executes the GetDynamicCapacities operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsDataType">
+      <summary>Executes the SupportsDataType operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsOperation">
+      <summary>Executes the SupportsOperation operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQuantization">
+      <summary>Executes the SupportsQuantization operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryProcessingOperation">
+      <summary>Executes the SupportsQueryProcessingOperation operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.new">
+      <summary>Executes the new operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode">
+      <summary>Executes the Decode operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse">
+      <summary>Executes the Parse operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst">
+      <summary>Executes the TokenizeFirst operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot">
+      <summary>Gets or sets the ModelRoot value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object">
+      <summary>Gets or sets the object value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.ActivationBuffer">
+      <summary>Gets or sets the ActivationBuffer value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Config">
+      <summary>Gets or sets the Config value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.IsInitialized">
+      <summary>Gets or sets the IsInitialized value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.LogitsBuffer">
+      <summary>Gets or sets the LogitsBuffer value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Q1Weights">
+      <summary>Gets or sets the Q1Weights value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Tokenizer">
+      <summary>Gets or sets the Tokenizer value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider">
+      <summary>Represents the BonsaiBuiltInProvider public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig">
+      <summary>Represents the BonsaiModelConfig public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiModelState">
+      <summary>Represents the BonsaiModelState public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities">
+      <summary>Represents the BonsaiProviderCapabilities public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer">
+      <summary>Represents the BonsaiTokenizer public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel">
+      <summary>Represents the IBonsaiInferenceKernel public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.KernelId">
+      <summary>Gets the deterministic identifier of the Bonsai inference kernel implementation used for replay and backend selection.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Q1BlockElementCount">
+      <summary>Gets the number of tensor elements represented by one Q1_0 packed weight block.</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Q1BlockByteCount">
+      <summary>Gets the byte width of one Q1_0 packed weight block consumed by the allocation-free CPU and compatible backends.</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Forward">
+      <summary>Runs a deterministic Bonsai forward pass from token identifiers into caller-provided logits storage without allocating in the hot path.</summary>
+    </member>
+  </members>
+</doc>

@@ -2,11 +2,15 @@ using AIKernel.Abstractions.Control;
 
 namespace AIKernel.Control.Emulator;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.EmulatedExecutionNode']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.EmulatedExecutionNode']" />
 public sealed record EmulatedExecutionNode(
     string NodeId,
     string OperatorId,
     IReadOnlyDictionary<string, string> Metadata) : IExecutionNode
 {
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.EmulatedExecutionNode.#ctor']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.EmulatedExecutionNode.#ctor']" />
     public EmulatedExecutionNode(
         string nodeId,
         string operatorId,
@@ -17,5 +21,7 @@ public sealed record EmulatedExecutionNode(
         FaultMessage = faultMessage;
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Emulator.EmulatedExecutionNode.FaultMessage']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Emulator.EmulatedExecutionNode.FaultMessage']" />
     public string? FaultMessage { get; init; }
 }

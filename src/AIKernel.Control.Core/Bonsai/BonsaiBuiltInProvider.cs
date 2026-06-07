@@ -9,10 +9,18 @@ using System.Text;
 
 namespace AIKernel.Control.Core.Bonsai;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider']" />
 public sealed class BonsaiBuiltInProvider : IProvider
 {
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot']" />
     public const string DefaultModelRoot = "/sys/roms/bonsai-1.7b";
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal']" />
     public const string OperationChatLocal = "chat.local";
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize']" />
     public const string OperationTokenize = "text.tokenize";
 
     private readonly IBonsaiInferenceKernel _kernel;
@@ -20,6 +28,8 @@ public sealed class BonsaiBuiltInProvider : IProvider
     private readonly IProviderCapabilities _capabilities = new BonsaiProviderCapabilities();
     private BonsaiModelState? _state;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor']" />
     public BonsaiBuiltInProvider(
         IBonsaiInferenceKernel kernel,
         IControlStateObserver? observer = null,
@@ -32,16 +42,28 @@ public sealed class BonsaiBuiltInProvider : IProvider
             : modelRoot.TrimEnd('/');
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId']" />
     public string ProviderId => "aikernel.control.bonsai-1.7b";
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name']" />
     public string Name => "Bonsai-1.7B Built-in Provider";
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
     public string Version => "0.1.0";
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />
     public string ModelRoot { get; }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized']" />
     public bool IsInitialized => _state?.IsInitialized == true;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     public async Task InitializeAsync(IVfsProvider vfs)
     {
         ArgumentNullException.ThrowIfNull(vfs);
@@ -76,6 +98,8 @@ public sealed class BonsaiBuiltInProvider : IProvider
         await ObserveAsync("bonsai.init", "Ready", "Bonsai model buffers are bound.").ConfigureAwait(false);
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     public Task InitializeAsync()
     {
         if (IsInitialized)
@@ -87,15 +111,21 @@ public sealed class BonsaiBuiltInProvider : IProvider
             "BonsaiBuiltInProvider requires InitializeAsync(IVfsProvider) so model ROM assets are loaded through VFS.");
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync']" />
     public Task ShutdownAsync()
     {
         _state = null;
         return Task.CompletedTask;
     }
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync']" />
     public Task<bool> IsAvailableAsync()
         => Task.FromResult(IsInitialized);
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync']" />
     public Task<ProviderHealthStatus> GetHealthAsync()
         => Task.FromResult(new ProviderHealthStatus(
             IsInitialized,
@@ -103,9 +133,13 @@ public sealed class BonsaiBuiltInProvider : IProvider
             DateTime.UnixEpoch,
             0));
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities']" />
     public IProviderCapabilities GetCapabilities()
         => _capabilities;
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync']" />
     public async ValueTask<ControlExecutionResult> ExecuteNodeAsync(
         IExecutionNode node,
         CancellationToken cancellationToken = default)
@@ -273,12 +307,20 @@ public sealed class BonsaiBuiltInProvider : IProvider
 
     private sealed class BonsaiVfsCredentials : IVfsCredentials
     {
+        /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username']" />
+        /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username']" />
         public string? Username => null;
 
+        /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey']" />
+        /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey']" />
         public string? ApiKey => null;
 
+        /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token']" />
+        /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token']" />
         public string? Token => null;
 
+        /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object']" />
+        /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object']" />
         public IReadOnlyDictionary<string, object>? Parameters { get; } =
             new Dictionary<string, object>(StringComparer.Ordinal)
             {

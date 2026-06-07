@@ -3,6 +3,8 @@ using AIKernel.Dtos.Control;
 
 namespace AIKernel.Control.Emulator;
 
+/// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.ControlEmulatorEngine']" />
+/// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.ControlEmulatorEngine']" />
 public sealed class ControlEmulatorEngine(
     INodeScheduler? scheduler = null,
     IControlPolicy? policy = null,
@@ -11,8 +13,12 @@ public sealed class ControlEmulatorEngine(
     private readonly INodeScheduler _scheduler = scheduler ?? new DeterministicNodeScheduler();
     private readonly IControlPolicy _policy = policy ?? new AllowAllControlPolicy();
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId']" />
     public string EngineId => "control-emulator";
 
+    /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync']" />
+    /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync']" />
     public async ValueTask<ControlExecutionResult> ExecuteAsync(
         IExecutionGraph graph,
         ControlExecutionRequest request,
