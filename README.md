@@ -20,9 +20,10 @@ AIKernel.Demo.
 
 ## Projects
 
-- `AIKernel.Control.Core` - control-plane abstractions and contracts:
-  `IControlEngine`, `IExecutionGraph`, `INodeScheduler`, `IControlPolicy`, and
-  `IControlStateObserver` will live here as the contract surface stabilizes.
+- `AIKernel.Control.Core` - control-plane runtime entry package. The shared
+  contracts live in `AIKernel.Abstractions.Control` and `AIKernel.Dtos.Control`;
+  this project references those contracts so CPU/GPU/Emulator implementations
+  do not duplicate interface or DTO definitions.
 - `AIKernel.Control.Emulator` - ControlEmulator, the Bonsai-style emulator that
   converts Bonsai Graphs into AIKernel Graphs and supports CPU/GPU execution,
   step-by-step execution, breakpoints, watches, traces, and deterministic replay.
@@ -48,3 +49,7 @@ dotnet build AIKernel.Control.slnx
 ```
 
 Common project properties are centralized in `Directory.Build.props`.
+
+During 0.1.0 prototype development, `AIKernelPackageVersion` may point to a
+local build such as `0.1.0.2` to avoid NuGet cache collisions. Public release
+builds should align the package family to the fixed 0.1.0 release version.
