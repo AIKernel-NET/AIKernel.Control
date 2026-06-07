@@ -35,6 +35,27 @@ AIKernel.Demo.
 - `AIKernel.Control.Diagnostics` - observability, graph visualization, node
   timing, CPU/GPU load inspection, and ReplayLog integration.
 
+## Built-in Bonsai Model
+
+`AIKernel.Control.Core` now includes `BonsaiBuiltInProvider`, the standard
+Control-plane provider surface for Bonsai-1.7B. The provider loads
+`config.json` and `tokenizer.json` through `IVfsProvider` from
+`/sys/roms/bonsai-1.7b/`, emits deterministic phase snapshots
+(`ModelDownload`, `Initializing`, `Generating`) through
+`IControlStateObserver`, and delegates physical inference to
+`IBonsaiInferenceKernel`.
+
+`AIKernel.Control.CPU` provides `Bonsai1BitCpuKernel`, a Q1_0 1-bit execution
+kernel that evaluates packed signs as conditional add/subtract operations over
+`Span<T>` inputs. The implementation keeps allocations outside the inference
+loop and exposes explicit `DequantizeRowQ1_0` and `DotRowQ1_0` methods for
+validation against ggml/llama.cpp quantization assets.
+
+`AIKernel.Control.GPU` exposes `IBonsaiGpuExecutionDelegate` so a CUDA, WebGPU,
+ROCm, or Vulkan execution backend can implement the same Bonsai inference
+contract without making `AIKernel.Control.Core` depend on a concrete GPU
+runtime.
+
 ## Design Direction
 
 ControlEmulator is the AIKernel analogue of ONNX Runtime: AIKernel.Core produces

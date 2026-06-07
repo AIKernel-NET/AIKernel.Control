@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\AIKernel.Control.CPU\AIKernel.Control.CPU.csproj" />
     <ProjectReference Include="..\..\src\AIKernel.Control.Emulator\AIKernel.Control.Emulator.csproj" />
   </ItemGroup>
 
