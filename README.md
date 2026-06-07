@@ -39,6 +39,8 @@ AIKernel.Demo.
   contracts live in `AIKernel.Abstractions.Control` and `AIKernel.Dtos.Control`;
   this project references those contracts so CPU/GPU/Emulator implementations
   do not duplicate interface or DTO definitions.
+  Capability manifests use `AIKernel.Dtos.Capabilities.CapabilityModuleDescriptor`
+  rather than Control-local descriptor DTOs.
 - `AIKernel.Control.Emulator` - ControlEmulator, the Bonsai-style emulator that
   converts Bonsai Graphs into AIKernel Graphs and supports CPU/GPU execution,
   step-by-step execution, breakpoints, watches, traces, and deterministic replay.

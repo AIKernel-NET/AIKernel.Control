@@ -38,6 +38,8 @@ Phase に参加します。AIKernel の Semantic Graph を物理実行エンジ�
   共有契約は `AIKernel.Abstractions.Control` と `AIKernel.Dtos.Control` にあり、
   このプロジェクトはそれらを参照します。CPU / GPU / Emulator 実装が
   Interface や DTO を重複定義しないための境界です。
+  Capability manifest は Control 固有の descriptor DTO ではなく、
+  `AIKernel.Dtos.Capabilities.CapabilityModuleDescriptor` を使用します。
 - `AIKernel.Control.Emulator` - ControlEmulator です。AIKernel `ExecutionGraph`
   を CPU-only Runtime で決定論的に実行します。Bonsai そのものを模倣する
   Emulator ではありません。step-by-step 実行、breakpoint、watch、trace、
