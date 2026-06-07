@@ -21,59 +21,125 @@ public sealed class ControlEmulatorEngine(
         ArgumentNullException.ThrowIfNull(graph);
         ArgumentNullException.ThrowIfNull(request);
 
-        var evaluation = await _policy
-            .EvaluateAsync(graph, request, cancellationToken)
-            .ConfigureAwait(false);
+        try
+        {
+            var evaluation = await _policy
+                .EvaluateAsync(graph, request, cancellationToken)
+                .ConfigureAwait(false);
 
-        if (!evaluation.Allowed)
+            if (!evaluation.Allowed)
+            {
+                return new ControlExecutionResult(
+                    request.ExecutionId,
+                    PolicyStatus(evaluation),
+                    MergeMetadata(
+                        request.Metadata,
+                        new Dictionary<string, string>
+                        {
+                            ["engine_id"] = EngineId,
+                            ["graph_id"] = graph.GraphId,
+                            ["policy_code"] = evaluation.Code,
+                            ["policy_reason"] = evaluation.Reason
+                        }));
+            }
+
+            var nodes = await _scheduler
+                .ScheduleAsync(graph, cancellationToken)
+                .ConfigureAwait(false);
+
+            var executionMetadata = new Dictionary<string, string>
+            {
+                ["engine_id"] = EngineId,
+                ["graph_id"] = graph.GraphId,
+                ["scheduled_node_count"] = nodes.Count.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            };
+
+            foreach (var node in nodes)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                if (observer is not null)
+                {
+                    await observer
+                        .ObserveAsync(
+                            new ControlStateSnapshot(
+                                request.ExecutionId,
+                                graph.GraphId,
+                                node.NodeId,
+                                node.Metadata),
+                            cancellationToken)
+                        .ConfigureAwait(false);
+                }
+
+                RecordNodeMetadata(executionMetadata, node);
+                ExecuteEmulatedNode(node);
+            }
+
+            return new ControlExecutionResult(
+                request.ExecutionId,
+                "Completed",
+                MergeMetadata(request.Metadata, executionMetadata));
+        }
+        catch (OperationCanceledException)
         {
             return new ControlExecutionResult(
                 request.ExecutionId,
-                "Denied",
+                "Canceled",
                 MergeMetadata(
                     request.Metadata,
                     new Dictionary<string, string>
                     {
                         ["engine_id"] = EngineId,
                         ["graph_id"] = graph.GraphId,
-                        ["policy_code"] = evaluation.Code,
-                        ["policy_reason"] = evaluation.Reason
+                        ["error_code"] = "CONTROL_CANCELED",
+                        ["error_message"] = "Control execution was canceled."
                     }));
         }
-
-        var nodes = await _scheduler
-            .ScheduleAsync(graph, cancellationToken)
-            .ConfigureAwait(false);
-
-        foreach (var node in nodes)
+        catch (Exception ex)
         {
-            cancellationToken.ThrowIfCancellationRequested();
-
-            if (observer is not null)
-            {
-                await observer
-                    .ObserveAsync(
-                        new ControlStateSnapshot(
-                            request.ExecutionId,
-                            graph.GraphId,
-                            node.NodeId,
-                            node.Metadata),
-                        cancellationToken)
-                    .ConfigureAwait(false);
-            }
+            return new ControlExecutionResult(
+                request.ExecutionId,
+                "Faulted",
+                MergeMetadata(
+                    request.Metadata,
+                    new Dictionary<string, string>
+                    {
+                        ["engine_id"] = EngineId,
+                        ["graph_id"] = graph.GraphId,
+                        ["error_code"] = "CONTROL_FAULTED",
+                        ["error_message"] = ex.Message
+                    }));
         }
+    }
 
-        return new ControlExecutionResult(
-            request.ExecutionId,
-            "Completed",
-            MergeMetadata(
-                request.Metadata,
-                new Dictionary<string, string>
-                {
-                    ["engine_id"] = EngineId,
-                    ["graph_id"] = graph.GraphId,
-                    ["scheduled_node_count"] = nodes.Count.ToString(System.Globalization.CultureInfo.InvariantCulture)
-                }));
+    private static string PolicyStatus(ControlPolicyEvaluation evaluation)
+    {
+        return string.Equals(evaluation.Code, "ABORT", StringComparison.OrdinalIgnoreCase)
+            ? "Aborted"
+            : "Denied";
+    }
+
+    private static void ExecuteEmulatedNode(IExecutionNode node)
+    {
+        if (node is EmulatedExecutionNode emulated &&
+            !string.IsNullOrEmpty(emulated.FaultMessage))
+        {
+            throw new InvalidOperationException(emulated.FaultMessage);
+        }
+    }
+
+    private static void RecordNodeMetadata(
+        IDictionary<string, string> metadata,
+        IExecutionNode node)
+    {
+        metadata["last_node_id"] = node.NodeId;
+        metadata["last_operator_id"] = node.OperatorId;
+
+        var prefix = $"node.{node.NodeId}.";
+        foreach (var item in node.Metadata)
+        {
+            metadata[prefix + item.Key] = item.Value;
+        }
     }
 
     private static IReadOnlyDictionary<string, string> MergeMetadata(

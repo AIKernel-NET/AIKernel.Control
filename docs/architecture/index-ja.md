@@ -1,0 +1,45 @@
+# AIKernel.Control アーキテクチャ
+
+[English](index.md)
+
+AIKernel.Control は、AIKernel.Core が生成する意味論的 Execution Graph を
+物理実行エンジンへマッピングします。Core は Semantic Runtime の責務を持ち、
+Control は scheduling、emulation、CPU/GPU execution、diagnostics を所有します。
+
+## レイヤー境界
+
+- `AIKernel.Control.Core` は Control Plane の Runtime Entry Point を提供し、
+  `AIKernel.Abstractions.Control` と `AIKernel.Dtos.Control` にある共有契約を
+  利用します。
+- `AIKernel.Control.Emulator` は AIKernel `ExecutionGraph` を CPU-only で
+  決定論的に実行します。
+- `AIKernel.Control.CPU` は Bonsai Node を CPU Operator へマッピングします。
+- `AIKernel.Control.GPU` は Bonsai Node を GPU Kernel や Tensor Capability へ
+  マッピングします。
+- `AIKernel.Control.Diagnostics` は graph execution、replay、timing、load を
+  観測します。
+
+AIKernel.Demo は Control を利用する側です。Demo が execution-engine code を
+所有してはいけません。
+
+## 標準モデル境界
+
+Bonsai-1.7B は Demo fixture ではなく、Control の built-in Provider として
+公開されます。
+
+Provider は VFS ROM path から model assets を読み込み、
+`IBonsaiInferenceKernel` を通じて CPU/GPU kernel へ物理推論を委譲します。
+
+この構造により、依存方向は次のように保たれます。
+
+- AIKernel.NET が契約を定義します。
+- AIKernel.Control が実行を実装します。
+- AIKernel.Demo が実行を利用します。
+
+## ライセンス境界
+
+AIKernel.Control の実装コードは Apache-2.0 です。利用する AIKernel.NET の
+契約パッケージは MIT です。
+
+Bonsai、tokenizer、ggml / llama.cpp 由来 asset は、それぞれの元ライセンスを
+維持します。AIKernel.Control は third-party asset を再ライセンスしません。
