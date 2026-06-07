@@ -33,6 +33,11 @@ for 2026-06-09. It validates the path from AIKernel semantic graphs to physical
 execution engines without moving that execution-engine responsibility into
 AIKernel.Demo.
 
+Release notes:
+
+- [English](RELEASE_NOTES.md)
+- [日本語](RELEASE_NOTES-ja.md)
+
 ## Projects
 
 - `AIKernel.Control.Core` - control-plane runtime entry package. The shared
