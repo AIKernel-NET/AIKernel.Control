@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId">
+      <summary>Provides the KernelId value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount">
+      <summary>Provides the Q1BlockByteCount value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes">
+      <summary>Provides the Q1BlockBytes value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount">
+      <summary>Provides the Q1BlockElementCount value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements">
+      <summary>Provides the Q1BlockElements value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes">
+      <summary>Provides the Q1PayloadBytes value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes">
+      <summary>Provides the Q1ScaleBytes value exposed by the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0">
+      <summary>Executes the DequantizeRowQ1_0 operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0">
+      <summary>Executes the DotRowQ1_0 operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward">
+      <summary>Executes the Forward operation as part of the AIKernel public reference surface.</summary>
+    </member>
+    <member name="T:AIKernel.Control.CPU.Bonsai1BitCpuKernel">
+      <summary>Represents the Bonsai1BitCpuKernel public reference surface for AIKernel package consumers.</summary>
+    </member>
+  </members>
+</doc>

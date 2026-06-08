@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control.GPU</Title>
+    <Description>GPU boundary package for AIKernel.Control. Provides the public Bonsai GPU execution delegate contract so CUDA, WebGPU, ROCm, Vulkan, or other device-specific backends can integrate without leaking into Control Core.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
+  </ItemGroup>
+</Project>

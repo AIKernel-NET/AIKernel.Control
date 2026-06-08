@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId">
+      <summary>AIKernel の公開参照サーフェスで公開される EngineId 値を提供します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.AllowAllControlPolicy.EvaluateAsync">
+      <summary>AIKernel の公開参照サーフェスとして EvaluateAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync">
+      <summary>AIKernel の公開参照サーフェスとして ExecuteAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.DeterministicNodeScheduler.ScheduleAsync">
+      <summary>AIKernel の公開参照サーフェスとして ScheduleAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Emulator.EmulatedExecutionNode.#ctor">
+      <summary>AIKernel の公開参照サーフェスとして #ctor 操作を実行します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Emulator.EmulatedExecutionNode.FaultMessage">
+      <summary>AIKernel の公開参照サーフェスで公開される FaultMessage 値を取得または設定します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.AllowAllControlPolicy">
+      <summary>AIKernel パッケージ利用者に公開される AllowAllControlPolicy の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.ControlEmulatorEngine">
+      <summary>AIKernel パッケージ利用者に公開される ControlEmulatorEngine の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.DeterministicNodeScheduler">
+      <summary>AIKernel パッケージ利用者に公開される DeterministicNodeScheduler の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.EmulatedExecutionGraph">
+      <summary>AIKernel パッケージ利用者に公開される EmulatedExecutionGraph の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Emulator.EmulatedExecutionNode">
+      <summary>AIKernel パッケージ利用者に公開される EmulatedExecutionNode の参照サーフェスを表します。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src/AIKernel.Control.Core/AIKernel.Control.Core.csproj" />
+  <Project Path="src/AIKernel.Control.CPU/AIKernel.Control.CPU.csproj" />
+  <Project Path="src/AIKernel.Control.Diagnostics/AIKernel.Control.Diagnostics.csproj" />
+  <Project Path="src/AIKernel.Control.Emulator/AIKernel.Control.Emulator.csproj" />
+  <Project Path="src/AIKernel.Control.GPU/AIKernel.Control.GPU.csproj" />
+  <Project Path="tests/AIKernel.Control.Tests/AIKernel.Control.Tests.csproj" />
+</Solution>

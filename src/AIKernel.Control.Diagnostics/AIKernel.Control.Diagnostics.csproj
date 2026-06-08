@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control.Diagnostics</Title>
+    <Description>Diagnostics package for AIKernel.Control. Provides public replay approval diagnostics records and observability support for governed control-plane execution.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
+  </ItemGroup>
+</Project>

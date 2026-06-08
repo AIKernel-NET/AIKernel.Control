@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control.CPU</Title>
+    <Description>CPU execution package for AIKernel.Control. Provides the public Bonsai Q1_0 1-bit CPU inference kernel and CPU-side physical execution boundary for governed semantic runtime graphs.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
+  </ItemGroup>
+</Project>

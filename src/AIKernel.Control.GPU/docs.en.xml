@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="T:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate">
+      <summary>Represents the IBonsaiGpuExecutionDelegate public reference surface for AIKernel package consumers.</summary>
+    </member>
+    <member name="P:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate.DeviceId">
+      <summary>Gets the deterministic GPU device identifier exposed by the delegate for diagnostics and replay metadata.</summary>
+    </member>
+    <member name="P:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate.IsAvailable">
+      <summary>Gets a value indicating whether the delegate can accept Bonsai inference work without falling back to CPU execution.</summary>
+    </member>
+  </members>
+</doc>

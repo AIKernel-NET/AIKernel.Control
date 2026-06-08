@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aikernel-governance"
+version = "0.1.0"
+description = "Python wrapper for AIKernel.Control v0.1.0 governance contracts with bundled managed assemblies and pythonnet loading."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [
+  { name = "Takuya Sogawa" }
+]
+keywords = [
+  "aikernel",
+  "governance",
+  "control-plane",
+  "semantic-runtime",
+  "bonsai",
+  "managed-assemblies",
+  "pythonnet"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Software Development :: Libraries"
+]
+dependencies = [
+  "pythonnet>=3.0.3"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=9.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/AIKernel-NET/AIKernel.Control"
+Repository = "https://github.com/AIKernel-NET/AIKernel.Control"
+Issues = "https://github.com/AIKernel-NET/AIKernel.Control/issues"
+Releases = "https://github.com/AIKernel-NET/AIKernel.Control/releases"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aikernel_governance = [
+  "native/*.dll",
+  "native/*.so",
+  "native/*.dylib",
+  "native/*.deps.json"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

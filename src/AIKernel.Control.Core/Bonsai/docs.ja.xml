@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey">
+      <summary>AIKernel の公開参照サーフェスで公開される ApiKey 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot">
+      <summary>AIKernel の公開参照サーフェスで公開される DefaultModelRoot 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized">
+      <summary>AIKernel の公開参照サーフェスで公開される IsInitialized 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name">
+      <summary>AIKernel の公開参照サーフェスで公開される Name 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal">
+      <summary>AIKernel の公開参照サーフェスで公開される OperationChatLocal 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize">
+      <summary>AIKernel の公開参照サーフェスで公開される OperationTokenize 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId">
+      <summary>AIKernel の公開参照サーフェスで公開される ProviderId 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token">
+      <summary>AIKernel の公開参照サーフェスで公開される Token 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username">
+      <summary>AIKernel の公開参照サーフェスで公開される Username 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version">
+      <summary>AIKernel の公開参照サーフェスで公開される Version 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.EmbeddingDimensions">
+      <summary>AIKernel の公開参照サーフェスで公開される EmbeddingDimensions 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.MaxConcurrentConnections">
+      <summary>AIKernel の公開参照サーフェスで公開される MaxConcurrentConnections 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.MaxQueryParts">
+      <summary>AIKernel の公開参照サーフェスで公開される MaxQueryParts 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.RateLimit">
+      <summary>AIKernel の公開参照サーフェスで公開される RateLimit 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedDataTypes">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportedDataTypes 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedEmbeddingModels">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportedEmbeddingModels 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedOperations">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportedOperations 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportedQueryProcessingOperations">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportedQueryProcessingOperations 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsEmbedding">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportsEmbedding 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryAugmentation">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportsQueryAugmentation 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryDecomposition">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportsQueryDecomposition 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryRouting">
+      <summary>AIKernel の公開参照サーフェスで公開される SupportsQueryRouting 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize">
+      <summary>AIKernel の公開参照サーフェスで公開される VocabularySize 値を提供します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor">
+      <summary>AIKernel の公開参照サーフェスとして #ctor 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync">
+      <summary>AIKernel の公開参照サーフェスとして ExecuteNodeAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities">
+      <summary>AIKernel の公開参照サーフェスとして GetCapabilities 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync">
+      <summary>AIKernel の公開参照サーフェスとして GetHealthAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync">
+      <summary>AIKernel の公開参照サーフェスとして InitializeAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync">
+      <summary>AIKernel の公開参照サーフェスとして IsAvailableAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync">
+      <summary>AIKernel の公開参照サーフェスとして ShutdownAsync 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount">
+      <summary>AIKernel の公開参照サーフェスとして EstimateActivationFloatCount 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse">
+      <summary>AIKernel の公開参照サーフェスとして Parse 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelState.#ctor">
+      <summary>AIKernel の公開参照サーフェスとして #ctor 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiModelState.MarkInitialized">
+      <summary>AIKernel の公開参照サーフェスとして MarkInitialized 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.GetCapabilityProfile">
+      <summary>AIKernel の公開参照サーフェスとして GetCapabilityProfile 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.GetDynamicCapacities">
+      <summary>AIKernel の公開参照サーフェスとして GetDynamicCapacities 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsDataType">
+      <summary>AIKernel の公開参照サーフェスとして SupportsDataType 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsOperation">
+      <summary>AIKernel の公開参照サーフェスとして SupportsOperation 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQuantization">
+      <summary>AIKernel の公開参照サーフェスとして SupportsQuantization 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.SupportsQueryProcessingOperation">
+      <summary>AIKernel の公開参照サーフェスとして SupportsQueryProcessingOperation 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities.new">
+      <summary>AIKernel の公開参照サーフェスとして new 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode">
+      <summary>AIKernel の公開参照サーフェスとして Decode 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse">
+      <summary>AIKernel の公開参照サーフェスとして Parse 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst">
+      <summary>AIKernel の公開参照サーフェスとして TokenizeFirst 操作を実行します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot">
+      <summary>AIKernel の公開参照サーフェスで公開される ModelRoot 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object">
+      <summary>AIKernel の公開参照サーフェスで公開される object 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.ActivationBuffer">
+      <summary>AIKernel の公開参照サーフェスで公開される ActivationBuffer 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Config">
+      <summary>AIKernel の公開参照サーフェスで公開される Config 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.IsInitialized">
+      <summary>AIKernel の公開参照サーフェスで公開される IsInitialized 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.LogitsBuffer">
+      <summary>AIKernel の公開参照サーフェスで公開される LogitsBuffer 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Q1Weights">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1Weights 値を取得または設定します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.BonsaiModelState.Tokenizer">
+      <summary>AIKernel の公開参照サーフェスで公開される Tokenizer 値を取得または設定します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider">
+      <summary>AIKernel パッケージ利用者に公開される BonsaiBuiltInProvider の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig">
+      <summary>AIKernel パッケージ利用者に公開される BonsaiModelConfig の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiModelState">
+      <summary>AIKernel パッケージ利用者に公開される BonsaiModelState の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiProviderCapabilities">
+      <summary>AIKernel パッケージ利用者に公開される BonsaiProviderCapabilities の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer">
+      <summary>AIKernel パッケージ利用者に公開される BonsaiTokenizer の参照サーフェスを表します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel">
+      <summary>AIKernel パッケージ利用者に公開される IBonsaiInferenceKernel の参照サーフェスを表します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.KernelId">
+      <summary>Replay と backend selection に使用する Bonsai inference kernel 実装の決定論的識別子を取得します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Q1BlockElementCount">
+      <summary>1 つの Q1_0 packed weight block が表す tensor element 数を取得します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Q1BlockByteCount">
+      <summary>allocation-free CPU kernel と互換 backend が消費する 1 つの Q1_0 packed weight block の byte 幅を取得します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel.Forward">
+      <summary>token identifier から呼び出し側が提供した logits storage へ、hot path で allocation せずに決定論的な Bonsai forward pass を実行します。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="T:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate">
+      <summary>AIKernel パッケージ利用者に公開される IBonsaiGpuExecutionDelegate の参照サーフェスを表します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate.DeviceId">
+      <summary>診断と replay metadata に公開する GPU delegate の決定論的 device identifier を取得します。</summary>
+    </member>
+    <member name="P:AIKernel.Control.GPU.IBonsaiGpuExecutionDelegate.IsAvailable">
+      <summary>CPU execution へ fallback せずに Bonsai inference work を受け付けられるかどうかを取得します。</summary>
+    </member>
+  </members>
+</doc>

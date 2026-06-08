@@ -1,0 +1,37 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0</AssemblyVersion>
+    <FileVersion>0.1.0</FileVersion>
+    <InformationalVersion>0.1.0</InformationalVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <Authors>Takuya Sogawa</Authors>
+    <Company>AIKernel-NET</Company>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://www.nuget.org/profiles/AIKernel-NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AIKernel-NET/AIKernel.Control</RepositoryUrl>
+    <Copyright>Copyright © 2026 Takuya Sogawa of AIKernel-NET</Copyright>
+    <PackageTags>aikernel;control-plane;governance;semantic-runtime;execution-engine;bonsai;emulator;cpu;gpu;diagnostics;replay;pythonnet</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>aikernel-logo128x128.png</PackageIcon>
+    <Description>AIKernel.Control package family v0.1.0. Provides the physical execution and governance layer for AIKernel semantic execution graphs, including Control Core, CPU, Emulator, GPU boundary, Diagnostics, and Python governance wrapper support.</Description>
+    <PackageReleaseNotes>
+      AIKernel.Control package family v0.1.0 - First public release of the AIKernel physical execution and governance layer. Provides ControlExecutionRequest/Result/Snapshot contract usage, Bonsai built-in provider boundary, deterministic ControlEmulator, Q1_0 CPU kernel, GPU delegate contract, diagnostics replay records, documentation, and the aikernel-governance Python wrapper with bundled managed assemblies.
+    </PackageReleaseNotes>
+
+    <AIKernelPackageVersion>0.1.0</AIKernelPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)README-ja.md" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)RELEASE_NOTES.md" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)assets\aikernel-logo128x128.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

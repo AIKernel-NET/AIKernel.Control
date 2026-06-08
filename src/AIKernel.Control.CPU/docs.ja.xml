@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId">
+      <summary>AIKernel の公開参照サーフェスで公開される KernelId 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1BlockByteCount 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1BlockBytes 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1BlockElementCount 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1BlockElements 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1PayloadBytes 値を提供します。</summary>
+    </member>
+    <member name="F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes">
+      <summary>AIKernel の公開参照サーフェスで公開される Q1ScaleBytes 値を提供します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0">
+      <summary>AIKernel の公開参照サーフェスとして DequantizeRowQ1_0 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0">
+      <summary>AIKernel の公開参照サーフェスとして DotRowQ1_0 操作を実行します。</summary>
+    </member>
+    <member name="M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward">
+      <summary>AIKernel の公開参照サーフェスとして Forward 操作を実行します。</summary>
+    </member>
+    <member name="T:AIKernel.Control.CPU.Bonsai1BitCpuKernel">
+      <summary>AIKernel パッケージ利用者に公開される Bonsai1BitCpuKernel の参照サーフェスを表します。</summary>
+    </member>
+  </members>
+</doc>
