@@ -54,6 +54,24 @@ Phase に参加します。AIKernel の Semantic Graph を物理実行エンジ�
   Graph visualization、node timing、CPU / GPU load inspection、ReplayLog
   integration を担当します。
 
+## Python Package
+
+`aikernel-governance` は、AIKernel.Control の public governance surface を
+Python から扱うための wrapper package です。
+
+C# package の境界を、単一の Python API として公開します。
+
+- execution request、result、snapshot envelope
+- provider contract metadata
+- Bonsai provider、tokenizer、model config、model-state wrapper
+- emulator graph、node、scheduler、policy、engine wrapper
+- CPU kernel と diagnostics wrapper
+- managed assembly discovery と pythonnet loading
+
+Python package は Control internals、scheduler logic、provider execution、
+CPU / GPU kernel を Python で再実装しません。C# assembly を同梱し、公開
+managed contract を呼び出す薄い wrapper layer として機能します。
+
 ## Built-in Bonsai Model
 
 `AIKernel.Control.Core` は、Bonsai-1.7B の標準 Control Plane Provider として
@@ -143,7 +161,33 @@ dotnet build AIKernel.Control.slnx
 
 共通のプロジェクトプロパティは `Directory.Build.props` に集約されています。
 
-0.1.0 prototype development 中は、NuGet cache collision を避けるために
-`AIKernelPackageVersion` が `0.1.0.2` のようなローカルビルドを指す場合が
-あります。Public release build では、package family を固定版の `0.1.0`
-release version に揃えてください。
+## パッケージインストール
+
+.NET host では NuGet package を使用します。
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.0
+dotnet add package AIKernel.Control.CPU --version 0.1.0
+dotnet add package AIKernel.Control.Emulator --version 0.1.0
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.0
+dotnet add package AIKernel.Control.GPU --version 0.1.0
+```
+
+Python host では PyPI package を使用します。
+
+```bash
+pip install aikernel-governance
+```
+
+Python module は `aikernel_governance` として import します。
+
+```python
+from aikernel_governance import ExecutionRequest, GovernanceClient
+```
+
+wheel は managed AIKernel.Control assemblies を `aikernel_governance/native`
+に同梱します。これは public C# contract surface への wrapper であり、
+governance semantics を Python で別実装するものではありません。
+
+package scope、assembly loading、publication guidance は
+[Python governance wrapper](docs/python/index-ja.md) を参照してください。

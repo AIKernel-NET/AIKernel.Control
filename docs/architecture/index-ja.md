@@ -22,6 +22,20 @@ Control は scheduling、emulation、CPU/GPU execution、diagnostics を所有�
 AIKernel.Demo は Control を利用する側です。Demo が execution-engine code を
 所有してはいけません。
 
+## Python 境界
+
+Python package `aikernel-governance` は、Python host 向けに同じ public Control
+boundary を公開します。managed C# assemblies を同梱し、pythonnet を通じて
+public governance surface を wrapper します。
+
+Python から見えるのは契約境界です。execution request、result、snapshot、
+provider metadata、Bonsai public wrappers、emulator wrappers、CPU kernel
+wrappers、diagnostics wrappers、GPU delegate contract を扱えます。一方で、
+internal engine helper、transport-specific implementation、private runtime
+state は公開しません。
+
+[Python governance wrapper](../python/index-ja.md) も参照してください。
+
 ## 標準モデル境界
 
 Bonsai-1.7B は Demo fixture ではなく、Control の built-in Provider として

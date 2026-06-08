@@ -1,0 +1,79 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "AIKernel.Control.Core/0.1.0": {
+        "dependencies": {
+          "AIKernel.Abstractions": "0.1.0",
+          "AIKernel.Dtos": "0.1.0"
+        },
+        "runtime": {
+          "AIKernel.Control.Core.dll": {}
+        }
+      },
+      "AIKernel.Abstractions/0.1.0": {
+        "dependencies": {
+          "AIKernel.Dtos": "0.1.0",
+          "AIKernel.Enums": "0.1.0"
+        },
+        "runtime": {
+          "lib/net10.0/AIKernel.Abstractions.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.1.0.0"
+          }
+        }
+      },
+      "AIKernel.Dtos/0.1.0": {
+        "dependencies": {
+          "AIKernel.Enums": "0.1.0"
+        },
+        "runtime": {
+          "lib/net10.0/AIKernel.Dtos.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.1.0.0"
+          }
+        }
+      },
+      "AIKernel.Enums/0.1.0": {
+        "runtime": {
+          "lib/net10.0/AIKernel.Enums.dll": {
+            "assemblyVersion": "0.1.0.0",
+            "fileVersion": "0.1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AIKernel.Control.Core/0.1.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AIKernel.Abstractions/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/9eLoGIV3YyTOXmjz0LiBtENpLEkXLBN3vuf88hKU9IZZGVlW5DYzcMi8assFEOoNqdVz670XJOFJbSNLjDULg==",
+      "path": "aikernel.abstractions/0.1.0",
+      "hashPath": "aikernel.abstractions.0.1.0.nupkg.sha512"
+    },
+    "AIKernel.Dtos/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3ia8J3lv1gZjsQXiQ4B92YOb2zjq3d2LEgpkDUDXK6plrVo325P+1EcVsU6Hs8Jn+5J5XBq60h25nlftBGJF1w==",
+      "path": "aikernel.dtos/0.1.0",
+      "hashPath": "aikernel.dtos.0.1.0.nupkg.sha512"
+    },
+    "AIKernel.Enums/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aESd1AssiRdKHLBjnFVj6qxHI+/LmBRNNQ0a6ucq4TTygwXTIKCtCs7Gts142HaMpeF19HIr9PaG7gz+TRyxLw==",
+      "path": "aikernel.enums/0.1.0",
+      "hashPath": "aikernel.enums.0.1.0.nupkg.sha512"
+    }
+  }
+}

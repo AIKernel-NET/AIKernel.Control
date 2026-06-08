@@ -19,6 +19,9 @@ semantic runtime.
   Q1_0 kernel and VFS/ROM model asset ownership.
 - Keep GPU execution behind the Control.GPU boundary so device-specific
   execution can evolve without leaking into Core or Demo.
+- Add the `aikernel-governance` Python package as a single wrapper over the
+  public governance surface, including bundled managed assemblies and pythonnet
+  loading.
 - Document the responsibility split: Core owns semantic graphs, Control maps
   them to physical execution, and Demo only consumes the runtime.
 

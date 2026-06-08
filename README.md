@@ -59,6 +59,24 @@ Release notes:
 - `AIKernel.Control.Diagnostics` - observability, graph visualization, node
   timing, CPU/GPU load inspection, and ReplayLog integration.
 
+## Python Package
+
+`aikernel-governance` is the Python wrapper for the public governance surface of
+AIKernel.Control.
+
+It exposes the C# package boundary as a single Python API:
+
+- execution request, result, and snapshot envelopes
+- provider contract metadata
+- Bonsai provider, tokenizer, model config, and model-state wrappers
+- emulator graph, node, scheduler, policy, and engine wrappers
+- CPU kernel and diagnostics wrappers
+- managed assembly discovery and pythonnet loading
+
+The Python package does not reimplement Control internals, scheduler logic,
+provider execution, or CPU/GPU kernels. It bundles the C# assemblies and uses a
+thin wrapper layer to call the public managed contracts.
+
 ## Built-in Bonsai Model
 
 `AIKernel.Control.Core` now includes `BonsaiBuiltInProvider`, the standard
@@ -134,6 +152,33 @@ dotnet build AIKernel.Control.slnx
 
 Common project properties are centralized in `Directory.Build.props`.
 
-During 0.1.0 prototype development, `AIKernelPackageVersion` may point to a
-local build such as `0.1.0.2` to avoid NuGet cache collisions. Public release
-builds should align the package family to the fixed 0.1.0 release version.
+## Package Installation
+
+For .NET hosts:
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.0
+dotnet add package AIKernel.Control.CPU --version 0.1.0
+dotnet add package AIKernel.Control.Emulator --version 0.1.0
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.0
+dotnet add package AIKernel.Control.GPU --version 0.1.0
+```
+
+For Python hosts:
+
+```bash
+pip install aikernel-governance
+```
+
+Import the Python module as `aikernel_governance`:
+
+```python
+from aikernel_governance import ExecutionRequest, GovernanceClient
+```
+
+The wheel bundles managed AIKernel.Control assemblies under
+`aikernel_governance/native`. It is a wrapper over the public C# contract
+surface, not a separate Python implementation of governance semantics.
+
+See [Python governance wrapper](docs/python/index.md) for package scope,
+assembly loading, and publication guidance.

@@ -21,6 +21,20 @@ emulation, CPU/GPU execution, and diagnostics.
 
 AIKernel.Demo must use Control; it must not own execution-engine code.
 
+## Python Boundary
+
+The Python package `aikernel-governance` exposes the same public Control
+boundary for Python hosts. It bundles the managed C# assemblies and wraps the
+public governance surface through pythonnet.
+
+Python sees the contract boundary: execution requests, results, snapshots,
+provider metadata, Bonsai public wrappers, emulator wrappers, CPU kernel
+wrappers, diagnostics wrappers, and the GPU delegate contract. It does not see
+internal engine helpers, transport-specific implementation, or private runtime
+state.
+
+See [Python governance wrapper](../python/index.md).
+
 ## Standard Model Boundary
 
 Bonsai-1.7B is exposed as a built-in Control provider, not as a demo fixture.
