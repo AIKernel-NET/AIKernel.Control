@@ -1,4 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control.Emulator</Title>
+    <Description>Deterministic emulator package for AIKernel.Control. Provides public emulated execution graph/node wrappers, deterministic scheduling, allow-all policy, and ControlEmulatorEngine for replayable CPU-only governance execution.</Description>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
   </ItemGroup>

@@ -1,4 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control.Core</Title>
+    <Description>Control-plane runtime entry package for AIKernel.Control. Provides Bonsai provider contracts, model config/tokenizer/model-state wrappers, provider capabilities, and the public governance execution boundary built on AIKernel.NET contracts.</Description>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AIKernel.Abstractions" Version="$(AIKernelPackageVersion)" />
     <PackageReference Include="AIKernel.Dtos" Version="$(AIKernelPackageVersion)" />
