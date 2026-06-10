@@ -3,6 +3,14 @@
 This guide explains how to consume AIKernel.Control as the physical execution
 layer for AIKernel semantic graphs.
 
+Control is the AIOS SDK governance, security, and physical execution layer. It
+lets a distribution bind semantic graphs to policies, schedulers, diagnostics,
+CPU/emulator execution, and optional GPU execution.
+
+AIKernel.Monolith is the official AIOS distribution now in development. It will
+serve as the standard reference distribution that embodies semantic runtime,
+capability graph, and governance after the 0.1.x line stabilizes.
+
 ## Installation
 
 Install the Control packages that match your host role:

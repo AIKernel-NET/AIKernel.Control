@@ -2,14 +2,17 @@
 
 [日本語](RELEASE_NOTES-ja.md)
 
-## 0.1.0
+## 0.1.1
 
-> [EN] Control 0.1.0 defines the public governance surface: execution requests, snapshots, and results become contract-stable.
->
-> [JA] Control 0.1.0 は公開ガバナンス面を定義──Execution Request・Snapshot・Result が契約的に安定化される。
+**June 10th, 2026 - Governing the control plane.**
+**2026年6月10日--制御プレーンを統治する。**
 
-AIKernel.Control 0.1.0 introduces the physical execution layer for the AIKernel
-semantic runtime.
+Governing the control plane: policies, schedulers, and emulators align into a
+deterministic governance layer. 制御プレーンの統治--ポリシー・スケジューラ・
+エミュレータが決定論的ガバナンス層へ整列する。
+
+AIKernel.Control 0.1.1 synchronizes the physical execution and governance layer
+for the AIKernel Semantic OS package family.
 
 - Consume public Control contracts from AIKernel.NET: execution graphs, nodes,
   requests, results, policies, schedulers, and state observers.
@@ -25,5 +28,5 @@ semantic runtime.
 - Document the responsibility split: Core owns semantic graphs, Control maps
   them to physical execution, and Demo only consumes the runtime.
 
-Control 0.1.0 is the bridge from governed semantic graphs to deterministic
+Control 0.1.1 is the governed bridge from semantic graphs to deterministic
 physical execution.
