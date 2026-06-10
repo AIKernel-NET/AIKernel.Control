@@ -52,7 +52,7 @@ public sealed class BonsaiBuiltInProvider : IProvider
 
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
-    public string Version => "0.1.0";
+    public string Version => "0.1.1";
 
     /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />

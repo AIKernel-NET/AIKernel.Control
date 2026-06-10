@@ -12,8 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-_CONTROL_PACKAGE_VERSION = "0.1.0"
-_CONTRACT_PACKAGE_VERSION = "0.1.0"
+_CONTROL_PACKAGE_VERSION = "0.1.1"
+_CONTRACT_PACKAGE_VERSION = "0.1.1"
 _ASSEMBLIES = (
     "AIKernel.Abstractions.dll",
     "AIKernel.Dtos.dll",
@@ -112,6 +112,12 @@ def load_governance_runtime() -> GovernanceAssemblySet:
 
     assemblies = require_governance_assemblies()
     try:
+        from pythonnet import load  # type: ignore[import-not-found]
+
+        try:
+            load("coreclr")
+        except RuntimeError:
+            pass
         import clr  # type: ignore[import-not-found]
     except ImportError as exc:
         raise RuntimeError(

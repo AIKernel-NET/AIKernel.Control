@@ -75,7 +75,7 @@ dotnet pack AIKernel.Control.slnx -c Release --no-restore
 cd python
 py -m pytest
 py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.0-py3-none-any.whl
+py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
 ```
 
 ## API Example

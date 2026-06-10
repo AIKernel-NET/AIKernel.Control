@@ -28,7 +28,7 @@ dependency.
 Control does not depend on AIKernel.Demo. Demo projects consume Control as an
 independent runtime surface.
 
-AIKernel.Control participates in the 0.1.0 prototype validation phase scheduled
+AIKernel.Control participates in the 0.1.1 release validation phase scheduled
 for 2026-06-09. It validates the path from AIKernel semantic graphs to physical
 execution engines without moving that execution-engine responsibility into
 AIKernel.Demo.
@@ -112,9 +112,14 @@ model state.
 
 See:
 
+- [Documentation index](docs/README.md)
+- [User Guide](docs/user-guide/index.md)
+- [Architecture](docs/architecture/index.md)
 - [Bonsai mapping](docs/bonsai-mapping/index.md)
 - [Bonsai-1.7B built-in provider](docs/bonsai-mapping/bonsai-1.7b-provider.md)
+- [Execution engine](docs/execution-engine/index.md)
 - [Q1_0 CPU execution kernel](docs/execution-engine/q1-0-cpu-kernel.md)
+- [Control pipelines](docs/pipelines/index.md)
 - [Licensing](docs/licensing/index.md)
 
 ## Design Direction
@@ -157,11 +162,11 @@ Common project properties are centralized in `Directory.Build.props`.
 For .NET hosts:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.0
-dotnet add package AIKernel.Control.CPU --version 0.1.0
-dotnet add package AIKernel.Control.Emulator --version 0.1.0
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.0
-dotnet add package AIKernel.Control.GPU --version 0.1.0
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1
 ```
 
 For Python hosts:
@@ -182,3 +187,15 @@ surface, not a separate Python implementation of governance semantics.
 
 See [Python governance wrapper](docs/python/index.md) for package scope,
 assembly loading, and publication guidance.
+
+## Contributor Guidelines
+
+Control changes must follow the shared AIKernel development discipline:
+
+- [AIKernel Development Guidelines](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES.md)
+- [AIKernel 開発ガイドライン](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES-jp.md)
+
+Execution and governance code should expose fail-closed contracts, keep Bonsai
+and emulator behavior deterministic, avoid leaking implementation exceptions
+across public boundaries, and keep Python wrappers aligned with the public C#
+surface.
