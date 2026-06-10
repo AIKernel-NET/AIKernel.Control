@@ -11,6 +11,14 @@ AIKernel.Control は AIKernel の物理実行レイヤーです。
 - CPU / GPU / Emulator の実行エンジンを提供します。
 - Bonsai-1.7B の標準 Provider を内蔵します。
 
+AIOS SDK において、AIKernel.Control は governance / security / physical
+execution layer です。semantic graph を明示的な policy、決定論的 scheduler、
+diagnostics、execution engine へ接続し、AIOS distribution の制御層を構成します。
+
+AIKernel には、公式 AIOS ディストリビューションである **AIKernel.Monolith** もあります。
+Monolith は 0.1.x 系の安定化後に、governance / control-plane layer を他の
+SDK layer と統合する標準 AIOS として開発が開始されています。
+
 ## リポジトリの役割
 
 AIKernel.Control は、AIKernel の Execution Engine ワークスペースです。
@@ -28,9 +36,44 @@ Runtime 依存になることを防ぎます。
 Control は AIKernel.Demo に依存しません。Demo は Control を利用する側であり、
 Control は独立した Runtime Surface として動作します。
 
-AIKernel.Control は、2026-06-09 に予定している 0.1.0 Prototype Validation
+AIKernel.Control は、2026-06-10 に予定している 0.1.1 Release Validation
 Phase に参加します。AIKernel の Semantic Graph を物理実行エンジンへつなぐ
 経路を検証しつつ、その責務を AIKernel.Demo へ移さないことを保証します。
+
+## クイックスタート
+
+GPU や model asset を bind する前に、deterministic な Emulator と CPU package から
+始めてください。Control は model weights を同梱しません。model asset は VFS / ROM
+経由で mount します。
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+```
+
+repository surface を検証します。
+
+```powershell
+dotnet build AIKernel.Control.slnx -c Release
+dotnet test AIKernel.Control.slnx -c Release --no-build
+```
+
+`AIKernel.Control.GPU` は、CPU / Emulator validation が通り、GPU execution backend を
+意図的に統合する段階で追加してください。
+
+最初に作成する emulator object:
+
+```csharp
+using AIKernel.Control.Emulator;
+
+var engine = new ControlEmulatorEngine(
+    new DeterministicNodeScheduler(),
+    new AllowAllControlPolicy());
+```
+
+これは Control の最小入口です。deterministic scheduling と明示的な policy boundary を
+確認してから、CPU、diagnostics、GPU package へ進んでください。
 
 ## プロジェクト構成
 
@@ -115,6 +158,8 @@ Control はモデル重みやローカルモデルファイルを所有しませ
 
 関連ドキュメント:
 
+- [Documentation index](docs/README-ja.md)
+- [User Guide](docs/user-guide/index-ja.md)
 - [Architecture](docs/architecture/index-ja.md)
 - [Bonsai mapping](docs/bonsai-mapping/index-ja.md)
 - [Bonsai-1.7B built-in provider](docs/bonsai-mapping/bonsai-1.7b-provider-ja.md)
@@ -166,11 +211,11 @@ dotnet build AIKernel.Control.slnx
 .NET host では NuGet package を使用します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.0
-dotnet add package AIKernel.Control.CPU --version 0.1.0
-dotnet add package AIKernel.Control.Emulator --version 0.1.0
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.0
-dotnet add package AIKernel.Control.GPU --version 0.1.0
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1
 ```
 
 Python host では PyPI package を使用します。
@@ -191,3 +236,14 @@ governance semantics を Python で別実装するものではありません。
 
 package scope、assembly loading、publication guidance は
 [Python governance wrapper](docs/python/index-ja.md) を参照してください。
+
+## コントリビュータ向けガイドライン
+
+Control の変更は、AIKernel 共通の開発規律に従ってください。
+
+- [AIKernel 開発ガイドライン](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES-jp.md)
+- [AIKernel Development Guidelines](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES.md)
+
+Execution / governance code は fail-closed contract を公開し、Bonsai と emulator
+behavior を deterministic に保ち、public boundary の外へ implementation exception
+を漏らさず、Python wrapper を public C# surface と整合させてください。

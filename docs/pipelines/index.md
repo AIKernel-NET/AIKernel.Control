@@ -7,7 +7,7 @@ A control pipeline maps a semantic `ExecutionGraph` (from AIKernel.Core) onto a
 physical execution engine (CPU/GPU/Emulator) with policy enforcement and
 replayable state transitions.
 
-The initial 0.1.0 pipeline consists of three deterministic phases:
+The initial 0.1.1 pipeline consists of three deterministic phases:
 
 1. **Receive Envelope**  
    The engine receives a `ControlExecutionRequest` and the associated

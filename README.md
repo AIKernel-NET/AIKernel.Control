@@ -11,6 +11,15 @@ AIKernel.Control は AIKernel の物理実行レイヤーです。
 - CPU/GPU/Emulator の実行エンジンを提供
 - Bonsai-1.7B の標準 Provider を内蔵
 
+In the AIOS SDK, AIKernel.Control is the governance, security, and physical
+execution layer. It lets an AIOS distribution map semantic graphs onto explicit
+policies, deterministic schedulers, diagnostics, and execution engines.
+
+AIKernel also provides an official AIOS distribution, codenamed
+**AIKernel.Monolith**. Monolith has begun development as the standard AIOS that
+will integrate the governance and control-plane layer with the rest of the SDK
+after the 0.1.x line stabilizes.
+
 ## Repository Role
 
 AIKernel.Control is the execution-engine workspace for AIKernel. AIKernel.Core
@@ -28,8 +37,8 @@ dependency.
 Control does not depend on AIKernel.Demo. Demo projects consume Control as an
 independent runtime surface.
 
-AIKernel.Control participates in the 0.1.0 prototype validation phase scheduled
-for 2026-06-09. It validates the path from AIKernel semantic graphs to physical
+AIKernel.Control participates in the 0.1.1 release validation phase scheduled
+for 2026-06-10. It validates the path from AIKernel semantic graphs to physical
 execution engines without moving that execution-engine responsibility into
 AIKernel.Demo.
 
@@ -37,6 +46,42 @@ Release notes:
 
 - [English](RELEASE_NOTES.md)
 - [日本語](RELEASE_NOTES-ja.md)
+
+## Quick Start
+
+Start with the deterministic emulator and CPU packages before binding GPU or
+model assets. Control does not vendor model weights; model assets should be
+mounted through VFS/ROM.
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+```
+
+Validate the repository surface:
+
+```powershell
+dotnet build AIKernel.Control.slnx -c Release
+dotnet test AIKernel.Control.slnx -c Release --no-build
+```
+
+Add `AIKernel.Control.GPU` only after CPU/Emulator validation passes and a GPU
+execution backend is intentionally being integrated.
+
+First emulator object to create:
+
+```csharp
+using AIKernel.Control.Emulator;
+
+var engine = new ControlEmulatorEngine(
+    new DeterministicNodeScheduler(),
+    new AllowAllControlPolicy());
+```
+
+This is the smallest Control entry point: deterministic scheduling plus an
+explicit policy boundary. Move to CPU, diagnostics, and GPU packages after this
+surface is understood.
 
 ## Projects
 
@@ -112,9 +157,14 @@ model state.
 
 See:
 
+- [Documentation index](docs/README.md)
+- [User Guide](docs/user-guide/index.md)
+- [Architecture](docs/architecture/index.md)
 - [Bonsai mapping](docs/bonsai-mapping/index.md)
 - [Bonsai-1.7B built-in provider](docs/bonsai-mapping/bonsai-1.7b-provider.md)
+- [Execution engine](docs/execution-engine/index.md)
 - [Q1_0 CPU execution kernel](docs/execution-engine/q1-0-cpu-kernel.md)
+- [Control pipelines](docs/pipelines/index.md)
 - [Licensing](docs/licensing/index.md)
 
 ## Design Direction
@@ -157,11 +207,11 @@ Common project properties are centralized in `Directory.Build.props`.
 For .NET hosts:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.0
-dotnet add package AIKernel.Control.CPU --version 0.1.0
-dotnet add package AIKernel.Control.Emulator --version 0.1.0
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.0
-dotnet add package AIKernel.Control.GPU --version 0.1.0
+dotnet add package AIKernel.Control.Core --version 0.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1
 ```
 
 For Python hosts:
@@ -182,3 +232,15 @@ surface, not a separate Python implementation of governance semantics.
 
 See [Python governance wrapper](docs/python/index.md) for package scope,
 assembly loading, and publication guidance.
+
+## Contributor Guidelines
+
+Control changes must follow the shared AIKernel development discipline:
+
+- [AIKernel Development Guidelines](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES.md)
+- [AIKernel 開発ガイドライン](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES-jp.md)
+
+Execution and governance code should expose fail-closed contracts, keep Bonsai
+and emulator behavior deterministic, avoid leaking implementation exceptions
+across public boundaries, and keep Python wrappers aligned with the public C#
+surface.

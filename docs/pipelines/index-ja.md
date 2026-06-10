@@ -7,7 +7,7 @@ Control Pipeline は、AIKernel.Core から渡される semantic `ExecutionGraph
 policy enforcement と replayable state transition を伴って、物理実行エンジン
 （CPU / GPU / Emulator）へマッピングします。
 
-初期 0.1.0 pipeline は、次の 3 つの決定論的 phase で構成されます。
+初期 0.1.1 pipeline は、次の 3 つの決定論的 phase で構成されます。
 
 1. **Receive Envelope**  
    Engine は `ControlExecutionRequest` と対応する `ExecutionGraph` を受け取ります。

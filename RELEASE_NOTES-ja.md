@@ -2,13 +2,17 @@
 
 [English](RELEASE_NOTES.md)
 
-## 0.1.0
+## 0.1.1
 
-> [EN] Control 0.1.0 defines the public governance surface: execution requests, snapshots, and results become contract-stable.
->
-> [JA] Control 0.1.0 は公開ガバナンス面を定義──Execution Request・Snapshot・Result が契約的に安定化される。
+**June 10th, 2026 - Governing the control plane.**
+**2026年6月10日--制御プレーンを統治する。**
 
-AIKernel.Control 0.1.0 は、AIKernel Semantic Runtime の物理実行レイヤーを導入します。
+Governing the control plane: policies, schedulers, and emulators align into a
+deterministic governance layer. 制御プレーンの統治--ポリシー・スケジューラ・
+エミュレータが決定論的ガバナンス層へ整列する。
+
+AIKernel.Control 0.1.1 は、AIKernel Semantic OS package family の物理実行層と
+governance layer を同期します。
 
 - AIKernel.NET の public Control contract を利用します。対象は execution graph、node、request、result、policy、scheduler、state observer です。
 - CPU-only graph execution、breakpoint、watch、trace、replay-oriented test のための deterministic ControlEmulator を提供します。
@@ -17,4 +21,4 @@ AIKernel.Control 0.1.0 は、AIKernel Semantic Runtime の物理実行レイヤ�
 - public governance surface を単一 API として公開する `aikernel-governance` Python package を追加します。managed assemblies の同梱と pythonnet loading を含みます。
 - Core は semantic graph、Control は physical execution mapping、Demo は runtime consumer である、という責務分離を文書化します。
 
-Control 0.1.0 は、統治された semantic graph を決定論的な物理実行へ接続する橋です。
+Control 0.1.1 は、統治された semantic graph を決定論的な物理実行へ接続する橋です。
