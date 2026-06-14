@@ -16,23 +16,21 @@ capability graph, and governance after the 0.1.x line stabilizes.
 Install the Control packages that match your host role:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
 ```
 
 Add `AIKernel.Control.GPU` only when the host binds a concrete GPU backend:
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1.1
 ```
 
-Python hosts use the single governance wrapper package:
-
-```bash
-pip install aikernel-governance
-```
+Python wrapper materials are reference-only for the 0.1.1.1 update line. Do not
+build, install, or publish a PyPI package unless a Python release is explicitly
+scheduled.
 
 ## Runtime Roles
 
@@ -43,6 +41,35 @@ pip install aikernel-governance
 | `AIKernel.Control.Emulator` | Step-by-step graph execution, replay, watches, and breakpoints. |
 | `AIKernel.Control.Diagnostics` | Timing, graph, and replay inspection surfaces. |
 | `AIKernel.Control.GPU` | GPU delegate boundary for concrete GPU execution backends. |
+
+## Opt-In CTG Policy
+
+Use CTG Control integration when the Apply Policy phase should call the Core
+governance evaluators before physical execution. Register it explicitly:
+
+```csharp
+using AIKernel.Control.Core.Ctg;
+using AIKernel.Enums.Governance;
+
+services.AddCtgControl(new CtgControlCoordinatorOptions
+{
+    ProviderOutputs =
+    [
+        new ProviderVoteOutput
+        {
+            ProviderId = "provider.logos",
+            CouncilKind = CouncilKind.Logos,
+            VoteValue = CouncilVoteValue.Approve
+        }
+    ]
+});
+```
+
+Provider vote material is discrete-only. Missing councils are normalized to
+`Unknown`; multiple matching providers are deterministic errors. Control calls
+Core gate evaluators and does not implement CTG Gate rules.
+
+See [CTG Control integration](../development/control-ctg.md).
 
 ## Asset Mounting
 
@@ -60,7 +87,7 @@ GPU execution delegate.
 
 ## Python Wrapper
 
-The Python package exposes the public governance surface:
+The archived Python package design exposes the public governance surface:
 
 ```python
 from aikernel_governance import ExecutionRequest, GovernanceClient
@@ -69,6 +96,8 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 It loads bundled managed assemblies and delegates semantics to the C# packages.
 Do not treat the Python wrapper as an independent implementation.
 
+For 0.1.1.1, do not build, install, or publish a PyPI package.
+
 ## Verification
 
 Run the repository tests before publishing package updates:
@@ -76,7 +105,7 @@ Run the repository tests before publishing package updates:
 ```powershell
 dotnet build AIKernel.Control.slnx -c Release -p:WarningsAsErrors=1591
 dotnet test AIKernel.Control.slnx -c Release --no-build
-py -m pytest python/tests
+dotnet pack AIKernel.Control.slnx -c Release --no-build --no-restore -p:UseLocalPackageVersion=true -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## Failure Behavior

@@ -10,23 +10,45 @@ Control は scheduling、emulation、CPU/GPU execution、diagnostics を所有�
 
 - `AIKernel.Control.Core` は Control Plane の Runtime Entry Point を提供し、
   `AIKernel.Abstractions.Control` と `AIKernel.Dtos.Control` にある共有契約を
-  利用します。
+  利用します。CTG orchestration と adapter もここに置きますが、CTG gate rule は
+  ここに置きません。
 - `AIKernel.Control.Emulator` は AIKernel `ExecutionGraph` を CPU-only で
-  決定論的に実行します。
+  決定論的に実行します。CTG scenario は Core evaluator の結果と比較するだけで、
+  decision をローカル実装しません。
 - `AIKernel.Control.CPU` は Bonsai Node を CPU Operator へマッピングします。
 - `AIKernel.Control.GPU` は Bonsai Node を GPU Kernel や Tensor Capability へ
   マッピングします。
 - `AIKernel.Control.Diagnostics` は graph execution、replay、timing、load を
-  観測します。
+  観測します。CTG diagnostics は trace を整形・emit しますが、結果を判断しません。
 
 AIKernel.Demo は Control を利用する側です。Demo が execution-engine code を
 所有してはいけません。
 
+## CTG Governance Boundary
+
+Canonical Triadic Governance は Control の `Apply Policy` stage に接続します。
+Control の責務は orchestration です。
+
+- provider vote material を決定論的に解決します。
+- material を `CouncilVote` と `CouncilDecision` に正規化します。
+- vote-only の `GateInput` を抽出します。
+- Core `IDecisionGate` / `ITrajectoryGate` を呼び出します。
+- Core の結果を既存の Control policy result と replay metadata に写像します。
+
+Control は Gate semantics を担当しません。approve count、Ethos veto behavior、
+trajectory halt aggregation、Gate decision の生成を Control 内で行ってはいけません。
+
+Provider routing は fail-closed かつ決定論的に扱います。provider が見つからない場合は
+`Unknown` vote、複数一致は deterministic error、fallback routing は明示的な opt-in のみに限定します。
+
 ## Python 境界
 
-Python package `aikernel-governance` は、Python host 向けに同じ public Control
-boundary を公開します。managed C# assemblies を同梱し、pythonnet を通じて
-public governance surface を wrapper します。
+`aikernel-governance` は、同じ public Control boundary を Python host 向けに
+公開するための予約済み wrapper 名です。将来の Python packaging では managed
+C# assemblies と public governance surface を pythonnet 経由で wrapper します。
+
+0.1.1.1 line では PyPI package を build / publish しません。Python 関連資料は
+この line では reference documentation としてのみ維持します。
 
 Python から見えるのは契約境界です。execution request、result、snapshot、
 provider metadata、Bonsai public wrappers、emulator wrappers、CPU kernel

@@ -10,22 +10,46 @@ emulation, CPU/GPU execution, and diagnostics.
 
 - `AIKernel.Control.Core` hosts the control-plane runtime entry points and
   consumes the shared control contracts from `AIKernel.Abstractions.Control`
-  and `AIKernel.Dtos.Control`.
+  and `AIKernel.Dtos.Control`. It also hosts CTG orchestration and adapters,
+  but not CTG gate rules.
 - `AIKernel.Control.Emulator` converts Bonsai Graphs into AIKernel Graphs and
-  executes them deterministically.
+  executes them deterministically. Its CTG scenarios compare Core evaluator
+  results instead of implementing decisions locally.
 - `AIKernel.Control.CPU` maps Bonsai Nodes to CPU Operators.
 - `AIKernel.Control.GPU` maps Bonsai Nodes to GPU kernels and tensor
   Capabilities.
 - `AIKernel.Control.Diagnostics` observes graph execution, replay, timing, and
-  load.
+  load. CTG diagnostics format and emit traces; they do not decide outcomes.
 
 AIKernel.Demo must use Control; it must not own execution-engine code.
 
+## CTG Governance Boundary
+
+Canonical Triadic Governance is connected at the Control `Apply Policy` stage.
+Control is responsible for orchestration:
+
+- resolve provider vote material deterministically;
+- normalize material into `CouncilVote` and `CouncilDecision`;
+- extract vote-only `GateInput`;
+- call Core `IDecisionGate` / `ITrajectoryGate`;
+- map Core results to existing Control policy results and replay metadata.
+
+Control is not responsible for Gate semantics. It must not calculate approve
+counts, Ethos veto behavior, trajectory halt aggregation, or create gate
+decisions by itself.
+
+Provider routing follows fail-closed deterministic behavior: missing providers
+become `Unknown` votes, multiple matches become deterministic errors, and
+fallback routing must be explicitly opted in.
+
 ## Python Boundary
 
-The Python package `aikernel-governance` exposes the same public Control
-boundary for Python hosts. It bundles the managed C# assemblies and wraps the
-public governance surface through pythonnet.
+`aikernel-governance` is the reserved Python wrapper name for the same public
+Control boundary. Future Python packaging should wrap the managed C# assemblies
+and the public governance surface through pythonnet.
+
+The 0.1.1.1 line does not build or publish a PyPI package. Python materials are
+kept as reference documentation only for this line.
 
 Python sees the contract boundary: execution requests, results, snapshots,
 provider metadata, Bonsai public wrappers, emulator wrappers, CPU kernel

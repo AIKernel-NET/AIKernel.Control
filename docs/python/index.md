@@ -2,11 +2,15 @@
 
 [日本語](index-ja.md)
 
-`aikernel-governance` is the Python distribution for the public
+`aikernel-governance` was designed as the Python distribution for the public
 AIKernel.Control governance surface.
 
-It is a wrapper over the C# packages, not a Python reimplementation of Control.
-The package bundles managed assemblies and exposes a single import surface:
+For the 0.1.1.1 update line, AIKernel.Control is NuGet-only. Do not build,
+install, or publish a PyPI package for this line. This page is retained as
+reference documentation for a future explicitly scheduled Python release.
+
+The future wrapper design sits over the C# packages; it is not a Python
+reimplementation of Control. It should expose a single import surface:
 
 ```python
 from aikernel_governance import (
@@ -20,16 +24,14 @@ from aikernel_governance import (
 
 ## Install
 
-```bash
-pip install aikernel-governance
-```
-
-The distribution name is `aikernel-governance`. The import name is
+There is no supported install command for 0.1.1.1. The archived distribution
+name is `aikernel-governance`; the archived import name is
 `aikernel_governance`.
 
 ## Scope
 
-The package exposes public Control contracts and public wrapper types:
+The archived package design exposes public Control contracts and public wrapper
+types:
 
 - `ExecutionRequest`
 - `ExecutionResult`
@@ -48,7 +50,7 @@ OS-specific implementations, or private runtime internals.
 
 ## Managed Assemblies
 
-The wheel bundles the Control and contract assemblies under
+The archived wheel design bundles the Control and contract assemblies under
 `aikernel_governance/native`:
 
 - `AIKernel.Abstractions.dll`
@@ -68,14 +70,13 @@ global packages cache.
 
 ## Build
 
+Do not run Python build or publish commands for 0.1.1.1. Validate the NuGet
+surface instead:
+
 ```powershell
-cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
-py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
+dotnet build AIKernel.Control.slnx -c Release -p:WarningsAsErrors=1591
+dotnet test AIKernel.Control.slnx -c Release --no-build
+dotnet pack AIKernel.Control.slnx -c Release --no-build --no-restore -p:UseLocalPackageVersion=true -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## API Example
@@ -95,3 +96,6 @@ result = client.submit(request)
 
 `GovernanceClient` delegates to a public backend. The backend must expose
 `submit(request)`, `snapshot(id)`, and `result(id)`.
+
+Python must remain a thin managed-call wrapper. It must not implement CTG Gate
+rules, approve-count logic, veto behavior, or trajectory halt aggregation.

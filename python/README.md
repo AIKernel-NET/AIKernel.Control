@@ -2,16 +2,14 @@
 
 [日本語](README-ja.md)
 
-Python wrapper for the public governance surface of AIKernel.Control.
+Reference design for the Python wrapper surface of AIKernel.Control.
 
-The stable package is published to PyPI:
+For the 0.1.1.1 line, AIKernel.Control publishes NuGet packages only. This
+directory is retained as a reference for the future Python wrapper surface and
+is not built, installed, or published as a PyPI package.
 
-```bash
-pip install aikernel-governance
-```
-
-The distribution name is `aikernel-governance`. Import the module as
-`aikernel_governance`.
+The reserved distribution name is `aikernel-governance`. The intended module
+name is `aikernel_governance`.
 
 ## Scope
 
@@ -27,14 +25,15 @@ single Python API:
 - GPU delegate contract loader
 - managed assembly discovery and pythonnet loading
 
-The package does not provide a separate Python implementation of governance
-semantics. It does not expose internal engine helpers, transport-specific logic,
-OS-specific implementations, or private runtime state.
+The reference package does not provide a separate Python implementation of
+governance semantics. It does not expose internal engine helpers,
+transport-specific logic, OS-specific implementations, or private runtime
+state.
 
 ## Managed Assemblies
 
-The wheel bundles the public Control and contract assemblies under
-`aikernel_governance/native`:
+Future Python packaging would resolve the public Control and contract
+assemblies under `aikernel_governance/native`:
 
 - `AIKernel.Abstractions.dll`
 - `AIKernel.Dtos.dll`
@@ -45,11 +44,12 @@ The wheel bundles the public Control and contract assemblies under
 - `AIKernel.Control.Emulator.dll`
 - `AIKernel.Control.GPU.dll`
 
-`governance_assemblies()` resolves bundled assemblies first, then paths from
-`AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`, then matching packages from the NuGet
-global-packages cache.
+`governance_assemblies()` is intended to resolve bundled assemblies first, then
+paths from `AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`, then matching packages from the
+NuGet global-packages cache.
 
-`load_governance_runtime()` loads the resolved assemblies through pythonnet.
+`load_governance_runtime()` is intended to load the resolved assemblies through
+pythonnet.
 
 ## API
 
@@ -90,21 +90,16 @@ When pythonnet is available, wrappers can be converted to public C# DTOs with
 
 ## Build
 
+The 0.1.1.1 line validates and packages AIKernel.Control through NuGet only:
+
 ```powershell
 cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
 dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
-py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
+dotnet pack AIKernel.Control.slnx -c Release --no-restore -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## Source Validation
 
-For source-based local validation, use a clean virtual environment:
-
-```bash
-pip install --force-reinstall \
-  git+https://github.com/AIKernel-NET/AIKernel.Control.git#subdirectory=python
-```
+Source-based Python installation is not a supported validation path for
+AIKernel.Control 0.1.1.1. Keep Python experiments thin over the managed
+assemblies and do not add CTG gate rules to Python code.

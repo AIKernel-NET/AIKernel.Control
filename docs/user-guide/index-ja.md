@@ -16,23 +16,20 @@ Monolith は 0.1.x 系の安定化後に semantic runtime、capability graph、g
 host の役割に合わせて Control package を導入します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
 ```
 
 concrete GPU backend を bind する host では `AIKernel.Control.GPU` も導入します。
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1.1
 ```
 
-Python host では単一の governance wrapper package を使用します。
-
-```bash
-pip install aikernel-governance
-```
+0.1.1.1 update line では Python wrapper 関連資料は参考扱いです。Python release が
+明示的に予定されない限り、PyPI package を build / install / publish しません。
 
 ## Runtime の役割
 
@@ -43,6 +40,35 @@ pip install aikernel-governance
 | `AIKernel.Control.Emulator` | step-by-step graph execution、replay、watch、breakpoint。 |
 | `AIKernel.Control.Diagnostics` | timing、graph、replay inspection surface。 |
 | `AIKernel.Control.GPU` | concrete GPU execution backend のための delegate boundary。 |
+
+## Opt-In CTG Policy
+
+Apply Policy phase で物理実行前に Core governance evaluator を呼び出す場合は、
+CTG Control integration を明示的に登録します。
+
+```csharp
+using AIKernel.Control.Core.Ctg;
+using AIKernel.Enums.Governance;
+
+services.AddCtgControl(new CtgControlCoordinatorOptions
+{
+    ProviderOutputs =
+    [
+        new ProviderVoteOutput
+        {
+            ProviderId = "provider.logos",
+            CouncilKind = CouncilKind.Logos,
+            VoteValue = CouncilVoteValue.Approve
+        }
+    ]
+});
+```
+
+Provider vote material は discrete-only です。欠けた council は `Unknown` に正規化し、
+複数 provider の一致は deterministic error とします。Control は Core gate evaluator を呼び出すだけで、
+CTG Gate rule は実装しません。
+
+[CTG Control integration](../development/control-ctg-ja.md) も参照してください。
 
 ## Asset Mounting
 
@@ -60,7 +86,7 @@ visibility を検証してください。
 
 ## Python Wrapper
 
-Python package は public governance surface を公開します。
+過去の Python package design は public governance surface を公開する想定です。
 
 ```python
 from aikernel_governance import ExecutionRequest, GovernanceClient
@@ -69,6 +95,8 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 bundled managed assembly を読み込み、意味論は C# package へ委譲します。Python
 wrapper を独立実装として扱わないでください。
 
+0.1.1.1 では PyPI package を build / install / publish しません。
+
 ## 検証
 
 package 更新前に repository test を実行します。
@@ -76,7 +104,7 @@ package 更新前に repository test を実行します。
 ```powershell
 dotnet build AIKernel.Control.slnx -c Release -p:WarningsAsErrors=1591
 dotnet test AIKernel.Control.slnx -c Release --no-build
-py -m pytest python/tests
+dotnet pack AIKernel.Control.slnx -c Release --no-build --no-restore -p:UseLocalPackageVersion=true -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## Failure Behavior

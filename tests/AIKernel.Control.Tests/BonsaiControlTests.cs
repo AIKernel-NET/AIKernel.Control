@@ -96,6 +96,8 @@ public sealed class BonsaiControlTests
         Assert.Equal("Completed", result.Status);
         Assert.Equal("aikernel.control.bonsai-1.7b", result.Metadata["provider_id"]);
         Assert.Equal(BonsaiBuiltInProvider.OperationChatLocal, result.Metadata["operation"]);
+        Assert.DoesNotContain(result.Metadata.Keys, key => key.StartsWith("ctg.", StringComparison.Ordinal));
+        Assert.DoesNotContain(result.Metadata.Keys, key => key.Contains("gate", StringComparison.OrdinalIgnoreCase));
         Assert.Contains(observer.Snapshots, snapshot => snapshot.Metadata["phase"] == "ModelDownload");
         Assert.Contains(observer.Snapshots, snapshot => snapshot.Metadata["phase"] == "Initializing");
         Assert.Contains(observer.Snapshots, snapshot => snapshot.Metadata["phase"] == "Generating");

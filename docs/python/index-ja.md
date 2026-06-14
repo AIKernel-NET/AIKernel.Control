@@ -3,11 +3,14 @@
 [English](index.md)
 
 `aikernel-governance` は、AIKernel.Control の public governance surface を
-Python から利用するための distribution です。
+Python から利用するために設計された distribution です。
 
-これは C# package の wrapper であり、Control を Python で再実装するものでは
-ありません。package は managed assemblies を同梱し、単一の import surface を
-公開します。
+0.1.1.1 update line では AIKernel.Control は NuGet-only です。この line では
+PyPI package を build / install / publish しません。このページは、将来明示的に
+予定される Python release のための reference documentation として残します。
+
+将来の wrapper design は C# package の上に置き、Control を Python で再実装する
+ものではありません。単一の import surface を公開する想定です。
 
 ```python
 from aikernel_governance import (
@@ -21,16 +24,12 @@ from aikernel_governance import (
 
 ## Install
 
-```bash
-pip install aikernel-governance
-```
-
-distribution name は `aikernel-governance` です。import name は
-`aikernel_governance` です。
+0.1.1.1 でサポートされる install command はありません。過去の distribution name は
+`aikernel-governance`、過去の import name は `aikernel_governance` です。
 
 ## Scope
 
-package は public Control contract と public wrapper types を公開します。
+過去の package design は public Control contract と public wrapper types を公開する想定です。
 
 - `ExecutionRequest`
 - `ExecutionResult`
@@ -49,8 +48,8 @@ implementation、private runtime internals は公開しません。
 
 ## Managed Assemblies
 
-wheel は Control と contract assemblies を `aikernel_governance/native` に
-同梱します。
+過去の wheel design では Control と contract assemblies を
+`aikernel_governance/native` に同梱します。
 
 - `AIKernel.Abstractions.dll`
 - `AIKernel.Dtos.dll`
@@ -68,14 +67,12 @@ NuGet global packages cache の順に assembly を解決します。
 
 ## Build
 
+0.1.1.1 では Python build / publish command を実行しません。NuGet surface を検証します。
+
 ```powershell
-cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
-py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
+dotnet build AIKernel.Control.slnx -c Release -p:WarningsAsErrors=1591
+dotnet test AIKernel.Control.slnx -c Release --no-build
+dotnet pack AIKernel.Control.slnx -c Release --no-build --no-restore -p:UseLocalPackageVersion=true -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## API Example
@@ -95,3 +92,6 @@ result = client.submit(request)
 
 `GovernanceClient` は public backend に委譲します。backend は
 `submit(request)`、`snapshot(id)`、`result(id)` を公開する必要があります。
+
+Python は薄い managed-call wrapper に留めます。CTG Gate rule、approve-count logic、
+veto behavior、trajectory halt aggregation を Python に実装してはいけません。

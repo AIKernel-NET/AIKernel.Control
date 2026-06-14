@@ -37,10 +37,10 @@ dependency.
 Control does not depend on AIKernel.Demo. Demo projects consume Control as an
 independent runtime surface.
 
-AIKernel.Control participates in the 0.1.1 release validation phase scheduled
-for 2026-06-10. It validates the path from AIKernel semantic graphs to physical
-execution engines without moving that execution-engine responsibility into
-AIKernel.Demo.
+AIKernel.Control 0.1.1.1 follows the same development policy as
+AIKernel.Core 0.1.1.1. The line is NuGet-only, uses
+`0.1.1.1-dev{build-number}` for local development packages, and does not create
+or publish a PyPI package.
 
 Release notes:
 
@@ -54,9 +54,9 @@ model assets. Control does not vendor model weights; model assets should be
 mounted through VFS/ROM.
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
 ```
 
 Validate the repository surface:
@@ -83,6 +83,27 @@ This is the smallest Control entry point: deterministic scheduling plus an
 explicit policy boundary. Move to CPU, diagnostics, and GPU packages after this
 surface is understood.
 
+## CTG Control Governance
+
+AIKernel.Control can opt in to Canonical Triadic Governance during the
+`Apply Policy` pipeline stage. Control does not own CTG gate rules. It
+normalizes provider vote material into `CouncilVote` / `CouncilDecision`,
+extracts a vote-only `GateInput`, and delegates decision and trajectory
+evaluation to AIKernel.Core through `IDecisionGate` and `ITrajectoryGate`.
+
+The CTG control surface is intentionally narrow:
+
+- `GateInput` contains only `Logos`, `Ethos`, and `Pathos` votes.
+- Control, Diagnostics, and Emulator do not calculate approve counts, veto
+  conditions, or trajectory halt aggregation.
+- Continuous provider carriers such as confidence, risk, and score are not
+  accepted by the Control CTG vote-output surface.
+- Provider registry fallback is explicit: missing providers become `Unknown`
+  votes, multiple matches produce deterministic errors, and fallback routing
+  must be opt-in.
+
+See [CTG Control integration](docs/development/control-ctg.md).
+
 ## Projects
 
 - `AIKernel.Control.Core` - control-plane runtime entry package. The shared
@@ -90,24 +111,32 @@ surface is understood.
   this project references those contracts so CPU/GPU/Emulator implementations
   do not duplicate interface or DTO definitions.
   Capability manifests use `AIKernel.Dtos.Capabilities.CapabilityModuleDescriptor`
-  rather than Control-local descriptor DTOs.
+  rather than Control-local descriptor DTOs. The package also provides the CTG
+  provider vote adapters, coordinator, opt-in policy adapter, and DI extension.
 - `AIKernel.Control.Emulator` - ControlEmulator, the Bonsai-style emulator that
   converts Bonsai Graphs into AIKernel Graphs and supports CPU/GPU execution,
   step-by-step execution, breakpoints, watches, traces, and deterministic replay.
   ControlEmulator does not emulate Bonsai itself; it deterministically executes
-  AIKernel `ExecutionGraph` instances in a CPU-only runtime.
+  AIKernel `ExecutionGraph` instances in a CPU-only runtime. It also includes
+  CTG dry-run scenarios that compare Core evaluator results without duplicating
+  gate logic.
 - `AIKernel.Control.CPU` - CPU execution engine for Bonsai Node to CPU Operator
   mapping, SIMD/AVX optimization, and ThreadPool/TaskGraph execution.
 - `AIKernel.Control.GPU` - GPU execution engine for Bonsai Node to GPU Kernel
   mapping, tensor Capability binding, GPU memory management, stream/event
   orchestration, and graph execution.
 - `AIKernel.Control.Diagnostics` - observability, graph visualization, node
-  timing, CPU/GPU load inspection, and ReplayLog integration.
+  timing, CPU/GPU load inspection, ReplayLog integration, and CTG trace /
+  replay metadata formatting.
 
-## Python Package
+## Python Wrapper Reference
 
-`aikernel-governance` is the Python wrapper for the public governance surface of
-AIKernel.Control.
+`aikernel-governance` is the reserved Python wrapper name for the public
+governance surface of AIKernel.Control.
+
+The 0.1.1.1 development line does not build or publish a PyPI package. Existing
+Python materials remain in the repository for reference and future scheduled
+Python releases only.
 
 It exposes the C# package boundary as a single Python API:
 
@@ -118,9 +147,9 @@ It exposes the C# package boundary as a single Python API:
 - CPU kernel and diagnostics wrappers
 - managed assembly discovery and pythonnet loading
 
-The Python package does not reimplement Control internals, scheduler logic,
-provider execution, or CPU/GPU kernels. It bundles the C# assemblies and uses a
-thin wrapper layer to call the public managed contracts.
+The Python wrapper design does not reimplement Control internals, scheduler
+logic, provider execution, or CPU/GPU kernels. It stays a thin wrapper layer
+over the public managed contracts.
 
 ## Built-in Bonsai Model
 
@@ -165,6 +194,7 @@ See:
 - [Execution engine](docs/execution-engine/index.md)
 - [Q1_0 CPU execution kernel](docs/execution-engine/q1-0-cpu-kernel.md)
 - [Control pipelines](docs/pipelines/index.md)
+- [CTG Control integration](docs/development/control-ctg.md)
 - [Licensing](docs/licensing/index.md)
 
 ## Design Direction
@@ -207,31 +237,18 @@ Common project properties are centralized in `Directory.Build.props`.
 For .NET hosts:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
-dotnet add package AIKernel.Control.GPU --version 0.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.1.1
+dotnet add package AIKernel.Control.CPU --version 0.1.1.1
+dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.1.1
 ```
 
-For Python hosts:
+Python materials are reference-only in the 0.1.1.1 update line. Do not build,
+publish, or install a PyPI package for this line.
 
-```bash
-pip install aikernel-governance
-```
-
-Import the Python module as `aikernel_governance`:
-
-```python
-from aikernel_governance import ExecutionRequest, GovernanceClient
-```
-
-The wheel bundles managed AIKernel.Control assemblies under
-`aikernel_governance/native`. It is a wrapper over the public C# contract
-surface, not a separate Python implementation of governance semantics.
-
-See [Python governance wrapper](docs/python/index.md) for package scope,
-assembly loading, and publication guidance.
+See [Python governance wrapper](docs/python/index.md) for the archived scope and
+the NuGet-only policy note.
 
 ## Contributor Guidelines
 

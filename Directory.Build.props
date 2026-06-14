@@ -4,11 +4,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
-    <Version>0.1.1</Version>
-    <PackageVersion>0.1.1</PackageVersion>
-    <AssemblyVersion>0.1.1.0</AssemblyVersion>
-    <FileVersion>0.1.1.0</FileVersion>
-    <InformationalVersion>0.1.1</InformationalVersion>
+    <StablePackageVersion>0.1.1.1</StablePackageVersion>
+    <LocalPackageVersionPrefix>0.1.1.1</LocalPackageVersionPrefix>
+    <LocalPackageBuildNumber Condition="'$(LocalPackageBuildNumber)' == ''">0</LocalPackageBuildNumber>
+    <UseLocalPackageVersion Condition="'$(UseLocalPackageVersion)' == ''">false</UseLocalPackageVersion>
+    <PackageVersion Condition="'$(UseLocalPackageVersion)' == 'true'">$(LocalPackageVersionPrefix)-dev$(LocalPackageBuildNumber)</PackageVersion>
+    <PackageVersion Condition="'$(UseLocalPackageVersion)' != 'true'">$(StablePackageVersion)</PackageVersion>
+    <Version>$(PackageVersion)</Version>
+    <AssemblyVersion>$(StablePackageVersion)</AssemblyVersion>
+    <FileVersion>$(StablePackageVersion)</FileVersion>
+    <InformationalVersion>$(PackageVersion)</InformationalVersion>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <Authors>Takuya Sogawa</Authors>
@@ -20,12 +25,14 @@
     <PackageTags>aikernel;control-plane;governance;semantic-runtime;execution-engine;bonsai;emulator;cpu;gpu;diagnostics;replay;pythonnet</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>aikernel-logo128x128.png</PackageIcon>
-    <Description>AIKernel.Control package family v0.1.1. Provides the physical execution and governance layer for AIKernel semantic execution graphs, including Control Core, CPU, Emulator, GPU boundary, Diagnostics, and Python governance wrapper support.</Description>
+    <Description>AIKernel.Control package family v0.1.1.1. Provides the physical execution and governance layer for AIKernel semantic execution graphs, including Control Core, CPU, Emulator, GPU boundary, and Diagnostics. This package line is NuGet-only.</Description>
     <PackageReleaseNotes>
-      AIKernel.Control package family v0.1.1 - Release aligned with official AIKernel.NET and AIKernel.Core 0.1.1 packages. Provides ControlExecutionRequest/Result/Snapshot contract usage, Bonsai built-in provider boundary, deterministic ControlEmulator, Q1_0 CPU kernel, GPU delegate contract, diagnostics replay records, documentation, and the aikernel-governance Python wrapper with bundled managed assemblies.
+      AIKernel.Control package family v0.1.1.1 - Development line aligned with official AIKernel.NET contract packages v0.1.1.1 and local AIKernel.Core package family v0.1.1.1-dev{build-number}. This line is NuGet-only and uses 0.1.1.1-dev{build-number} for local development package outputs.
     </PackageReleaseNotes>
 
-    <AIKernelPackageVersion>[0.1.1]</AIKernelPackageVersion>
+    <AIKernelContractPackageVersion Condition="'$(AIKernelContractPackageVersion)' == ''">[$(StablePackageVersion)]</AIKernelContractPackageVersion>
+    <AIKernelCorePackageVersion Condition="'$(AIKernelCorePackageVersion)' == ''">[0.1.1.1-dev1]</AIKernelCorePackageVersion>
+    <AIKernelPackageVersion Condition="'$(AIKernelPackageVersion)' == ''">$(AIKernelContractPackageVersion)</AIKernelPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
