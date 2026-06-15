@@ -12,6 +12,17 @@ scheduler、diagnostics、execution engine へ接続します。
 Monolith は 0.1.x 系の安定化後に control plane と Semantic OS layer を統合する
 標準 reference distribution として位置づけられます。
 
+## リポジトリ横断整合
+
+共有の repository boundary、0.1.1.1 local NuGet versioning、この更新ラインでの
+NuGet-only / no-PyPI rule は
+[AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1-ja.md)
+で定義します。
+
+Control は orchestration、policy application、Core gate invocation、runtime control、
+execution coordination を所有します。Decision Gate / Trajectory Gate truth table、
+Provider semantic evaluation、browser runtime execution を再実装しません。
+
 ## 最初に読むもの
 
 - [User Guide](user-guide/index-ja.md)
@@ -22,6 +33,7 @@ Monolith は 0.1.x 系の安定化後に control plane と Semantic OS layer を
 - [Q1_0 CPU execution kernel](execution-engine/q1-0-cpu-kernel-ja.md)
 - [Control pipelines](pipelines/index-ja.md)
 - [CTG Control integration](development/control-ctg-ja.md)
+- [Concept Elevation Notes / 概念昇格ノート](development/concept-elevation.md)
 - [Python governance wrapper](python/index-ja.md)
 - [Licensing](licensing/index-ja.md)
 

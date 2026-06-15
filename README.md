@@ -42,6 +42,14 @@ AIKernel.Core 0.1.1.1. The line is NuGet-only, uses
 `0.1.1.1-dev{build-number}` for local development packages, and does not create
 or publish a PyPI package.
 
+## Concept Elevation
+
+AIKernel.Control follows the common Concept Elevation naming policy maintained
+in AIKernel.NET. Control concept names stay in orchestration-level facades and
+do not duplicate Core CTG gate logic.
+
+Repository notes: [docs/development/concept-elevation.md](docs/development/concept-elevation.md)
+
 Release notes:
 
 - [English](RELEASE_NOTES.md)

@@ -12,6 +12,17 @@ AIKernel.Monolith is the official AIOS distribution now in development. It is
 planned as the standard reference distribution that integrates the control
 plane with the Semantic OS layers after the 0.1.x line stabilizes.
 
+## Cross-Repository Alignment
+
+Shared repository boundaries, 0.1.1.1 local NuGet versioning, and the
+NuGet-only / no-PyPI rule for this update line are defined by
+[AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1.md).
+
+Control owns orchestration, policy application, Core gate invocation, runtime
+control, and execution coordination. It must not reimplement Decision Gate or
+Trajectory Gate truth tables, provider semantic evaluation, or browser runtime
+execution.
+
 ## Start Here
 
 - [User Guide](user-guide/index.md)
@@ -22,6 +33,7 @@ plane with the Semantic OS layers after the 0.1.x line stabilizes.
 - [Q1_0 CPU execution kernel](execution-engine/q1-0-cpu-kernel.md)
 - [Control pipelines](pipelines/index.md)
 - [CTG Control integration](development/control-ctg.md)
+- [Concept Elevation Notes / 概念昇格ノート](development/concept-elevation.md)
 - [Python governance wrapper](python/index.md)
 - [Licensing](licensing/index.md)
 
