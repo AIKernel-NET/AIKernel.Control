@@ -5,7 +5,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Captures control state snapshots for CTG diagnostics and optional forwarding.
-/// EN: Documentation for public API. JA: CTG diagnostics 用に control state snapshot を捕捉し、必要に応じて転送します。
+/// [EN] Documents this public package API member. [JA] CTG diagnostics 用に control state snapshot を捕捉し、必要に応じて転送します。
 /// </summary>
 public sealed class CtgControlStateObserver : IControlStateObserver
 {
@@ -14,7 +14,7 @@ public sealed class CtgControlStateObserver : IControlStateObserver
 
     /// <summary>
     /// EN: Initializes a CTG control state observer.
-    /// EN: Documentation for public API. JA: CTG control state observer を初期化します。
+    /// [EN] Documents this public package API member. [JA] CTG control state observer を初期化します。
     /// </summary>
     /// <param name="innerObserver">EN: The optional downstream observer. JA: optional な downstream observer です。</param>
     public CtgControlStateObserver(IControlStateObserver? innerObserver = null)
@@ -24,13 +24,13 @@ public sealed class CtgControlStateObserver : IControlStateObserver
 
     /// <summary>
     /// EN: Gets captured snapshots.
-    /// EN: Documentation for public API. JA: 捕捉された snapshot を取得します。
+    /// [EN] Documents this public package API member. [JA] 捕捉された snapshot を取得します。
     /// </summary>
     public IReadOnlyList<ControlStateSnapshot> Snapshots => _snapshots;
 
     /// <summary>
     /// EN: Captures and optionally forwards a control state snapshot.
-    /// EN: Documentation for public API. JA: control state snapshot を捕捉し、必要に応じて転送します。
+    /// [EN] Documents this public package API member. [JA] control state snapshot を捕捉し、必要に応じて転送します。
     /// </summary>
     /// <param name="snapshot">EN: The control state snapshot. JA: control state snapshot です。</param>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>

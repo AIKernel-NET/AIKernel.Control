@@ -6,13 +6,13 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Converts a council decision into the vote-only gate input consumed by Core.
-/// EN: Documentation for public API. JA: council decision を Core が消費する vote-only gate input に変換します。
+/// [EN] Documents this public package API member. [JA] council decision を Core が消費する vote-only gate input に変換します。
 /// </summary>
 public sealed class CouncilDecisionToGateInputAdapter
 {
     /// <summary>
     /// EN: Adapts a council decision into GateInput without reading diagnostics or continuous carriers.
-    /// EN: Documentation for public API. JA: diagnostics や continuous carrier を読まずに council decision を GateInput に変換します。
+    /// [EN] Documents this public package API member. [JA] diagnostics や continuous carrier を読まずに council decision を GateInput に変換します。
     /// </summary>
     /// <param name="decision">EN: The council decision. JA: council decision です。</param>
     /// <returns>EN: The gate input result. JA: gate input result を返します。</returns>

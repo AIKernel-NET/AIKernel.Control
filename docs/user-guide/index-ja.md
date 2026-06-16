@@ -16,21 +16,21 @@ Monolith は 0.1.x 系の安定化後に semantic runtime、capability graph、g
 host の役割に合わせて Control package を導入します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.2
 ```
 
 concrete GPU backend を bind する host では `AIKernel.Control.GPU` も導入します。
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.2
 ```
 
-0.1.1.1 validation line では Python wrapper 関連資料は参考扱いです。0.1.1.1 では
-PyPI package を build / install / publish しません。次の公式 v0.1.2 正典シリーズで
-NuGet と PyPI の package family を同期公開できるように準備します。
+local integration では、release task が公開を開始するまで stable `0.1.2` ではなく
+`0.1.2-dev{buildNumber}` の NuGet package を使います。Python validation では
+`0.1.2.dev{buildNumber}` の `aikernel-governance` wheel を使います。
 
 ## Runtime の役割
 
@@ -87,7 +87,7 @@ visibility を検証してください。
 
 ## Python Wrapper
 
-過去の Python package design は public governance surface を公開する想定です。
+Python package は public governance surface を公開します。
 
 ```python
 from aikernel_governance import ExecutionRequest, GovernanceClient
@@ -96,8 +96,8 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 bundled managed assembly を読み込み、意味論は C# package へ委譲します。Python
 wrapper を独立実装として扱わないでください。
 
-0.1.1.1 では PyPI package を build / install / publish しません。次の公式 v0.1.2
-正典シリーズで PyPI package family を更新する前提です。
+Python wrapper は独立実装ではありません。managed loading helper と generated managed
+API catalog を公開し、C# packages の薄い wrapper に留まります。
 
 ## 検証
 

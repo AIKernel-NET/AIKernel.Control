@@ -3,7 +3,7 @@ using AIKernel.Dtos.Control;
 
 namespace AIKernel.Control.Emulator;
 
-/// <summary>EN: Documentation for public API. JA: ControlEmulatorEngine を表します。</summary>
+/// <summary>[EN] Documents this public package API member. [JA] ControlEmulatorEngine を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.ControlEmulatorEngine']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.ControlEmulatorEngine']" />
 public sealed class ControlEmulatorEngine(
@@ -14,12 +14,12 @@ public sealed class ControlEmulatorEngine(
     private readonly INodeScheduler _scheduler = scheduler ?? new DeterministicNodeScheduler();
     private readonly IControlPolicy _policy = policy ?? new AllowAllControlPolicy();
 
-    /// <summary>EN: Documentation for public API. JA: EngineId を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] EngineId を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Emulator.ControlEmulatorEngine.EngineId']" />
     public string EngineId => "control-emulator";
 
-    /// <summary>EN: Documentation for public API. JA: ExecuteAsync を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] ExecuteAsync を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.ControlEmulatorEngine.ExecuteAsync']" />
     public async ValueTask<ControlExecutionResult> ExecuteAsync(

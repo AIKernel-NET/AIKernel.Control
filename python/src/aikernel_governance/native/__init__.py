@@ -12,8 +12,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-_CONTROL_PACKAGE_VERSION = "0.1.1"
-_CONTRACT_PACKAGE_VERSION = "0.1.1"
+_CONTROL_PACKAGE_VERSION = "0.1.2"
+_CONTRACT_PACKAGE_VERSION = "0.1.2"
 _ASSEMBLIES = (
     "AIKernel.Abstractions.dll",
     "AIKernel.Dtos.dll",

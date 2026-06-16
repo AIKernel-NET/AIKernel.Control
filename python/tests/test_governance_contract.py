@@ -13,6 +13,8 @@ from aikernel_governance import (
     ExecutionRequest,
     ExecutionResult,
     GovernanceClient,
+    managed_api_summary,
+    managed_type_names,
     ProviderContract,
     ReplayApprovalRecord,
     Snapshot,
@@ -121,6 +123,16 @@ def test_governance_assembly_manifest_names():
     assert "AIKernel.Abstractions.dll" in names
     assert "AIKernel.Dtos.dll" in names
     assert "AIKernel.Enums.dll" in names
+
+
+def test_managed_api_catalog_covers_control_surface():
+    names = set(managed_type_names())
+    summary = managed_api_summary()
+
+    assert "AIKernel.Control.Core.Ctg.CtgControlCoordinator" in names
+    assert "AIKernel.Control.Core.Ctg.CtgControlDecisionEnvelope" in names
+    assert "AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider" in names
+    assert summary["AIKernel.Control.Core"] > 0
 
 
 class RecordingBackend:

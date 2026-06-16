@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace AIKernel.Control.Core.Bonsai;
 
-/// <summary>EN: Documentation for public API. JA: BonsaiTokenizer を表します。</summary>
+/// <summary>[EN] Documents this public package API member. [JA] BonsaiTokenizer を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiTokenizer']" />
 public sealed class BonsaiTokenizer
@@ -18,12 +18,12 @@ public sealed class BonsaiTokenizer
         _idToToken = idToToken;
     }
 
-    /// <summary>EN: Documentation for public API. JA: VocabularySize を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] VocabularySize を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.VocabularySize']" />
     public int VocabularySize => _idToToken.Length;
 
-    /// <summary>EN: Documentation for public API. JA: Parse を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Parse を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Parse']" />
     public static BonsaiTokenizer Parse(string json)
@@ -71,7 +71,7 @@ public sealed class BonsaiTokenizer
         return new BonsaiTokenizer(tokenToId, idToToken);
     }
 
-    /// <summary>EN: Documentation for public API. JA: TokenizeFirst を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] TokenizeFirst を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.TokenizeFirst']" />
     public int TokenizeFirst(ReadOnlySpan<char> text)
@@ -99,7 +99,7 @@ public sealed class BonsaiTokenizer
         return (int)(hash % (uint)Math.Max(1, _idToToken.Length));
     }
 
-    /// <summary>EN: Documentation for public API. JA: Decode を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Decode を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiTokenizer.Decode']" />
     public string Decode(int tokenId)

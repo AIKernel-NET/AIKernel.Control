@@ -5,7 +5,7 @@ using AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Orchestrates perception-derived votes through the existing CTG control coordinator.
-/// EN: Documentation for public API. JA: perception 由来 vote を既存 CTG Control coordinator へ orchestration します。
+/// [EN] Documents this public package API member. [JA] perception 由来 vote を既存 CTG Control coordinator へ orchestration します。
 /// </summary>
 public sealed class PerceptionCtgControlCoordinator
 {
@@ -14,7 +14,7 @@ public sealed class PerceptionCtgControlCoordinator
 
     /// <summary>
     /// EN: Initializes a perception CTG control coordinator.
-    /// EN: Documentation for public API. JA: perception CTG Control coordinator を初期化します。
+    /// [EN] Documents this public package API member. [JA] perception CTG Control coordinator を初期化します。
     /// </summary>
     /// <param name="adapter">EN: Perception control adapter. JA: perception control adapter です。</param>
     /// <param name="coordinator">EN: CTG control coordinator. JA: CTG Control coordinator です。</param>
@@ -28,7 +28,7 @@ public sealed class PerceptionCtgControlCoordinator
 
     /// <summary>
     /// EN: Evaluates perception-derived control signals by delegating Gate evaluation to Core through CTG Control.
-    /// EN: Documentation for public API. JA: CTG Control 経由で Gate 評価を Core に委譲し、perception 由来 control signal を評価します。
+    /// [EN] Documents this public package API member. [JA] CTG Control 経由で Gate 評価を Core に委譲し、perception 由来 control signal を評価します。
     /// </summary>
     /// <param name="request">EN: Perception control request. JA: perception control request です。</param>
     /// <param name="cancellationToken">EN: Cancellation token. JA: キャンセル通知を監視するトークンです。</param>

@@ -14,9 +14,10 @@ plane with the Semantic OS layers after the 0.1.x line stabilizes.
 
 ## Cross-Repository Alignment
 
-Shared repository boundaries, 0.1.1.1 local NuGet versioning, the
-NuGet-only / no-PyPI rule for this validation line, and the v0.1.2
-NuGet + PyPI release assumption are defined by
+Shared repository boundaries, v0.1.2 development versioning, dependency order,
+PyPI Trusted Publishing, and Python wrapper scope are defined by
+[Package Release Alignment v0.1.2](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/package-release-alignment-v0.1.2.md).
+The historical v0.1.1.1 validation rules remain available in
 [AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1.md).
 When a change crosses repositories, start with the
 [Cross-Repository Developer Guide v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/cross-repository-developer-guide-v0.1.1.1.md).
@@ -50,11 +51,9 @@ execution.
   GPU execution.
 - Read CTG Control integration when you need to opt in to Core CTG gate
   evaluation during the Apply Policy stage.
-- Read Python governance wrapper when you are consuming Control from Python and
-  need to confirm that Python is only a managed assembly bridge. The 0.1.1.1
-  validation line does not build or publish a PyPI package. The next official
-  v0.1.2 canonical series is expected to refresh the PyPI package family
-  together with NuGet.
+- Read Python governance wrapper when consuming Control from Python through
+  `aikernel-governance`. Python remains a managed assembly bridge and must not
+  reimplement CTG Gate logic.
 
 ## First Validation
 
@@ -68,11 +67,12 @@ dotnet test AIKernel.Control.slnx -c Release --no-build
 ## Operator Checklist
 
 - Install the matching `AIKernel.Control.*` packages.
-- For 0.1.1.1 development, use NuGet packages only and local package versions
-  such as `0.1.1.1-dev1`.
+- For v0.1.2 development, use local NuGet package versions such as
+  `0.1.2-dev{buildNumber}` and local Python wheel versions such as
+  `0.1.2.dev{buildNumber}`.
 - Mount model assets through VFS/ROM instead of local ad hoc paths.
 - Use CPU/Emulator packages for deterministic validation before binding GPU
   execution.
-- Keep Python wrapper materials as reference-only for 0.1.1.1, and prepare
-  synchronized NuGet + PyPI package updates for the next official v0.1.2
-  canonical release line.
+- Keep `aikernel-governance` thin over the managed assemblies and publish it
+  only through the v0.1.2 Trusted Publishing flow when stable publication is
+  explicitly opened.

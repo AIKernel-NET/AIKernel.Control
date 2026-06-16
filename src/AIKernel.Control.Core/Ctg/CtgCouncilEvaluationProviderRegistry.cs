@@ -5,7 +5,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Stores provider vote outputs for CTG council evaluation orchestration.
-/// EN: Documentation for public API. JA: CTG council evaluation orchestration 用の provider vote output を保持します。
+/// [EN] Documents this public package API member. [JA] CTG council evaluation orchestration 用の provider vote output を保持します。
 /// </summary>
 public sealed class CtgCouncilEvaluationProviderRegistry
 {
@@ -13,7 +13,7 @@ public sealed class CtgCouncilEvaluationProviderRegistry
 
     /// <summary>
     /// EN: Registers a provider vote output without evaluating gate semantics.
-    /// EN: Documentation for public API. JA: gate semantics を評価せず provider vote output を登録します。
+    /// [EN] Documents this public package API member. [JA] gate semantics を評価せず provider vote output を登録します。
     /// </summary>
     /// <param name="output">EN: The provider vote output. JA: provider vote output です。</param>
     public void Register(ProviderVoteOutput output)
@@ -31,7 +31,7 @@ public sealed class CtgCouncilEvaluationProviderRegistry
 
     /// <summary>
     /// EN: Resolves registered provider vote outputs as a fail-closed result.
-    /// EN: Documentation for public API. JA: 登録済み provider vote output を fail-closed result として解決します。
+    /// [EN] Documents this public package API member. [JA] 登録済み provider vote output を fail-closed result として解決します。
     /// </summary>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>
     /// <returns>EN: The provider vote output result. JA: provider vote output result を返します。</returns>
@@ -74,7 +74,7 @@ public sealed class CtgCouncilEvaluationProviderRegistry
 
     /// <summary>
     /// EN: Resolves registered provider vote outputs in deterministic council order.
-    /// EN: Documentation for public API. JA: 登録済み provider vote output を決定論的な council 順で解決します。
+    /// [EN] Documents this public package API member. [JA] 登録済み provider vote output を決定論的な council 順で解決します。
     /// </summary>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>
     /// <returns>EN: The resolved provider vote outputs. JA: 解決された provider vote output を返します。</returns>
@@ -90,7 +90,7 @@ public sealed class CtgCouncilEvaluationProviderRegistry
 
     /// <summary>
     /// EN: Clears registered provider vote outputs.
-    /// EN: Documentation for public API. JA: 登録済み provider vote output を消去します。
+    /// [EN] Documents this public package API member. [JA] 登録済み provider vote output を消去します。
     /// </summary>
     public void Clear()
         => _outputs.Clear();

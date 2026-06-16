@@ -4,7 +4,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Formats CTG gate DTOs for diagnostics output.
-/// EN: Documentation for public API. JA: diagnostics output 用に CTG gate DTO を整形します。
+/// [EN] Documents this public package API member. [JA] diagnostics output 用に CTG gate DTO を整形します。
 /// </summary>
 public sealed class CtgDiagnosticsFormatter
 {
@@ -12,7 +12,7 @@ public sealed class CtgDiagnosticsFormatter
 
     /// <summary>
     /// EN: Initializes a CTG diagnostics formatter.
-    /// EN: Documentation for public API. JA: CTG diagnostics formatter を初期化します。
+    /// [EN] Documents this public package API member. [JA] CTG diagnostics formatter を初期化します。
     /// </summary>
     /// <param name="reasonFormatter">EN: The reject reason formatter. JA: reject reason formatter です。</param>
     public CtgDiagnosticsFormatter(CtgRejectReasonFormatter? reasonFormatter = null)
@@ -22,7 +22,7 @@ public sealed class CtgDiagnosticsFormatter
 
     /// <summary>
     /// EN: Formats a decision gate result.
-    /// EN: Documentation for public API. JA: decision gate result を整形します。
+    /// [EN] Documents this public package API member. [JA] decision gate result を整形します。
     /// </summary>
     /// <param name="result">EN: The decision gate result. JA: decision gate result です。</param>
     /// <returns>EN: The formatted diagnostics line. JA: 整形された diagnostics line を返します。</returns>
@@ -35,7 +35,7 @@ public sealed class CtgDiagnosticsFormatter
 
     /// <summary>
     /// EN: Formats a trajectory gate result.
-    /// EN: Documentation for public API. JA: trajectory gate result を整形します。
+    /// [EN] Documents this public package API member. [JA] trajectory gate result を整形します。
     /// </summary>
     /// <param name="result">EN: The trajectory gate result. JA: trajectory gate result です。</param>
     /// <returns>EN: The formatted diagnostics line. JA: 整形された diagnostics line を返します。</returns>

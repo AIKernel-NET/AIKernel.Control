@@ -4,7 +4,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates deterministic CTG replay-oriented emulator scenarios.
-/// EN: Documentation for public API. JA: 決定論的な CTG replay 指向 emulator scenario を作成します。
+/// [EN] Documents this public package API member. [JA] 決定論的な CTG replay 指向 emulator scenario を作成します。
 /// </summary>
 public sealed class CtgReplayScenario
 {
@@ -12,7 +12,7 @@ public sealed class CtgReplayScenario
 
     /// <summary>
     /// EN: Initializes a replay scenario factory.
-    /// EN: Documentation for public API. JA: replay scenario factory を初期化します。
+    /// [EN] Documents this public package API member. [JA] replay scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public CtgReplayScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -22,7 +22,7 @@ public sealed class CtgReplayScenario
 
     /// <summary>
     /// EN: Creates a replay scenario with stable metadata.
-    /// EN: Documentation for public API. JA: 安定した metadata を持つ replay scenario を作成します。
+    /// [EN] Documents this public package API member. [JA] 安定した metadata を持つ replay scenario を作成します。
     /// </summary>
     /// <returns>EN: The emulator scenario. JA: emulator scenario を返します。</returns>
     public CtgControlEmulatorScenario Create()

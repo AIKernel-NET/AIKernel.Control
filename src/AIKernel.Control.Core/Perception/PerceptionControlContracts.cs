@@ -8,7 +8,7 @@ using AIKernel.Enums.Governance;
 
 /// <summary>
 /// EN: Carries a perception-derived council vote candidate before CTG normalization.
-/// EN: Documentation for public API. JA: CTG 正規化前の perception 由来 council vote 候補を保持します。
+/// [EN] Documents this public package API member. [JA] CTG 正規化前の perception 由来 council vote 候補を保持します。
 /// </summary>
 public sealed record PerceptionControlSignal
 {
@@ -34,7 +34,7 @@ public sealed record PerceptionControlSignal
 
 /// <summary>
 /// EN: Carries perception-to-control orchestration input.
-/// EN: Documentation for public API. JA: perception-to-control orchestration input を保持します。
+/// [EN] Documents this public package API member. [JA] perception-to-control orchestration input を保持します。
 /// </summary>
 public sealed record PerceptionControlRequest
 {
@@ -72,7 +72,7 @@ public sealed record PerceptionControlRequest
 
 /// <summary>
 /// EN: Carries dynamic pipeline selection after Core CTG evaluation.
-/// EN: Documentation for public API. JA: Core CTG 評価後の dynamic pipeline selection を保持します。
+/// [EN] Documents this public package API member. [JA] Core CTG 評価後の dynamic pipeline selection を保持します。
 /// </summary>
 public sealed record PerceptionPipelineSelection
 {

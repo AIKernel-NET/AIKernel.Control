@@ -4,7 +4,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates a deterministic scenario with an Ethos reject vote.
-/// EN: Documentation for public API. JA: Ethos reject vote を持つ決定論的 scenario を作成します。
+/// [EN] Documents this public package API member. [JA] Ethos reject vote を持つ決定論的 scenario を作成します。
 /// </summary>
 public sealed class EthosRejectScenario
 {
@@ -12,7 +12,7 @@ public sealed class EthosRejectScenario
 
     /// <summary>
     /// EN: Initializes an Ethos reject scenario factory.
-    /// EN: Documentation for public API. JA: Ethos reject scenario factory を初期化します。
+    /// [EN] Documents this public package API member. [JA] Ethos reject scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public EthosRejectScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -22,7 +22,7 @@ public sealed class EthosRejectScenario
 
     /// <summary>
     /// EN: Creates the scenario.
-    /// EN: Documentation for public API. JA: scenario を作成します。
+    /// [EN] Documents this public package API member. [JA] scenario を作成します。
     /// </summary>
     /// <returns>EN: The emulator scenario. JA: emulator scenario を返します。</returns>
     public CtgControlEmulatorScenario Create()

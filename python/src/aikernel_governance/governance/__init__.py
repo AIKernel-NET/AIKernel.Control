@@ -1,3 +1,4 @@
+from ..api_catalog import managed_api_catalog, managed_api_summary, managed_type_names
 """Public governance contract wrappers."""
 
 from .bonsai import (
@@ -24,6 +25,9 @@ from .result import ExecutionResult
 from .snapshot import Snapshot, SnapshotMetadata
 
 __all__ = [
+    "managed_api_catalog",
+    "managed_api_summary",
+    "managed_type_names",
     "AllowAllControlPolicy",
     "Bonsai1BitCpuKernel",
     "BonsaiBuiltInProvider",

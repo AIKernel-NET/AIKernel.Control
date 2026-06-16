@@ -5,6 +5,14 @@ Unified Python API for the AIKernel.Control governance contract surface.
 AIKernel.Control の governance 契約境界を統合して公開する Python API です。
 """
 
+from .api_catalog import (
+    ManagedMemberDescriptor,
+    ManagedTypeDescriptor,
+    find_managed_type,
+    managed_api_catalog,
+    managed_api_summary,
+    managed_type_names,
+)
 from .governance import (
     AllowAllControlPolicy,
     Bonsai1BitCpuKernel,
@@ -34,6 +42,12 @@ from .native import (
 )
 
 __all__ = [
+    "ManagedMemberDescriptor",
+    "ManagedTypeDescriptor",
+    "find_managed_type",
+    "managed_api_catalog",
+    "managed_api_summary",
+    "managed_type_names",
     "AllowAllControlPolicy",
     "Bonsai1BitCpuKernel",
     "BonsaiBuiltInProvider",
@@ -59,4 +73,4 @@ __all__ = [
     "require_governance_assemblies",
 ]
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"

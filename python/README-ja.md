@@ -3,14 +3,11 @@
 [English](README.md)
 
 AIKernel.Control の public governance surface を Python から扱うための wrapper
-surface の参照設計です。
+surface です。
 
-0.1.1.1 系では、AIKernel.Control は NuGet package のみを公開対象とします。
-この directory は将来の Python wrapper surface の参照資料として維持し、
-PyPI package として build / install / publish は行いません。
-
-予約している distribution name は `aikernel-governance` です。想定 module 名は
-`aikernel_governance` です。
+0.1.2 正典系列から、`aikernel-governance` は AIKernel.Control の public
+governance boundary を公開する PyPI package です。この package は managed C#
+assembly の薄い wrapper であり、CTG Gate logic を Python 側で再実装しません。
 
 ## Scope
 
@@ -32,7 +29,7 @@ private runtime state は公開しません。
 
 ## Managed Assemblies
 
-将来 Python package を作成する場合は、public Control と contract assemblies を
+Python package は、public Control と contract assemblies を
 `aikernel_governance/native` で解決します。
 
 - `AIKernel.Abstractions.dll`
@@ -47,8 +44,13 @@ private runtime state は公開しません。
 `governance_assemblies()` は、同梱 assembly、`AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`、
 NuGet global-packages cache の順に assembly を解決する想定です。
 
-`load_governance_runtime()` は、解決した assembly を pythonnet 経由で読み込む
-想定です。
+`load_governance_runtime()` は、解決した assembly を pythonnet 経由で読み込みます。
+
+## Managed API Catalog
+
+v0.1.2 package では generated managed API catalog を公開します。
+`managed_api_catalog()`、`managed_api_summary()`、`managed_type_names()`、
+`find_managed_type(full_name)` で確認できます。
 
 ## API
 
@@ -87,18 +89,17 @@ snapshot = client.snapshot("exec-001")
 pythonnet が利用できる場合、wrapper は `to_managed()` によって public C# DTO へ
 変換できます。
 
-## Build
+## Build and Validate
 
-0.1.1.1 系では NuGet のみを検証・package 化します。
+local validation では Python wrapper の contract test を実行します。
 
 ```powershell
 cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
+py -m pytest python\tests
 ```
 
-## Source Validation
+## Distribution
 
-AIKernel.Control 0.1.1.1 では、Python source install は supported validation path
-ではありません。Python 側の試作を行う場合も managed assemblies の薄い wrapper に留め、
-CTG Gate rule を Python code に追加しないでください。
+PyPI publishing は repository の GitHub Actions workflow が release tag を契機に
+Trusted Publishing で実行します。Python 側の試作を行う場合も managed assemblies
+の薄い wrapper に留め、CTG Gate rule を Python code に追加しないでください。

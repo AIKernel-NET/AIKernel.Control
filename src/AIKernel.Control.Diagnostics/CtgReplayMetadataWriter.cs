@@ -4,7 +4,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Writes CTG governance DTOs into replay-safe metadata dictionaries.
-/// EN: Documentation for public API. JA: CTG governance DTO を replay-safe な metadata dictionary に書き出します。
+/// [EN] Documents this public package API member. [JA] CTG governance DTO を replay-safe な metadata dictionary に書き出します。
 /// </summary>
 public sealed class CtgReplayMetadataWriter
 {
@@ -13,7 +13,7 @@ public sealed class CtgReplayMetadataWriter
 
     /// <summary>
     /// EN: Initializes a replay metadata writer.
-    /// EN: Documentation for public API. JA: replay metadata writer を初期化します。
+    /// [EN] Documents this public package API member. [JA] replay metadata writer を初期化します。
     /// </summary>
     /// <param name="reasonFormatter">EN: The reject reason formatter. JA: reject reason formatter です。</param>
     /// <param name="canonReferenceFormatter">EN: The canon reference formatter. JA: canon reference formatter です。</param>
@@ -27,7 +27,7 @@ public sealed class CtgReplayMetadataWriter
 
     /// <summary>
     /// EN: Writes a step governance trace to metadata.
-    /// EN: Documentation for public API. JA: step governance trace を metadata に書き出します。
+    /// [EN] Documents this public package API member. [JA] step governance trace を metadata に書き出します。
     /// </summary>
     /// <param name="trace">EN: The step governance trace. JA: step governance trace です。</param>
     /// <returns>EN: Replay metadata. JA: replay metadata を返します。</returns>
@@ -49,7 +49,7 @@ public sealed class CtgReplayMetadataWriter
 
     /// <summary>
     /// EN: Writes a trajectory gate result to metadata.
-    /// EN: Documentation for public API. JA: trajectory gate result を metadata に書き出します。
+    /// [EN] Documents this public package API member. [JA] trajectory gate result を metadata に書き出します。
     /// </summary>
     /// <param name="result">EN: The trajectory gate result. JA: trajectory gate result です。</param>
     /// <returns>EN: Replay metadata. JA: replay metadata を返します。</returns>

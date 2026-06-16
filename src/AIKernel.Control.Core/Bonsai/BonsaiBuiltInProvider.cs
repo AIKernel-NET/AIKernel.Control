@@ -9,20 +9,20 @@ using System.Text;
 
 namespace AIKernel.Control.Core.Bonsai;
 
-/// <summary>EN: Documentation for public API. JA: BonsaiBuiltInProvider を表します。</summary>
+/// <summary>[EN] Documents this public package API member. [JA] BonsaiBuiltInProvider を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider']" />
 public sealed class BonsaiBuiltInProvider : IProvider
 {
-    /// <summary>EN: Documentation for public API. JA: DefaultModelRoot 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] DefaultModelRoot 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.DefaultModelRoot']" />
     public const string DefaultModelRoot = "/sys/roms/bonsai-1.7b";
-    /// <summary>EN: Documentation for public API. JA: OperationChatLocal 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] OperationChatLocal 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationChatLocal']" />
     public const string OperationChatLocal = "chat.local";
-    /// <summary>EN: Documentation for public API. JA: OperationTokenize 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] OperationTokenize 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.OperationTokenize']" />
     public const string OperationTokenize = "text.tokenize";
@@ -32,7 +32,7 @@ public sealed class BonsaiBuiltInProvider : IProvider
     private readonly IProviderCapabilities _capabilities = new BonsaiProviderCapabilities();
     private BonsaiModelState? _state;
 
-    /// <summary>EN: Documentation for public API. JA: BonsaiBuiltInProvider を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] BonsaiBuiltInProvider を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.#ctor']" />
     public BonsaiBuiltInProvider(
@@ -47,32 +47,32 @@ public sealed class BonsaiBuiltInProvider : IProvider
             : modelRoot.TrimEnd('/');
     }
 
-    /// <summary>EN: Documentation for public API. JA: ProviderId を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] ProviderId を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ProviderId']" />
     public string ProviderId => "aikernel.control.bonsai-1.7b";
 
-    /// <summary>EN: Documentation for public API. JA: Name を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Name を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Name']" />
     public string Name => "Bonsai-1.7B Built-in Provider";
 
-    /// <summary>EN: Documentation for public API. JA: Version を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Version を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Version']" />
     public string Version => "0.1.1";
 
-    /// <summary>EN: Documentation for public API. JA: ModelRoot を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] ModelRoot を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ModelRoot']" />
     public string ModelRoot { get; }
 
-    /// <summary>EN: Documentation for public API. JA: IsInitialized を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] IsInitialized を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsInitialized']" />
     public bool IsInitialized => _state?.IsInitialized == true;
 
-    /// <summary>EN: Documentation for public API. JA: InitializeAsync を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] InitializeAsync を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     public async Task InitializeAsync(IVfsProvider vfs)
@@ -109,7 +109,7 @@ public sealed class BonsaiBuiltInProvider : IProvider
         await ObserveAsync("bonsai.init", "Ready", "Bonsai model buffers are bound.").ConfigureAwait(false);
     }
 
-    /// <summary>EN: Documentation for public API. JA: InitializeAsync を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] InitializeAsync を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.InitializeAsync']" />
     public Task InitializeAsync()
@@ -123,7 +123,7 @@ public sealed class BonsaiBuiltInProvider : IProvider
             "BonsaiBuiltInProvider requires InitializeAsync(IVfsProvider) so model ROM assets are loaded through VFS.");
     }
 
-    /// <summary>EN: Documentation for public API. JA: ShutdownAsync を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] ShutdownAsync を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ShutdownAsync']" />
     public Task ShutdownAsync()
@@ -132,13 +132,13 @@ public sealed class BonsaiBuiltInProvider : IProvider
         return Task.CompletedTask;
     }
 
-    /// <summary>EN: Documentation for public API. JA: IsAvailableAsync を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] IsAvailableAsync を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.IsAvailableAsync']" />
     public Task<bool> IsAvailableAsync()
         => Task.FromResult(IsInitialized);
 
-    /// <summary>EN: Documentation for public API. JA: GetHealthAsync を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] GetHealthAsync を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetHealthAsync']" />
     public Task<ProviderHealthStatus> GetHealthAsync()
@@ -148,13 +148,13 @@ public sealed class BonsaiBuiltInProvider : IProvider
             DateTime.UnixEpoch,
             0));
 
-    /// <summary>EN: Documentation for public API. JA: GetCapabilities を実行します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] GetCapabilities を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.GetCapabilities']" />
     public IProviderCapabilities GetCapabilities()
         => _capabilities;
 
-    /// <summary>EN: Documentation for public API. JA: ExecuteNodeAsync を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] ExecuteNodeAsync を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ExecuteNodeAsync']" />
     public async ValueTask<ControlExecutionResult> ExecuteNodeAsync(
@@ -324,22 +324,22 @@ public sealed class BonsaiBuiltInProvider : IProvider
 
     private sealed class BonsaiVfsCredentials : IVfsCredentials
     {
-        /// <summary>EN: Documentation for public API. JA: Username を取得します。</summary>
+        /// <summary>[EN] Documents this public package API member. [JA] Username を取得します。</summary>
         /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username']" />
         /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Username']" />
         public string? Username => null;
 
-        /// <summary>EN: Documentation for public API. JA: ApiKey を取得します。</summary>
+        /// <summary>[EN] Documents this public package API member. [JA] ApiKey を取得します。</summary>
         /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey']" />
         /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.ApiKey']" />
         public string? ApiKey => null;
 
-        /// <summary>EN: Documentation for public API. JA: Token を取得します。</summary>
+        /// <summary>[EN] Documents this public package API member. [JA] Token を取得します。</summary>
         /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token']" />
         /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.Token']" />
         public string? Token => null;
 
-        /// <summary>EN: Documentation for public API. JA: Parameters を取得します。</summary>
+        /// <summary>[EN] Documents this public package API member. [JA] Parameters を取得します。</summary>
         /// <include file="docs.en.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object']" />
         /// <include file="docs.ja.xml" path="doc/members/member[@name='P:AIKernel.Control.Core.Bonsai.BonsaiBuiltInProvider.object']" />
         public IReadOnlyDictionary<string, object>? Parameters { get; } =

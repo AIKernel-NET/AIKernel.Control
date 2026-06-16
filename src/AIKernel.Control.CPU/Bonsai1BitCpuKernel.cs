@@ -5,46 +5,46 @@ using System.Runtime.Intrinsics.X86;
 
 namespace AIKernel.Control.CPU;
 
-/// <summary>EN: Documentation for public API. JA: Bonsai1BitCpuKernel を表します。</summary>
+/// <summary>[EN] Documents this public package API member. [JA] Bonsai1BitCpuKernel を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.CPU.Bonsai1BitCpuKernel']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.CPU.Bonsai1BitCpuKernel']" />
 public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
 {
-    /// <summary>EN: Documentation for public API. JA: Q1BlockElements 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1BlockElements 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElements']" />
     public const int Q1BlockElements = 256;
-    /// <summary>EN: Documentation for public API. JA: Q1ScaleBytes 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1ScaleBytes 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1ScaleBytes']" />
     public const int Q1ScaleBytes = 2;
-    /// <summary>EN: Documentation for public API. JA: Q1PayloadBytes 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1PayloadBytes 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1PayloadBytes']" />
     public const int Q1PayloadBytes = Q1BlockElements / 8;
-    /// <summary>EN: Documentation for public API. JA: Q1BlockBytes 定数を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1BlockBytes 定数を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes']" />
     public const int Q1BlockBytes = Q1ScaleBytes + Q1PayloadBytes;
 
-    /// <summary>EN: Documentation for public API. JA: KernelId を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] KernelId を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
     public string KernelId => Avx2.IsSupported
         ? "bonsai.q1_0.cpu.avx2"
         : "bonsai.q1_0.cpu.scalar";
 
-    /// <summary>EN: Documentation for public API. JA: Q1BlockElementCount を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1BlockElementCount を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockElementCount']" />
     public int Q1BlockElementCount => Q1BlockElements;
 
-    /// <summary>EN: Documentation for public API. JA: Q1BlockByteCount を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Q1BlockByteCount を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockByteCount']" />
     public int Q1BlockByteCount => Q1BlockBytes;
 
-    /// <summary>EN: Documentation for public API. JA: Forward を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] Forward を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Forward']" />
     public void Forward(
@@ -70,7 +70,7 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
         logits[rowCount..].Clear();
     }
 
-    /// <summary>EN: Documentation for public API. JA: DotRowQ1_0 を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] DotRowQ1_0 を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DotRowQ1_0']" />
     public static float DotRowQ1_0(
@@ -104,7 +104,7 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
         return sum;
     }
 
-    /// <summary>EN: Documentation for public API. JA: DequantizeRowQ1_0 を取得します。</summary>
+    /// <summary>[EN] Documents this public package API member. [JA] DequantizeRowQ1_0 を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.CPU.Bonsai1BitCpuKernel.DequantizeRowQ1_0']" />
     public static void DequantizeRowQ1_0(

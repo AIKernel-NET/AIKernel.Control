@@ -5,7 +5,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Renders CTG governance traces into deterministic text.
-/// EN: Documentation for public API. JA: CTG governance trace を決定論的な text に描画します。
+/// [EN] Documents this public package API member. [JA] CTG governance trace を決定論的な text に描画します。
 /// </summary>
 public sealed class CtgTraceRenderer
 {
@@ -13,7 +13,7 @@ public sealed class CtgTraceRenderer
 
     /// <summary>
     /// EN: Initializes a CTG trace renderer.
-    /// EN: Documentation for public API. JA: CTG trace renderer を初期化します。
+    /// [EN] Documents this public package API member. [JA] CTG trace renderer を初期化します。
     /// </summary>
     /// <param name="reasonFormatter">EN: The reject reason formatter. JA: reject reason formatter です。</param>
     public CtgTraceRenderer(CtgRejectReasonFormatter? reasonFormatter = null)
@@ -23,7 +23,7 @@ public sealed class CtgTraceRenderer
 
     /// <summary>
     /// EN: Renders a step governance trace.
-    /// EN: Documentation for public API. JA: step governance trace を描画します。
+    /// [EN] Documents this public package API member. [JA] step governance trace を描画します。
     /// </summary>
     /// <param name="trace">EN: The step governance trace. JA: step governance trace です。</param>
     /// <returns>EN: The rendered trace. JA: 描画された trace を返します。</returns>
@@ -46,7 +46,7 @@ public sealed class CtgTraceRenderer
 
     /// <summary>
     /// EN: Renders a governance trace.
-    /// EN: Documentation for public API. JA: governance trace を描画します。
+    /// [EN] Documents this public package API member. [JA] governance trace を描画します。
     /// </summary>
     /// <param name="trace">EN: The governance trace. JA: governance trace です。</param>
     /// <returns>EN: The rendered trace. JA: 描画された trace を返します。</returns>

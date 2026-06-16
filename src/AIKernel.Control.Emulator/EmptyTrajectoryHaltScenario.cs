@@ -4,7 +4,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates a deterministic scenario with no trajectory steps.
-/// EN: Documentation for public API. JA: trajectory step がない決定論的 scenario を作成します。
+/// [EN] Documents this public package API member. [JA] trajectory step がない決定論的 scenario を作成します。
 /// </summary>
 public sealed class EmptyTrajectoryHaltScenario
 {
@@ -12,7 +12,7 @@ public sealed class EmptyTrajectoryHaltScenario
 
     /// <summary>
     /// EN: Initializes an empty-trajectory scenario factory.
-    /// EN: Documentation for public API. JA: empty-trajectory scenario factory を初期化します。
+    /// [EN] Documents this public package API member. [JA] empty-trajectory scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public EmptyTrajectoryHaltScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -22,7 +22,7 @@ public sealed class EmptyTrajectoryHaltScenario
 
     /// <summary>
     /// EN: Creates the scenario.
-    /// EN: Documentation for public API. JA: scenario を作成します。
+    /// [EN] Documents this public package API member. [JA] scenario を作成します。
     /// </summary>
     /// <returns>EN: The emulator scenario. JA: emulator scenario を返します。</returns>
     public CtgControlEmulatorScenario Create()

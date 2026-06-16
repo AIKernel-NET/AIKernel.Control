@@ -16,22 +16,22 @@ capability graph, and governance after the 0.1.x line stabilizes.
 Install the Control packages that match your host role:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.2
 ```
 
 Add `AIKernel.Control.GPU` only when the host binds a concrete GPU backend:
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.2
 ```
 
-Python wrapper materials are reference-only for the 0.1.1.1 validation line. Do
-not build, install, or publish a PyPI package for 0.1.1.1. Prepare the wrapper
-for the next official v0.1.2 canonical series, where synchronized NuGet and
-PyPI package families are expected.
+During local integration, use `0.1.2-dev{buildNumber}` NuGet packages instead
+of stable `0.1.2` packages until the release task opens publication. Python
+validation uses the `aikernel-governance` wheel with version
+`0.1.2.dev{buildNumber}`.
 
 ## Runtime Roles
 
@@ -88,7 +88,7 @@ GPU execution delegate.
 
 ## Python Wrapper
 
-The archived Python package design exposes the public governance surface:
+The Python package exposes the public governance surface:
 
 ```python
 from aikernel_governance import ExecutionRequest, GovernanceClient
@@ -97,8 +97,9 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 It loads bundled managed assemblies and delegates semantics to the C# packages.
 Do not treat the Python wrapper as an independent implementation.
 
-For 0.1.1.1, do not build, install, or publish a PyPI package. Prepare the
-wrapper for the next official v0.1.2 canonical series.
+Do not treat the Python wrapper as an independent implementation. It exposes
+managed loading helpers and the generated managed API catalog, and remains thin
+over the C# packages.
 
 ## Verification
 

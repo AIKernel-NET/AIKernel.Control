@@ -4,7 +4,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Orchestrates CTG council provider vote resolution without Gate logic.
-/// EN: Documentation for public API. JA: Gate logic を持たずに CTG council provider vote resolution を orchestration します。
+/// [EN] Documents this public package API member. [JA] Gate logic を持たずに CTG council provider vote resolution を orchestration します。
 /// </summary>
 public sealed class CtgCouncilEvaluationOrchestrator
 {
@@ -12,7 +12,7 @@ public sealed class CtgCouncilEvaluationOrchestrator
 
     /// <summary>
     /// EN: Initializes a CTG council evaluation orchestrator.
-    /// EN: Documentation for public API. JA: CTG council evaluation orchestrator を初期化します。
+    /// [EN] Documents this public package API member. [JA] CTG council evaluation orchestrator を初期化します。
     /// </summary>
     /// <param name="providerRegistry">EN: The provider vote registry. JA: provider vote registry です。</param>
     public CtgCouncilEvaluationOrchestrator(
@@ -23,7 +23,7 @@ public sealed class CtgCouncilEvaluationOrchestrator
 
     /// <summary>
     /// EN: Resolves provider vote outputs for the three councils.
-    /// EN: Documentation for public API. JA: 3 つの council 用 provider vote output を解決します。
+    /// [EN] Documents this public package API member. [JA] 3 つの council 用 provider vote output を解決します。
     /// </summary>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>
     /// <returns>EN: The provider vote output result. JA: provider vote output result を返します。</returns>

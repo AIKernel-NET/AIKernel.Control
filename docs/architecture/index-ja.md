@@ -43,13 +43,14 @@ Provider routing は fail-closed かつ決定論的に扱います。provider �
 
 ## Python 境界
 
-`aikernel-governance` は、同じ public Control boundary を Python host 向けに
-公開するための予約済み wrapper 名です。将来の Python packaging では managed
-C# assemblies と public governance surface を pythonnet 経由で wrapper します。
+`aikernel-governance` は、0.1.2 正典シリーズで同じ public Control boundary を
+Python host 向けに公開する wrapper 名です。Python packaging は managed C#
+assemblies と public governance surface を pythonnet 経由で wrapper します。
+CTG、policy、emulator、scheduling logic を Python で再実装しません。
 
-0.1.1.1 validation line では PyPI package を build / publish しません。Python 関連資料は
-この line では reference documentation として維持し、次の公式 v0.1.2 正典シリーズで
-NuGet + PyPI を同期公開できるように準備します。
+安定版 Python package は 0.1.2 公開タスクが開始された後に作成します。local
+validation では、managed `0.1.2-dev<build-number>` package family と一致する
+`0.1.2.dev<build-number>` wheel を使います。
 
 Python から見えるのは契約境界です。execution request、result、snapshot、
 provider metadata、Bonsai public wrappers、emulator wrappers、CPU kernel

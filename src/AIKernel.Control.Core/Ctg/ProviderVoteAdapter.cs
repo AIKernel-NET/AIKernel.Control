@@ -6,7 +6,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Normalizes provider vote output into a council vote contract DTO.
-/// EN: Documentation for public API. JA: provider vote output を council vote contract DTO に正規化します。
+/// [EN] Documents this public package API member. [JA] provider vote output を council vote contract DTO に正規化します。
 /// </summary>
 public sealed class ProviderVoteAdapter
 {
@@ -20,7 +20,7 @@ public sealed class ProviderVoteAdapter
 
     /// <summary>
     /// EN: Adapts a provider vote output without performing semantic evaluation.
-    /// EN: Documentation for public API. JA: semantic evaluation を行わず provider vote output を変換します。
+    /// [EN] Documents this public package API member. [JA] semantic evaluation を行わず provider vote output を変換します。
     /// </summary>
     /// <param name="output">EN: The provider vote output. JA: provider vote output です。</param>
     /// <param name="context">EN: The CTG control execution context. JA: CTG Control execution context です。</param>

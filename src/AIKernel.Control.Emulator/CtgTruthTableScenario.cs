@@ -4,7 +4,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates the discrete CTG truth-table scenario set for emulator validation.
-/// EN: Documentation for public API. JA: emulator validation 用の離散 CTG truth-table scenario set を作成します。
+/// [EN] Documents this public package API member. [JA] emulator validation 用の離散 CTG truth-table scenario set を作成します。
 /// </summary>
 public sealed class CtgTruthTableScenario
 {
@@ -19,7 +19,7 @@ public sealed class CtgTruthTableScenario
 
     /// <summary>
     /// EN: Initializes a truth table scenario factory.
-    /// EN: Documentation for public API. JA: truth table scenario factory を初期化します。
+    /// [EN] Documents this public package API member. [JA] truth table scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public CtgTruthTableScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -29,7 +29,7 @@ public sealed class CtgTruthTableScenario
 
     /// <summary>
     /// EN: Creates all 27 discrete vote combinations.
-    /// EN: Documentation for public API. JA: 27 個の離散 vote combination をすべて作成します。
+    /// [EN] Documents this public package API member. [JA] 27 個の離散 vote combination をすべて作成します。
     /// </summary>
     /// <returns>EN: The scenario list. JA: scenario list を返します。</returns>
     public IReadOnlyList<CtgControlEmulatorScenario> CreateScenarios()
