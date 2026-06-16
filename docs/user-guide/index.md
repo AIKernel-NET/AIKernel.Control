@@ -13,7 +13,14 @@ capability graph, and governance after the 0.1.x line stabilizes.
 
 ## Installation
 
-Install the Control packages that match your host role:
+Install the entry package for the standard Control surface:
+
+```bash
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+Install split packages directly when your host intentionally wants a smaller
+dependency surface:
 
 ```bash
 dotnet add package AIKernel.Control.Core --version 0.1.2
@@ -37,6 +44,7 @@ validation uses the `aikernel-governance` wheel with version
 
 | Package | Role |
 | --- | --- |
+| `AIKernel.Control` | Dependency-only entry package for the standard Control surface. |
 | `AIKernel.Control.Core` | Shared control-plane entry point and Bonsai provider contracts. |
 | `AIKernel.Control.CPU` | Deterministic CPU execution kernel for validation and CPU hosts. |
 | `AIKernel.Control.Emulator` | Step-by-step graph execution, replay, watches, and breakpoints. |

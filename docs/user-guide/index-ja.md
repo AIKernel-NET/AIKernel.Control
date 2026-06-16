@@ -13,7 +13,13 @@ Monolith は 0.1.x 系の安定化後に semantic runtime、capability graph、g
 
 ## インストール
 
-host の役割に合わせて Control package を導入します。
+標準 Control surface は入口 package から導入できます。
+
+```bash
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+host の依存面を小さくしたい場合のみ、split package を直接導入します。
 
 ```bash
 dotnet add package AIKernel.Control.Core --version 0.1.2
@@ -36,6 +42,7 @@ local integration では、release task が公開を開始するまで stable `0
 
 | Package | 役割 |
 | --- | --- |
+| `AIKernel.Control` | 標準 Control surface を導入する dependency-only の入口 package。 |
 | `AIKernel.Control.Core` | Control-plane entry point と Bonsai provider contract。 |
 | `AIKernel.Control.CPU` | 検証と CPU host 向けの決定論的 CPU execution kernel。 |
 | `AIKernel.Control.Emulator` | step-by-step graph execution、replay、watch、breakpoint。 |

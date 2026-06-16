@@ -37,10 +37,9 @@ dependency.
 Control does not depend on AIKernel.Demo. Demo projects consume Control as an
 independent runtime surface.
 
-AIKernel.Control 0.1.1.1 follows the same development policy as
-AIKernel.Core 0.1.1.1. The line is NuGet-only, uses
-`0.1.1.1-dev{build-number}` for local development packages, and does not create
-or publish a PyPI package.
+AIKernel.Control 0.1.2 follows the same development policy as
+AIKernel.Core 0.1.2. The line publishes NuGet packages and a synchronized
+Python wrapper. Local development packages use `0.1.2-dev{build-number}`.
 
 ## Concept Elevation
 
@@ -62,9 +61,16 @@ model assets. Control does not vendor model weights; model assets should be
 mounted through VFS/ROM.
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+Install the split packages directly only when a host intentionally wants a
+smaller dependency surface:
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
 ```
 
 Validate the repository surface:
@@ -114,6 +120,8 @@ See [CTG Control integration](docs/development/control-ctg.md).
 
 ## Projects
 
+- `AIKernel.Control` - dependency-only entry package that installs the Control
+  Core, CPU, Emulator, Diagnostics, and GPU boundary packages.
 - `AIKernel.Control.Core` - control-plane runtime entry package. The shared
   contracts live in `AIKernel.Abstractions.Control` and `AIKernel.Dtos.Control`;
   this project references those contracts so CPU/GPU/Emulator implementations
@@ -245,11 +253,7 @@ Common project properties are centralized in `Directory.Build.props`.
 For .NET hosts:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
-dotnet add package AIKernel.Control.GPU --version 0.1.1.1
+dotnet add package AIKernel.Control --version 0.1.2
 ```
 
 Python materials are reference-only in the 0.1.1.1 update line. Do not build,

@@ -36,9 +36,9 @@ Runtime 依存になることを防ぎます。
 Control は AIKernel.Demo に依存しません。Demo は Control を利用する側であり、
 Control は独立した Runtime Surface として動作します。
 
-AIKernel.Control 0.1.1.1 は AIKernel.Core 0.1.1.1 と同じ開発方針に従います。
-この line は NuGet-only であり、local development package には
-`0.1.1.1-dev{build-number}` を使います。PyPI package は作成・公開しません。
+AIKernel.Control 0.1.2 は AIKernel.Core 0.1.2 と同じ開発方針に従います。
+NuGet package と同期した Python wrapper を公開し、local development package には
+`0.1.2-dev{build-number}` を使います。
 
 ## クイックスタート
 
@@ -47,9 +47,15 @@ GPU や model asset を bind する前に、deterministic な Emulator と CPU p
 経由で mount します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+host の依存面を小さくしたい場合のみ、split package を直接導入します。
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
 ```
 
 repository surface を検証します。
@@ -96,6 +102,8 @@ CTG Control surface は意図的に狭く保ちます。
 
 ## プロジェクト構成
 
+- `AIKernel.Control` - Control Core、CPU、Emulator、Diagnostics、GPU boundary を
+  導入する dependency-only の入口 package です。
 - `AIKernel.Control.Core` - Control Plane の Runtime Entry Package です。
   共有契約は `AIKernel.Abstractions.Control` と `AIKernel.Dtos.Control` にあり、
   このプロジェクトはそれらを参照します。CPU / GPU / Emulator 実装が
