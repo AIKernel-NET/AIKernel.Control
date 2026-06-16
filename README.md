@@ -150,7 +150,7 @@ See [CTG Control integration](docs/development/control-ctg.md).
 `aikernel-governance` is the reserved Python wrapper name for the public
 governance surface of AIKernel.Control.
 
-The 0.1.1.1 development line does not build or publish a PyPI package. Existing
+The 0.1.2 development line publishes a synchronized PyPI wrapper. Existing
 Python materials remain in the repository for reference and future scheduled
 Python releases only.
 
@@ -256,11 +256,11 @@ For .NET hosts:
 dotnet add package AIKernel.Control --version 0.1.2
 ```
 
-Python materials are reference-only in the 0.1.1.1 update line. Do not build,
-publish, or install a PyPI package for this line.
+Python materials are published as the synchronized `aikernel-governance`
+wrapper for the 0.1.2 public package line.
 
-See [Python governance wrapper](docs/python/index.md) for the archived scope and
-the NuGet-only policy note.
+See [Python governance wrapper](docs/python/index.md) for the 0.1.2 package
+scope and validation flow.
 
 ## Contributor Guidelines
 

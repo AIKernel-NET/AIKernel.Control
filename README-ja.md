@@ -132,7 +132,7 @@ CTG Control surface は意図的に狭く保ちます。
 `aikernel-governance` は、AIKernel.Control の public governance surface を
 Python から扱うために予約している wrapper 名です。
 
-0.1.1.1 development line では PyPI package を build / publish しません。既存の
+0.1.2 development line では 同期 Python wrapper を公開します。既存の
 Python 関連資料は、参考および将来明示的に予定される Python release のために残します。
 
 C# package の境界を、単一の Python API として公開します。
@@ -242,20 +242,24 @@ dotnet build AIKernel.Control.slnx
 
 ## パッケージインストール
 
-.NET host では NuGet package を使用します。
+.NET host では標準 Control surface の入口 package を使用します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1.1
-dotnet add package AIKernel.Control.GPU --version 0.1.1.1
+dotnet add package AIKernel.Control --version 0.1.2
 ```
 
-Python 関連資料は 0.1.1.1 update line では reference-only です。この line では
-PyPI package を build / publish / install しません。
+依存面を小さくしたい host だけが split package を直接導入します。
 
-過去の package scope と NuGet-only 方針の注意点は
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
+```
+
+Python wrapper は 0.1.2 public package line に同期した
+`aikernel-governance` として公開します。
+
+0.1.2 の package scope と validation flow は
 [Python governance wrapper](docs/python/index-ja.md) を参照してください。
 
 ## コントリビュータ向けガイドライン
