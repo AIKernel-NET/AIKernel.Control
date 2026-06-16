@@ -4,7 +4,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates a deterministic scenario where all councils abstain.
-/// JA: すべての council が abstain する決定論的 scenario を作成します。
+/// EN: Documentation for public API. JA: すべての council が abstain する決定論的 scenario を作成します。
 /// </summary>
 public sealed class AllAbstainDenyScenario
 {
@@ -12,7 +12,7 @@ public sealed class AllAbstainDenyScenario
 
     /// <summary>
     /// EN: Initializes an all-abstain scenario factory.
-    /// JA: all-abstain scenario factory を初期化します。
+    /// EN: Documentation for public API. JA: all-abstain scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public AllAbstainDenyScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -22,7 +22,7 @@ public sealed class AllAbstainDenyScenario
 
     /// <summary>
     /// EN: Creates the scenario.
-    /// JA: scenario を作成します。
+    /// EN: Documentation for public API. JA: scenario を作成します。
     /// </summary>
     /// <returns>EN: The emulator scenario. JA: emulator scenario を返します。</returns>
     public CtgControlEmulatorScenario Create()

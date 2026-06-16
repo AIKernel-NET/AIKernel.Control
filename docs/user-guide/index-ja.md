@@ -28,8 +28,9 @@ concrete GPU backend を bind する host では `AIKernel.Control.GPU` も導�
 dotnet add package AIKernel.Control.GPU --version 0.1.1.1
 ```
 
-0.1.1.1 update line では Python wrapper 関連資料は参考扱いです。Python release が
-明示的に予定されない限り、PyPI package を build / install / publish しません。
+0.1.1.1 validation line では Python wrapper 関連資料は参考扱いです。0.1.1.1 では
+PyPI package を build / install / publish しません。次の公式 v0.1.2 正典シリーズで
+NuGet と PyPI の package family を同期公開できるように準備します。
 
 ## Runtime の役割
 
@@ -95,7 +96,8 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 bundled managed assembly を読み込み、意味論は C# package へ委譲します。Python
 wrapper を独立実装として扱わないでください。
 
-0.1.1.1 では PyPI package を build / install / publish しません。
+0.1.1.1 では PyPI package を build / install / publish しません。次の公式 v0.1.2
+正典シリーズで PyPI package family を更新する前提です。
 
 ## 検証
 

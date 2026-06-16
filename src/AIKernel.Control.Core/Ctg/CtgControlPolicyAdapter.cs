@@ -6,7 +6,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Connects the opt-in CTG coordinator to the existing Apply Policy phase.
-/// JA: opt-in の CTG coordinator を既存の Apply Policy phase に接続します。
+/// EN: Documentation for public API. JA: opt-in の CTG coordinator を既存の Apply Policy phase に接続します。
 /// </summary>
 public sealed class CtgControlPolicyAdapter : IControlPolicy
 {
@@ -16,7 +16,7 @@ public sealed class CtgControlPolicyAdapter : IControlPolicy
 
     /// <summary>
     /// EN: Initializes a CTG control policy adapter.
-    /// JA: CTG Control policy adapter を初期化します。
+    /// EN: Documentation for public API. JA: CTG Control policy adapter を初期化します。
     /// </summary>
     /// <param name="coordinator">EN: The CTG control coordinator. JA: CTG Control coordinator です。</param>
     /// <param name="policyDecisionMapper">EN: The policy decision mapper. JA: policy decision mapper です。</param>
@@ -33,7 +33,7 @@ public sealed class CtgControlPolicyAdapter : IControlPolicy
 
     /// <summary>
     /// EN: Evaluates the existing Control policy boundary through the opt-in CTG coordinator.
-    /// JA: opt-in の CTG coordinator を通じて既存の Control policy 境界を評価します。
+    /// EN: Documentation for public API. JA: opt-in の CTG coordinator を通じて既存の Control policy 境界を評価します。
     /// </summary>
     /// <param name="graph">EN: The execution graph. JA: execution graph です。</param>
     /// <param name="request">EN: The control execution request. JA: control execution request です。</param>

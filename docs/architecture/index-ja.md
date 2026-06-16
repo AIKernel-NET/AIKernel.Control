@@ -47,8 +47,9 @@ Provider routing は fail-closed かつ決定論的に扱います。provider �
 公開するための予約済み wrapper 名です。将来の Python packaging では managed
 C# assemblies と public governance surface を pythonnet 経由で wrapper します。
 
-0.1.1.1 line では PyPI package を build / publish しません。Python 関連資料は
-この line では reference documentation としてのみ維持します。
+0.1.1.1 validation line では PyPI package を build / publish しません。Python 関連資料は
+この line では reference documentation として維持し、次の公式 v0.1.2 正典シリーズで
+NuGet + PyPI を同期公開できるように準備します。
 
 Python から見えるのは契約境界です。execution request、result、snapshot、
 provider metadata、Bonsai public wrappers、emulator wrappers、CPU kernel

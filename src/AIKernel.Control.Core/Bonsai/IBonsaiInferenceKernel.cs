@@ -1,5 +1,6 @@
 namespace AIKernel.Control.Core.Bonsai;
 
+/// <summary>EN: Documentation for public API. JA: IBonsaiInferenceKernel contract を定義します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.IBonsaiInferenceKernel']" />
 public interface IBonsaiInferenceKernel

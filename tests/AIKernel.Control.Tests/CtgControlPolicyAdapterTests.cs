@@ -8,8 +8,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AIKernel.Control.Tests;
 
+/// <summary>
+/// [EN] Verifies CTG Control policy adapter behavior.
+/// [JA] CTG Control policy adapter の動作を検証します。
+/// </summary>
 public sealed class CtgControlPolicyAdapterTests
 {
+    /// <summary>
+    /// [EN] Verifies approved council votes allow emulator execution.
+    /// [JA] approve された council vote が emulator execution を許可することを検証します。
+    /// </summary>
     [Fact]
     public async Task CtgControlPolicyAdapter_AllowsApprovedVotes_CompletesEmulatorExecution()
     {
@@ -30,6 +38,10 @@ public sealed class CtgControlPolicyAdapterTests
         Assert.Equal("Completed", executionResult.Status);
     }
 
+    /// <summary>
+    /// [EN] Verifies an unknown vote denies emulator execution.
+    /// [JA] unknown vote が emulator execution を拒否することを検証します。
+    /// </summary>
     [Fact]
     public async Task CtgControlPolicyAdapter_DeniesUnknownVote_SuppressesEmulatorExecution()
     {
@@ -50,6 +62,10 @@ public sealed class CtgControlPolicyAdapterTests
         Assert.Equal("Denied", executionResult.Status);
     }
 
+    /// <summary>
+    /// [EN] Verifies rejected trajectory results map to abort policy decisions.
+    /// [JA] rejected trajectory result が abort policy decision に対応することを検証します。
+    /// </summary>
     [Fact]
     public void CtgPolicyDecisionMapper_MapsRejectedTrajectory_ToAbortPolicy()
     {
@@ -75,6 +91,10 @@ public sealed class CtgControlPolicyAdapterTests
         Assert.Equal("STEP_DENIED", evaluation.Reason);
     }
 
+    /// <summary>
+    /// [EN] Verifies provider metadata stays outside GateInput.
+    /// [JA] provider metadata が GateInput の外側に保持されることを検証します。
+    /// </summary>
     [Fact]
     public async Task CtgControlCoordinator_KeepsProviderMetadataOutsideGateInput()
     {
@@ -112,6 +132,53 @@ public sealed class CtgControlPolicyAdapterTests
             vote => vote.CouncilKind == CouncilKind.Logos &&
                     vote.Metadata.ContainsKey("provider.discrete_note") &&
                     !vote.Metadata.ContainsKey("provider.confidence"));
+    }
+
+    /// <summary>
+    /// [EN] Verifies retry intent is attached without changing GateInput.
+    /// [JA] retry intent が GateInput を変更せずに添付されることを検証します。
+    /// </summary>
+    [Fact]
+    public async Task CtgControlCoordinator_RetryIntent_AttachesCarrierOutsideGateInput()
+    {
+        using var provider = CreateProvider(
+            ProviderVote(CouncilKind.Logos, CouncilVoteValue.Approve),
+            ProviderVote(CouncilKind.Ethos, CouncilVoteValue.Approve),
+            ProviderVote(CouncilKind.Pathos, CouncilVoteValue.Abstain));
+        var coordinator = provider.GetRequiredService<ICtgControlCoordinator>();
+        var options = provider.GetRequiredService<CtgControlCoordinatorOptions>();
+        var context = new CtgControlExecutionContext
+        {
+            OperationId = "exec.ctg",
+            StepId = "graph.ctg",
+            Graph = Graph(),
+            Request = Request(),
+            ProviderOutputs = options.ProviderOutputs,
+            ObservedAt = options.ObservedAt,
+            RetryIntent = new CtgRetryIntentCarrier
+            {
+                Requested = true,
+                ReasonCode = "health-death",
+                Priority = 100,
+                Confidence = 0.91,
+                SourceSensor = "health",
+                Metadata = new Dictionary<string, string>(StringComparer.Ordinal)
+                {
+                    ["conceptName"] = "Aisthesis"
+                }
+            }
+        };
+
+        var envelope = await coordinator.EvaluateAsync(context, TestContext.Current.CancellationToken);
+
+        Assert.True(envelope.IsSuccess);
+        Assert.NotNull(envelope.Value!.RetryIntent);
+        Assert.Equal(CouncilVoteValue.Approve, envelope.Value.GateInput.Logos);
+        Assert.Equal(CouncilVoteValue.Approve, envelope.Value.GateInput.Ethos);
+        Assert.Equal(CouncilVoteValue.Abstain, envelope.Value.GateInput.Pathos);
+        Assert.Equal("True", envelope.Value.Metadata["ctg.control.retry.requested"]);
+        Assert.Equal("health-death", envelope.Value.Metadata["ctg.control.retry.reason_code"]);
+        Assert.Equal("Aisthesis", envelope.Value.Metadata["ctg.control.retry.metadata.conceptName"]);
     }
 
     private static ServiceProvider CreateProvider(params ProviderVoteOutput[] outputs)

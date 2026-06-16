@@ -48,8 +48,10 @@ fallback routing must be explicitly opted in.
 Control boundary. Future Python packaging should wrap the managed C# assemblies
 and the public governance surface through pythonnet.
 
-The 0.1.1.1 line does not build or publish a PyPI package. Python materials are
-kept as reference documentation only for this line.
+The 0.1.1.1 validation line does not build or publish a PyPI package. Python
+materials are kept as reference documentation for this line and should be
+prepared for synchronized NuGet + PyPI publication on the next official
+v0.1.2 canonical series.
 
 Python sees the contract boundary: execution requests, results, snapshots,
 provider metadata, Bonsai public wrappers, emulator wrappers, CPU kernel

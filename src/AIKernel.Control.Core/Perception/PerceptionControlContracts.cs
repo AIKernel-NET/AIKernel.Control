@@ -8,7 +8,7 @@ using AIKernel.Enums.Governance;
 
 /// <summary>
 /// EN: Carries a perception-derived council vote candidate before CTG normalization.
-/// JA: CTG 正規化前の perception 由来 council vote 候補を保持します。
+/// EN: Documentation for public API. JA: CTG 正規化前の perception 由来 council vote 候補を保持します。
 /// </summary>
 public sealed record PerceptionControlSignal
 {
@@ -34,7 +34,7 @@ public sealed record PerceptionControlSignal
 
 /// <summary>
 /// EN: Carries perception-to-control orchestration input.
-/// JA: perception-to-control orchestration input を保持します。
+/// EN: Documentation for public API. JA: perception-to-control orchestration input を保持します。
 /// </summary>
 public sealed record PerceptionControlRequest
 {
@@ -53,6 +53,9 @@ public sealed record PerceptionControlRequest
     /// <summary>EN: Gets perception-derived signals. JA: perception 由来 signal を取得します。</summary>
     public IReadOnlyList<PerceptionControlSignal> Signals { get; init; } = [];
 
+    /// <summary>EN: Gets an optional retry intent carrier kept outside GateInput. JA: GateInput の外側に保持する任意の retry intent carrier を取得します。</summary>
+    public CtgRetryIntentCarrier? RetryIntent { get; init; }
+
     /// <summary>EN: Gets canonical references attached to generated governance DTOs. JA: 生成される governance DTO に付与する CanonReference を取得します。</summary>
     public IReadOnlyList<CanonReference> CanonReferences { get; init; } = [];
 
@@ -69,7 +72,7 @@ public sealed record PerceptionControlRequest
 
 /// <summary>
 /// EN: Carries dynamic pipeline selection after Core CTG evaluation.
-/// JA: Core CTG 評価後の dynamic pipeline selection を保持します。
+/// EN: Documentation for public API. JA: Core CTG 評価後の dynamic pipeline selection を保持します。
 /// </summary>
 public sealed record PerceptionPipelineSelection
 {
@@ -78,6 +81,9 @@ public sealed record PerceptionPipelineSelection
 
     /// <summary>EN: Gets the CTG control decision envelope that drove the selection. JA: selection の根拠となった CTG Control decision envelope を取得します。</summary>
     public CtgControlDecisionEnvelope DecisionEnvelope { get; init; } = new();
+
+    /// <summary>EN: Gets an optional retry intent carrier selected for runtime dispatch. JA: runtime dispatch 用に選択された任意の retry intent carrier を取得します。</summary>
+    public CtgRetryIntentCarrier? RetryIntent { get; init; }
 
     /// <summary>EN: Gets selection metadata. JA: selection metadata を取得します。</summary>
     public IReadOnlyDictionary<string, string> Metadata { get; init; } =

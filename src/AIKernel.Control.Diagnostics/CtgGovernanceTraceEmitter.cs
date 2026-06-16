@@ -6,7 +6,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Emits CTG governance traces through the Control state observer surface.
-/// JA: Control state observer surface を通じて CTG governance trace を emit します。
+/// EN: Documentation for public API. JA: Control state observer surface を通じて CTG governance trace を emit します。
 /// </summary>
 public sealed class CtgGovernanceTraceEmitter
 {
@@ -14,7 +14,7 @@ public sealed class CtgGovernanceTraceEmitter
 
     /// <summary>
     /// EN: Initializes a CTG governance trace emitter.
-    /// JA: CTG governance trace emitter を初期化します。
+    /// EN: Documentation for public API. JA: CTG governance trace emitter を初期化します。
     /// </summary>
     /// <param name="metadataWriter">EN: The replay metadata writer. JA: replay metadata writer です。</param>
     public CtgGovernanceTraceEmitter(CtgReplayMetadataWriter? metadataWriter = null)
@@ -24,7 +24,7 @@ public sealed class CtgGovernanceTraceEmitter
 
     /// <summary>
     /// EN: Emits a step governance trace as a control state snapshot.
-    /// JA: step governance trace を control state snapshot として emit します。
+    /// EN: Documentation for public API. JA: step governance trace を control state snapshot として emit します。
     /// </summary>
     /// <param name="observer">EN: The control state observer. JA: control state observer です。</param>
     /// <param name="executionId">EN: The execution identifier. JA: execution 識別子です。</param>
@@ -54,7 +54,7 @@ public sealed class CtgGovernanceTraceEmitter
 
     /// <summary>
     /// EN: Emits a trajectory gate result as a control state snapshot.
-    /// JA: trajectory gate result を control state snapshot として emit します。
+    /// EN: Documentation for public API. JA: trajectory gate result を control state snapshot として emit します。
     /// </summary>
     /// <param name="observer">EN: The control state observer. JA: control state observer です。</param>
     /// <param name="executionId">EN: The execution identifier. JA: execution 識別子です。</param>

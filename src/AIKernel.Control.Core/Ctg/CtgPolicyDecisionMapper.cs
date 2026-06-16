@@ -5,13 +5,13 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Maps Core CTG gate results into the existing Control policy evaluation contract.
-/// JA: Core CTG gate result を既存の Control policy evaluation contract に写像します。
+/// EN: Documentation for public API. JA: Core CTG gate result を既存の Control policy evaluation contract に写像します。
 /// </summary>
 public sealed class CtgPolicyDecisionMapper
 {
     /// <summary>
     /// EN: Maps a CTG control decision envelope to a Control policy evaluation.
-    /// JA: CTG Control decision envelope を Control policy evaluation に写像します。
+    /// EN: Documentation for public API. JA: CTG Control decision envelope を Control policy evaluation に写像します。
     /// </summary>
     /// <param name="envelope">EN: The CTG control decision envelope. JA: CTG Control decision envelope です。</param>
     /// <returns>EN: The mapped control policy evaluation. JA: 写像された control policy evaluation を返します。</returns>
@@ -26,7 +26,7 @@ public sealed class CtgPolicyDecisionMapper
 
     /// <summary>
     /// EN: Maps a trajectory gate result to the Control halt policy code.
-    /// JA: trajectory gate result を Control の halt policy code に写像します。
+    /// EN: Documentation for public API. JA: trajectory gate result を Control の halt policy code に写像します。
     /// </summary>
     /// <param name="trajectoryGate">EN: The Core trajectory gate result. JA: Core trajectory gate result です。</param>
     /// <returns>EN: The mapped control policy evaluation. JA: 写像された control policy evaluation を返します。</returns>

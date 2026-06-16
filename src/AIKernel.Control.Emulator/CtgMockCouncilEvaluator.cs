@@ -6,13 +6,13 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates deterministic mock council vote outputs for emulator scenarios.
-/// JA: emulator scenario 用の決定論的な mock council vote output を作成します。
+/// EN: Documentation for public API. JA: emulator scenario 用の決定論的な mock council vote output を作成します。
 /// </summary>
 public sealed class CtgMockCouncilEvaluator
 {
     /// <summary>
     /// EN: Creates provider vote outputs for the three CTG councils.
-    /// JA: CTG の 3 council 用 provider vote output を作成します。
+    /// EN: Documentation for public API. JA: CTG の 3 council 用 provider vote output を作成します。
     /// </summary>
     /// <param name="logos">EN: The Logos vote value. JA: Logos vote value です。</param>
     /// <param name="ethos">EN: The Ethos vote value. JA: Ethos vote value です。</param>
@@ -33,7 +33,7 @@ public sealed class CtgMockCouncilEvaluator
 
     /// <summary>
     /// EN: Creates a provider vote output for one council.
-    /// JA: 1 つの council 用 provider vote output を作成します。
+    /// EN: Documentation for public API. JA: 1 つの council 用 provider vote output を作成します。
     /// </summary>
     /// <param name="councilKind">EN: The council kind. JA: council kind です。</param>
     /// <param name="voteValue">EN: The vote value. JA: vote value です。</param>
@@ -52,7 +52,7 @@ public sealed class CtgMockCouncilEvaluator
 
     /// <summary>
     /// EN: Creates an emulator scenario from three vote values.
-    /// JA: 3 つの vote value から emulator scenario を作成します。
+    /// EN: Documentation for public API. JA: 3 つの vote value から emulator scenario を作成します。
     /// </summary>
     /// <param name="scenarioId">EN: The scenario identifier. JA: scenario 識別子です。</param>
     /// <param name="logos">EN: The Logos vote value. JA: Logos vote value です。</param>

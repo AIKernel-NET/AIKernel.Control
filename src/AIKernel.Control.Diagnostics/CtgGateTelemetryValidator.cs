@@ -4,7 +4,7 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Validates that gate telemetry does not contain continuous provider carriers.
-/// JA: gate telemetry に continuous provider carrier が含まれていないことを検証します。
+/// EN: Documentation for public API. JA: gate telemetry に continuous provider carrier が含まれていないことを検証します。
 /// </summary>
 public sealed class CtgGateTelemetryValidator
 {
@@ -19,7 +19,7 @@ public sealed class CtgGateTelemetryValidator
 
     /// <summary>
     /// EN: Returns true when the decision gate result metadata contains no continuous provider carriers.
-    /// JA: decision gate result metadata に continuous provider carrier が含まれない場合 true を返します。
+    /// EN: Documentation for public API. JA: decision gate result metadata に continuous provider carrier が含まれない場合 true を返します。
     /// </summary>
     /// <param name="result">EN: The decision gate result. JA: decision gate result です。</param>
     /// <returns>EN: True when the metadata is gate-safe. JA: metadata が gate-safe の場合 true を返します。</returns>
@@ -32,7 +32,7 @@ public sealed class CtgGateTelemetryValidator
 
     /// <summary>
     /// EN: Returns marker keys that violate the discrete-only gate telemetry rule.
-    /// JA: discrete-only gate telemetry rule に違反する marker key を返します。
+    /// EN: Documentation for public API. JA: discrete-only gate telemetry rule に違反する marker key を返します。
     /// </summary>
     /// <param name="result">EN: The decision gate result. JA: decision gate result です。</param>
     /// <returns>EN: The violating metadata keys. JA: 違反した metadata key を返します。</returns>

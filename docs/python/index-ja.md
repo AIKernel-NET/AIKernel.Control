@@ -5,9 +5,9 @@
 `aikernel-governance` は、AIKernel.Control の public governance surface を
 Python から利用するために設計された distribution です。
 
-0.1.1.1 update line では AIKernel.Control は NuGet-only です。この line では
-PyPI package を build / install / publish しません。このページは、将来明示的に
-予定される Python release のための reference documentation として残します。
+0.1.1.1 validation line では AIKernel.Control は NuGet-only です。この line では
+PyPI package を build / install / publish しません。このページは、次の公式 v0.1.2
+正典シリーズで NuGet + PyPI を同期公開するための reference documentation として残します。
 
 将来の wrapper design は C# package の上に置き、Control を Python で再実装する
 ものではありません。単一の import surface を公開する想定です。

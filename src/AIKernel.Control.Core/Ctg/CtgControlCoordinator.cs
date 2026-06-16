@@ -6,7 +6,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Orchestrates provider vote normalization, council decision building, and Core decision gate evaluation.
-/// JA: provider vote 正規化、council decision 構築、Core decision gate 評価を orchestration します。
+/// EN: Documentation for public API. JA: provider vote 正規化、council decision 構築、Core decision gate 評価を orchestration します。
 /// </summary>
 public sealed class CtgControlCoordinator : ICtgControlCoordinator
 {
@@ -18,7 +18,7 @@ public sealed class CtgControlCoordinator : ICtgControlCoordinator
 
     /// <summary>
     /// EN: Initializes a CTG control coordinator.
-    /// JA: CTG Control coordinator を初期化します。
+    /// EN: Documentation for public API. JA: CTG Control coordinator を初期化します。
     /// </summary>
     /// <param name="providerVoteAdapter">EN: The provider vote adapter. JA: provider vote adapter です。</param>
     /// <param name="councilDecisionBuilder">EN: The council decision builder. JA: council decision builder です。</param>
@@ -41,7 +41,7 @@ public sealed class CtgControlCoordinator : ICtgControlCoordinator
 
     /// <summary>
     /// EN: Evaluates a CTG control context by normalizing votes and calling the Core decision gate.
-    /// JA: vote を正規化して Core decision gate を呼び出し、CTG Control context を評価します。
+    /// EN: Documentation for public API. JA: vote を正規化して Core decision gate を呼び出し、CTG Control context を評価します。
     /// </summary>
     /// <param name="context">EN: The CTG control execution context. JA: CTG Control execution context です。</param>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>
@@ -148,6 +148,7 @@ public sealed class CtgControlCoordinator : ICtgControlCoordinator
         var metadata = CtgControlMetadata.Merge(
             context.Metadata,
             decisionGate.Metadata,
+            CtgControlMetadata.RetryIntentMetadata(context.RetryIntent),
             new Dictionary<string, string>(StringComparer.Ordinal)
             {
                 ["ctg.control.policy_stage"] = "apply_policy"
@@ -160,6 +161,7 @@ public sealed class CtgControlCoordinator : ICtgControlCoordinator
             GateInput = gateInput,
             DecisionGate = decisionGate,
             StepTrace = stepTrace,
+            RetryIntent = context.RetryIntent,
             Metadata = metadata
         };
     }

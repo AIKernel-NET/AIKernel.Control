@@ -1,6 +1,7 @@
 namespace AIKernel.Control.Tests;
 
 using AIKernel.Control.Core.Perception;
+using AIKernel.Control.Core.Ctg;
 using AIKernel.Enums.Governance;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -84,6 +85,55 @@ public sealed class PerceptionControlTests
 
         Assert.False(result.IsFailure);
         Assert.Equal("execute", selector.Select(result.Value!).Mode);
+    }
+
+    /// <summary>
+    /// EN: Verifies priority retry intent routes the dynamic pipeline without entering GateInput.
+    /// JA: 優先 retry intent が GateInput に入らず dynamic pipeline を routing することを検証します。
+    /// </summary>
+    [Fact]
+    public async Task PerceptionPipelineSelector_RetryIntent_ReturnsRetrySelection()
+    {
+        var services = new ServiceCollection();
+        services.AddPerceptionCtgControl();
+        using var provider = services.BuildServiceProvider();
+        var coordinator = provider.GetRequiredService<PerceptionCtgControlCoordinator>();
+        var selector = provider.GetRequiredService<PerceptionPipelineSelector>();
+
+        var result = await coordinator.EvaluateAsync(
+            new PerceptionControlRequest
+            {
+                OperationId = "op",
+                StepId = "step",
+                RetryIntent = new CtgRetryIntentCarrier
+                {
+                    Requested = true,
+                    ReasonCode = "health-death",
+                    Priority = 100,
+                    Confidence = 0.91,
+                    SourceSensor = "health",
+                    Metadata = new Dictionary<string, string>(StringComparer.Ordinal)
+                    {
+                        ["conceptName"] = "Aisthesis"
+                    }
+                },
+                Signals =
+                [
+                    Signal(CouncilKind.Logos, CouncilVoteValue.Approve),
+                    Signal(CouncilKind.Ethos, CouncilVoteValue.Approve),
+                    Signal(CouncilKind.Pathos, CouncilVoteValue.Abstain)
+                ]
+            },
+            TestContext.Current.CancellationToken);
+
+        Assert.False(result.IsFailure);
+        var selection = selector.Select(result.Value!);
+        Assert.Equal("retry", selection.Mode);
+        Assert.Equal("health-death", selection.RetryIntent!.ReasonCode);
+        Assert.Equal("sensor-retry-intent", selection.Metadata["source"]);
+        Assert.Equal(CouncilVoteValue.Approve, selection.DecisionEnvelope.GateInput.Logos);
+        Assert.Equal(CouncilVoteValue.Approve, selection.DecisionEnvelope.GateInput.Ethos);
+        Assert.Equal(CouncilVoteValue.Abstain, selection.DecisionEnvelope.GateInput.Pathos);
     }
 
     private static PerceptionControlSignal Signal(CouncilKind council, CouncilVoteValue vote)

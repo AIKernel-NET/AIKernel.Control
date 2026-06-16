@@ -9,7 +9,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Runs CTG control scenarios through Core evaluators and the existing emulator engine.
-/// JA: Core evaluator と既存 emulator engine を通じて CTG Control scenario を実行します。
+/// EN: Documentation for public API. JA: Core evaluator と既存 emulator engine を通じて CTG Control scenario を実行します。
 /// </summary>
 public sealed class CtgControlEmulator : ICtgControlEmulator
 {
@@ -19,7 +19,7 @@ public sealed class CtgControlEmulator : ICtgControlEmulator
 
     /// <summary>
     /// EN: Initializes a CTG control emulator.
-    /// JA: CTG Control emulator を初期化します。
+    /// EN: Documentation for public API. JA: CTG Control emulator を初期化します。
     /// </summary>
     /// <param name="coordinator">EN: The CTG control coordinator. JA: CTG Control coordinator です。</param>
     /// <param name="policyDecisionMapper">EN: The policy decision mapper. JA: policy decision mapper です。</param>
@@ -36,7 +36,7 @@ public sealed class CtgControlEmulator : ICtgControlEmulator
 
     /// <summary>
     /// EN: Runs a CTG control scenario through policy, trajectory, and emulator surfaces.
-    /// JA: policy、trajectory、emulator surface を通じて CTG Control scenario を実行します。
+    /// EN: Documentation for public API. JA: policy、trajectory、emulator surface を通じて CTG Control scenario を実行します。
     /// </summary>
     /// <param name="scenario">EN: The scenario to run. JA: 実行する scenario です。</param>
     /// <param name="cancellationToken">EN: The cancellation token. JA: キャンセル通知を監視するトークンです。</param>
@@ -216,8 +216,16 @@ public sealed class CtgControlEmulator : ICtgControlEmulator
     private sealed class RecordingObserver : IControlStateObserver
     {
         private readonly List<ControlStateSnapshot> _snapshots = [];
+        /// <summary>
+        /// EN: Gets Snapshots.
+        /// EN: Documentation for public API. JA: Snapshots を取得します。
+        /// </summary>
 
         public IReadOnlyList<ControlStateSnapshot> Snapshots => _snapshots;
+        /// <summary>
+        /// EN: Gets ObserveAsync.
+        /// EN: Documentation for public API. JA: ObserveAsync を取得します。
+        /// </summary>
 
         public ValueTask ObserveAsync(
             ControlStateSnapshot snapshot,

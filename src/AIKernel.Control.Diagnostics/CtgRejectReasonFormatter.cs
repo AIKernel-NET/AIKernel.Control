@@ -6,13 +6,13 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Formats CTG reject reasons for replay and diagnostics views.
-/// JA: replay と diagnostics view 用に CTG reject reason を整形します。
+/// EN: Documentation for public API. JA: replay と diagnostics view 用に CTG reject reason を整形します。
 /// </summary>
 public sealed class CtgRejectReasonFormatter
 {
     /// <summary>
     /// EN: Formats a reject reason as a compact diagnostic string.
-    /// JA: reject reason を簡潔な diagnostic string として整形します。
+    /// EN: Documentation for public API. JA: reject reason を簡潔な diagnostic string として整形します。
     /// </summary>
     /// <param name="reason">EN: The reject reason. JA: reject reason です。</param>
     /// <returns>EN: The formatted reject reason. JA: 整形された reject reason を返します。</returns>
@@ -32,7 +32,7 @@ public sealed class CtgRejectReasonFormatter
 
     /// <summary>
     /// EN: Formats a reject reason kind using uppercase snake case metadata form.
-    /// JA: reject reason kind を metadata 用の uppercase snake case で整形します。
+    /// EN: Documentation for public API. JA: reject reason kind を metadata 用の uppercase snake case で整形します。
     /// </summary>
     /// <param name="kind">EN: The reject reason kind. JA: reject reason kind です。</param>
     /// <returns>EN: The uppercase snake case name. JA: uppercase snake case 名を返します。</returns>

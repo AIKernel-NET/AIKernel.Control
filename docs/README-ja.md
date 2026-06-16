@@ -14,10 +14,13 @@ Monolith は 0.1.x 系の安定化後に control plane と Semantic OS layer を
 
 ## リポジトリ横断整合
 
-共有の repository boundary、0.1.1.1 local NuGet versioning、この更新ラインでの
-NuGet-only / no-PyPI rule は
+共有の repository boundary、0.1.1.1 local NuGet versioning、この検証ラインでの
+NuGet-only / no-PyPI rule、v0.1.2 の NuGet + PyPI release assumption は
 [AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1-ja.md)
 で定義します。
+複数 repository をまたぐ変更を行う場合は、まず
+[リポジトリ横断開発者ガイド v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/cross-repository-developer-guide-v0.1.1.1-ja.md)
+を読んでください。
 
 Control は orchestration、policy application、Core gate invocation、runtime control、
 execution coordination を所有します。Decision Gate / Trajectory Gate truth table、
@@ -48,8 +51,9 @@ Provider semantic evaluation、browser runtime execution を再実装しませ�
 - Apply Policy stage で Core CTG gate evaluation を opt-in 接続する場合は
   CTG Control integration を読んでください。
 - Python から Control を利用する場合は、Python governance wrapper が managed assembly
-  への薄い bridge であることを確認してください。0.1.1.1 line では PyPI package を
-  build / publish しません。
+  への薄い bridge であることを確認してください。0.1.1.1 validation line では PyPI
+  package を build / publish しません。次の公式 v0.1.2 正典シリーズでは、NuGet と
+  PyPI を同期して更新する前提です。
 
 ## 最初の検証
 
@@ -69,4 +73,5 @@ dotnet test AIKernel.Control.slnx -c Release --no-build
   します。
 - GPU execution を bind する前に、CPU / Emulator package で決定論的な検証を
   行います。
-- Python wrapper 関連資料は、Python release が明示的に予定されるまで参考資料として扱います。
+- Python wrapper 関連資料は 0.1.1.1 では参考資料として扱い、次の公式 v0.1.2
+  正典 release line に向けて NuGet + PyPI の同期更新を準備します。

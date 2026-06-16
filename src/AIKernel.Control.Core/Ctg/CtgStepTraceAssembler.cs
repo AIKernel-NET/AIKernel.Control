@@ -4,13 +4,13 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Assembles a skeleton step governance trace at the Control policy boundary.
-/// JA: Control policy 境界で skeleton の step governance trace を組み立てます。
+/// EN: Documentation for public API. JA: Control policy 境界で skeleton の step governance trace を組み立てます。
 /// </summary>
 public sealed class CtgStepTraceAssembler
 {
     /// <summary>
     /// EN: Creates a step governance trace from council and decision gate DTOs.
-    /// JA: council DTO と decision gate DTO から step governance trace を作成します。
+    /// EN: Documentation for public API. JA: council DTO と decision gate DTO から step governance trace を作成します。
     /// </summary>
     /// <param name="context">EN: The CTG control execution context. JA: CTG Control execution context です。</param>
     /// <param name="councilEvaluation">EN: The council evaluation result. JA: council evaluation result です。</param>

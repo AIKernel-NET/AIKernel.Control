@@ -44,6 +44,30 @@ internal static class CtgControlMetadata
     internal static DateTimeOffset ObservedAt(CtgControlExecutionContext context)
         => context.ObservedAt ?? DateTimeOffset.UtcNow;
 
+    internal static IReadOnlyDictionary<string, string> RetryIntentMetadata(CtgRetryIntentCarrier? retryIntent)
+    {
+        if (retryIntent is null)
+        {
+            return new Dictionary<string, string>(StringComparer.Ordinal);
+        }
+
+        var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            ["ctg.control.retry.requested"] = retryIntent.Requested.ToString(),
+            ["ctg.control.retry.reason_code"] = retryIntent.ReasonCode,
+            ["ctg.control.retry.priority"] = retryIntent.Priority.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            ["ctg.control.retry.confidence"] = retryIntent.Confidence.ToString("0.###", System.Globalization.CultureInfo.InvariantCulture),
+            ["ctg.control.retry.source_sensor"] = retryIntent.SourceSensor
+        };
+
+        foreach (var item in retryIntent.Metadata)
+        {
+            metadata[$"ctg.control.retry.metadata.{item.Key}"] = item.Value;
+        }
+
+        return metadata;
+    }
+
     internal static CtgControlExecutionContext CreateContext(
         IExecutionGraph graph,
         ControlExecutionRequest request,

@@ -28,9 +28,10 @@ Add `AIKernel.Control.GPU` only when the host binds a concrete GPU backend:
 dotnet add package AIKernel.Control.GPU --version 0.1.1.1
 ```
 
-Python wrapper materials are reference-only for the 0.1.1.1 update line. Do not
-build, install, or publish a PyPI package unless a Python release is explicitly
-scheduled.
+Python wrapper materials are reference-only for the 0.1.1.1 validation line. Do
+not build, install, or publish a PyPI package for 0.1.1.1. Prepare the wrapper
+for the next official v0.1.2 canonical series, where synchronized NuGet and
+PyPI package families are expected.
 
 ## Runtime Roles
 
@@ -96,7 +97,8 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 It loads bundled managed assemblies and delegates semantics to the C# packages.
 Do not treat the Python wrapper as an independent implementation.
 
-For 0.1.1.1, do not build, install, or publish a PyPI package.
+For 0.1.1.1, do not build, install, or publish a PyPI package. Prepare the
+wrapper for the next official v0.1.2 canonical series.
 
 ## Verification
 

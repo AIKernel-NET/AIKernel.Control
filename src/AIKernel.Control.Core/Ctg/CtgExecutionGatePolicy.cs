@@ -5,7 +5,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Provides a semantic opt-in policy name for CTG execution gate evaluation.
-/// JA: CTG execution gate evaluation 用の意味論的な opt-in policy 名を提供します。
+/// EN: Documentation for public API. JA: CTG execution gate evaluation 用の意味論的な opt-in policy 名を提供します。
 /// </summary>
 public sealed class CtgExecutionGatePolicy : IControlPolicy
 {
@@ -13,7 +13,7 @@ public sealed class CtgExecutionGatePolicy : IControlPolicy
 
     /// <summary>
     /// EN: Initializes a policy wrapper over the CTG control policy adapter.
-    /// JA: CTG Control policy adapter を包む policy wrapper を初期化します。
+    /// EN: Documentation for public API. JA: CTG Control policy adapter を包む policy wrapper を初期化します。
     /// </summary>
     /// <param name="adapter">EN: The CTG control policy adapter. JA: CTG Control policy adapter です。</param>
     public CtgExecutionGatePolicy(CtgControlPolicyAdapter adapter)
@@ -23,7 +23,7 @@ public sealed class CtgExecutionGatePolicy : IControlPolicy
 
     /// <summary>
     /// EN: Delegates policy evaluation to the CTG control policy adapter.
-    /// JA: policy evaluation を CTG Control policy adapter に委譲します。
+    /// EN: Documentation for public API. JA: policy evaluation を CTG Control policy adapter に委譲します。
     /// </summary>
     /// <param name="graph">EN: The execution graph. JA: execution graph です。</param>
     /// <param name="request">EN: The control execution request. JA: control execution request です。</param>

@@ -6,7 +6,7 @@ namespace AIKernel.Control.Emulator;
 
 /// <summary>
 /// EN: Creates a deterministic trajectory scenario containing a Core-denied step.
-/// JA: Core により deny された step を含む決定論的 trajectory scenario を作成します。
+/// EN: Documentation for public API. JA: Core により deny された step を含む決定論的 trajectory scenario を作成します。
 /// </summary>
 public sealed class AnyDenyTrajectoryHaltScenario
 {
@@ -14,7 +14,7 @@ public sealed class AnyDenyTrajectoryHaltScenario
 
     /// <summary>
     /// EN: Initializes a denied-step trajectory scenario factory.
-    /// JA: denied-step trajectory scenario factory を初期化します。
+    /// EN: Documentation for public API. JA: denied-step trajectory scenario factory を初期化します。
     /// </summary>
     /// <param name="mockCouncilEvaluator">EN: The mock council evaluator. JA: mock council evaluator です。</param>
     public AnyDenyTrajectoryHaltScenario(CtgMockCouncilEvaluator? mockCouncilEvaluator = null)
@@ -24,7 +24,7 @@ public sealed class AnyDenyTrajectoryHaltScenario
 
     /// <summary>
     /// EN: Creates the scenario by asking Core to evaluate the denied step.
-    /// JA: Core に denied step を評価させて scenario を作成します。
+    /// EN: Documentation for public API. JA: Core に denied step を評価させて scenario を作成します。
     /// </summary>
     /// <returns>EN: The emulator scenario. JA: emulator scenario を返します。</returns>
     public CtgControlEmulatorScenario Create()

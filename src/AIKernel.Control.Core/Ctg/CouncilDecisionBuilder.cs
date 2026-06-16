@@ -8,7 +8,7 @@ namespace AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Builds a council decision from normalized council votes.
-/// JA: 正規化済み council vote から council decision を構築します。
+/// EN: Documentation for public API. JA: 正規化済み council vote から council decision を構築します。
 /// </summary>
 public sealed class CouncilDecisionBuilder
 {
@@ -21,7 +21,7 @@ public sealed class CouncilDecisionBuilder
 
     /// <summary>
     /// EN: Builds a council evaluation result without applying Gate logic.
-    /// JA: Gate logic を適用せず council evaluation result を構築します。
+    /// EN: Documentation for public API. JA: Gate logic を適用せず council evaluation result を構築します。
     /// </summary>
     /// <param name="context">EN: The CTG control execution context. JA: CTG Control execution context です。</param>
     /// <param name="votes">EN: The normalized council votes. JA: 正規化済み council vote です。</param>

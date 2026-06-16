@@ -14,9 +14,12 @@ plane with the Semantic OS layers after the 0.1.x line stabilizes.
 
 ## Cross-Repository Alignment
 
-Shared repository boundaries, 0.1.1.1 local NuGet versioning, and the
-NuGet-only / no-PyPI rule for this update line are defined by
+Shared repository boundaries, 0.1.1.1 local NuGet versioning, the
+NuGet-only / no-PyPI rule for this validation line, and the v0.1.2
+NuGet + PyPI release assumption are defined by
 [AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1.md).
+When a change crosses repositories, start with the
+[Cross-Repository Developer Guide v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/cross-repository-developer-guide-v0.1.1.1.md).
 
 Control owns orchestration, policy application, Core gate invocation, runtime
 control, and execution coordination. It must not reimplement Decision Gate or
@@ -49,7 +52,9 @@ execution.
   evaluation during the Apply Policy stage.
 - Read Python governance wrapper when you are consuming Control from Python and
   need to confirm that Python is only a managed assembly bridge. The 0.1.1.1
-  line does not build or publish a PyPI package.
+  validation line does not build or publish a PyPI package. The next official
+  v0.1.2 canonical series is expected to refresh the PyPI package family
+  together with NuGet.
 
 ## First Validation
 
@@ -68,5 +73,6 @@ dotnet test AIKernel.Control.slnx -c Release --no-build
 - Mount model assets through VFS/ROM instead of local ad hoc paths.
 - Use CPU/Emulator packages for deterministic validation before binding GPU
   execution.
-- Keep Python wrapper materials as reference-only unless a Python release is
-  explicitly scheduled.
+- Keep Python wrapper materials as reference-only for 0.1.1.1, and prepare
+  synchronized NuGet + PyPI package updates for the next official v0.1.2
+  canonical release line.

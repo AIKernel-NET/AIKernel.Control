@@ -4,13 +4,13 @@ namespace AIKernel.Control.Diagnostics;
 
 /// <summary>
 /// EN: Formats CTG canon references for diagnostics output.
-/// JA: diagnostics output 用に CTG CanonReference を整形します。
+/// EN: Documentation for public API. JA: diagnostics output 用に CTG CanonReference を整形します。
 /// </summary>
 public sealed class CtgCanonReferenceFormatter
 {
     /// <summary>
     /// EN: Formats a canon reference as a stable compact string.
-    /// JA: CanonReference を安定した compact string として整形します。
+    /// EN: Documentation for public API. JA: CanonReference を安定した compact string として整形します。
     /// </summary>
     /// <param name="reference">EN: The canon reference. JA: CanonReference です。</param>
     /// <returns>EN: The formatted canon reference. JA: 整形された CanonReference を返します。</returns>

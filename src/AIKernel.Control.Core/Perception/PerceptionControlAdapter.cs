@@ -5,13 +5,13 @@ using AIKernel.Control.Core.Ctg;
 
 /// <summary>
 /// EN: Converts perception-derived signals into provider vote outputs without executing Gate logic.
-/// JA: Gate logic を実行せず perception 由来 signal を provider vote output に変換します。
+/// EN: Documentation for public API. JA: Gate logic を実行せず perception 由来 signal を provider vote output に変換します。
 /// </summary>
 public sealed class PerceptionControlAdapter
 {
     /// <summary>
     /// EN: Adapts perception signals into CTG provider vote outputs.
-    /// JA: perception signal を CTG provider vote output に変換します。
+    /// EN: Documentation for public API. JA: perception signal を CTG provider vote output に変換します。
     /// </summary>
     /// <param name="request">EN: Perception control request. JA: perception control request です。</param>
     /// <returns>EN: Provider vote output result. JA: provider vote output result を返します。</returns>

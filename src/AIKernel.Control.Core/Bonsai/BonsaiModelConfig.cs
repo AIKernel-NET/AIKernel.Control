@@ -2,6 +2,7 @@ using System.Text.Json;
 
 namespace AIKernel.Control.Core.Bonsai;
 
+/// <summary>EN: Documentation for public API. JA: BonsaiModelConfig を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Core.Bonsai.BonsaiModelConfig']" />
 public sealed record BonsaiModelConfig(
@@ -11,6 +12,7 @@ public sealed record BonsaiModelConfig(
     int VocabularySize,
     int ContextLength)
 {
+    /// <summary>EN: Documentation for public API. JA: Parse を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.Parse']" />
     public static BonsaiModelConfig Parse(string json)
@@ -28,6 +30,7 @@ public sealed record BonsaiModelConfig(
             ReadRequiredInt32(root, "max_position_embeddings", "context_length", "n_ctx"));
     }
 
+    /// <summary>EN: Documentation for public API. JA: EstimateActivationFloatCount を実行します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Core.Bonsai.BonsaiModelConfig.EstimateActivationFloatCount']" />
     public long EstimateActivationFloatCount()
