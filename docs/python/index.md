@@ -85,3 +85,16 @@ py -m build --wheel
 
 PyPI publication uses GitHub Actions Trusted Publishing and the `pypi`
 environment.
+## Trusted Publisher Configuration
+
+The PyPI Trusted Publisher for the aikernel-governance project must match the GitHub OIDC claims emitted by this repository:
+
+| Field | Value |
+| --- | --- |
+| PyPI project | aikernel-governance |
+| Owner | AIKernel-NET |
+| Repository | AIKernel.Control |
+| Workflow | publish-pypi.yml |
+| Environment | pypi |
+
+If PyPI reports `invalid-publisher`, do not change the workflow to token credentials. Fix the PyPI project Trusted Publisher entry so it matches the table above, then rerun the failed publish job.
