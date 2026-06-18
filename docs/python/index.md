@@ -2,11 +2,11 @@
 
 [日本語](index-ja.md)
 
-`aikernel-governance` is the Python distribution for the public
-AIKernel.Control governance surface.
+`aikernel-governance` is the Python distribution for the public AIKernel.Control
+governance surface in the v0.1.2 canonical series.
 
-It is a wrapper over the C# packages, not a Python reimplementation of Control.
-The package bundles managed assemblies and exposes a single import surface:
+The wrapper sits over the C# packages; it is not a Python reimplementation of
+Control or CTG. It exposes a single import surface:
 
 ```python
 from aikernel_governance import (
@@ -20,12 +20,14 @@ from aikernel_governance import (
 
 ## Install
 
+Stable install, after publication opens:
+
 ```bash
-pip install aikernel-governance
+pip install aikernel-governance==0.1.2
 ```
 
-The distribution name is `aikernel-governance`. The import name is
-`aikernel_governance`.
+Local validation uses `0.1.2.dev{buildNumber}` wheels. Do not create stable
+`0.1.2` artifacts until the release task explicitly requests them.
 
 ## Scope
 
@@ -42,13 +44,14 @@ The package exposes public Control contracts and public wrapper types:
 - CPU kernel wrapper
 - Diagnostics replay approval wrapper
 - GPU delegate contract loader
+- generated managed API catalog helpers
 
 It does not expose internal governance engine helpers, transport-specific code,
-OS-specific implementations, or private runtime internals.
+OS-specific implementations, private runtime internals, or CTG Gate rules.
 
 ## Managed Assemblies
 
-The wheel bundles the Control and contract assemblies under
+The wheel bundles or resolves the Control and contract assemblies under
 `aikernel_governance/native`:
 
 - `AIKernel.Abstractions.dll`
@@ -66,32 +69,32 @@ global packages cache.
 
 `load_governance_runtime()` loads the resolved assemblies through pythonnet.
 
+## Managed API Catalog
+
+The v0.1.2 package exposes the generated managed API catalog through
+`managed_api_catalog()`, `managed_api_summary()`, `managed_type_names()`, and
+`find_managed_type(full_name)`.
+
 ## Build
 
 ```powershell
-cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
+py -m compileall python\src python\tests
+py -m pytest python\tests
 py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
 ```
 
-## API Example
+PyPI publication uses GitHub Actions Trusted Publishing and the `pypi`
+environment.
+## Trusted Publisher Configuration
 
-```python
-from aikernel_governance import ExecutionRequest, GovernanceClient
+The PyPI Trusted Publisher for the aikernel-governance project must match the GitHub OIDC claims emitted by this repository:
 
-request = ExecutionRequest(
-    model="bonsai-1.7b",
-    input="hello",
-    parameters={"execution_id": "exec-001"},
-)
+| Field | Value |
+| --- | --- |
+| PyPI project | aikernel-governance |
+| Owner | AIKernel-NET |
+| Repository | AIKernel.Control |
+| Workflow | publish-pypi.yml |
+| Environment | pypi |
 
-client = GovernanceClient(backend)
-result = client.submit(request)
-```
-
-`GovernanceClient` delegates to a public backend. The backend must expose
-`submit(request)`, `snapshot(id)`, and `result(id)`.
+If PyPI reports `invalid-publisher`, do not change the workflow to token credentials. Fix the PyPI project Trusted Publisher entry so it matches the table above, then rerun the failed publish job.

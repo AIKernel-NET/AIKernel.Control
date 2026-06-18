@@ -2,16 +2,12 @@
 
 [日本語](README-ja.md)
 
-Python wrapper for the public governance surface of AIKernel.Control.
+Python wrapper surface for AIKernel.Control.
 
-The stable package is published to PyPI:
-
-```bash
-pip install aikernel-governance
-```
-
-The distribution name is `aikernel-governance`. Import the module as
-`aikernel_governance`.
+Starting with the 0.1.2 canon line, `aikernel-governance` is the PyPI package
+for the public AIKernel.Control governance boundary. The package remains a thin
+wrapper over managed C# assemblies and does not re-implement CTG Gate logic in
+Python.
 
 ## Scope
 
@@ -27,13 +23,14 @@ single Python API:
 - GPU delegate contract loader
 - managed assembly discovery and pythonnet loading
 
-The package does not provide a separate Python implementation of governance
-semantics. It does not expose internal engine helpers, transport-specific logic,
-OS-specific implementations, or private runtime state.
+The reference package does not provide a separate Python implementation of
+governance semantics. It does not expose internal engine helpers,
+transport-specific logic, OS-specific implementations, or private runtime
+state.
 
 ## Managed Assemblies
 
-The wheel bundles the public Control and contract assemblies under
+Python packaging resolves the public Control and contract assemblies under
 `aikernel_governance/native`:
 
 - `AIKernel.Abstractions.dll`
@@ -50,6 +47,12 @@ The wheel bundles the public Control and contract assemblies under
 global-packages cache.
 
 `load_governance_runtime()` loads the resolved assemblies through pythonnet.
+
+## Managed API Catalog
+
+The v0.1.2 package exposes the generated managed API catalog through
+`managed_api_catalog()`, `managed_api_summary()`, `managed_type_names()`, and
+`find_managed_type(full_name)`.
 
 ## API
 
@@ -88,23 +91,17 @@ snapshot = client.snapshot("exec-001")
 When pythonnet is available, wrappers can be converted to public C# DTOs with
 `to_managed()`.
 
-## Build
+## Build and Validate
+
+For local validation:
 
 ```powershell
 cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
-py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
+py -m pytest python\tests
 ```
 
-## Source Validation
+## Distribution
 
-For source-based local validation, use a clean virtual environment:
-
-```bash
-pip install --force-reinstall \
-  git+https://github.com/AIKernel-NET/AIKernel.Control.git#subdirectory=python
-```
+PyPI publishing is handled by the repository GitHub Actions workflow on release
+tags using Trusted Publishing. Keep Python experiments thin over the managed
+assemblies and do not add CTG Gate rules to Python code.

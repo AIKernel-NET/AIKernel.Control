@@ -36,9 +36,9 @@ Runtime 依存になることを防ぎます。
 Control は AIKernel.Demo に依存しません。Demo は Control を利用する側であり、
 Control は独立した Runtime Surface として動作します。
 
-AIKernel.Control は、2026-06-10 に予定している 0.1.1 Release Validation
-Phase に参加します。AIKernel の Semantic Graph を物理実行エンジンへつなぐ
-経路を検証しつつ、その責務を AIKernel.Demo へ移さないことを保証します。
+AIKernel.Control 0.1.2 は AIKernel.Core 0.1.2 と同じ開発方針に従います。
+NuGet package と同期した Python wrapper を公開し、local development package には
+`0.1.2-dev{build-number}` を使います。
 
 ## クイックスタート
 
@@ -47,9 +47,15 @@ GPU や model asset を bind する前に、deterministic な Emulator と CPU p
 経由で mount します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+host の依存面を小さくしたい場合のみ、split package を直接導入します。
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
 ```
 
 repository surface を検証します。
@@ -75,18 +81,42 @@ var engine = new ControlEmulatorEngine(
 これは Control の最小入口です。deterministic scheduling と明示的な policy boundary を
 確認してから、CPU、diagnostics、GPU package へ進んでください。
 
+## CTG Control Governance
+
+AIKernel.Control は `Apply Policy` pipeline stage で Canonical Triadic Governance を
+opt-in 接続できます。Control は CTG gate rule を所有しません。provider vote material を
+`CouncilVote` / `CouncilDecision` へ正規化し、vote-only の `GateInput` を抽出し、
+`IDecisionGate` / `ITrajectoryGate` 経由で AIKernel.Core へ評価を委譲します。
+
+CTG Control surface は意図的に狭く保ちます。
+
+- `GateInput` は `Logos`、`Ethos`、`Pathos` の 3 vote のみを保持します。
+- Control、Diagnostics、Emulator は approve count、veto 条件、trajectory halt
+  aggregation を計算しません。
+- confidence、risk、score のような continuous provider carrier は Control CTG
+  vote-output surface では受け取りません。
+- Provider registry fallback は明示的です。provider が見つからない場合は `Unknown`
+  vote、複数一致は deterministic error、fallback routing は opt-in のみに限定します。
+
+[CTG Control integration](docs/development/control-ctg-ja.md) も参照してください。
+
 ## プロジェクト構成
 
+- `AIKernel.Control` - Control Core、CPU、Emulator、Diagnostics、GPU boundary を
+  導入する dependency-only の入口 package です。
 - `AIKernel.Control.Core` - Control Plane の Runtime Entry Package です。
   共有契約は `AIKernel.Abstractions.Control` と `AIKernel.Dtos.Control` にあり、
   このプロジェクトはそれらを参照します。CPU / GPU / Emulator 実装が
   Interface や DTO を重複定義しないための境界です。
   Capability manifest は Control 固有の descriptor DTO ではなく、
-  `AIKernel.Dtos.Capabilities.CapabilityModuleDescriptor` を使用します。
+  `AIKernel.Dtos.Capabilities.CapabilityModuleDescriptor` を使用します。CTG の
+  provider vote adapter、coordinator、opt-in policy adapter、DI extension も
+  提供します。
 - `AIKernel.Control.Emulator` - ControlEmulator です。AIKernel `ExecutionGraph`
   を CPU-only Runtime で決定論的に実行します。Bonsai そのものを模倣する
   Emulator ではありません。step-by-step 実行、breakpoint、watch、trace、
-  deterministic replay を扱います。
+  deterministic replay を扱います。Core evaluator の結果と比較する CTG dry-run
+  scenario も含みますが、gate logic は複製しません。
 - `AIKernel.Control.CPU` - Bonsai Node を CPU Operator へマッピングする
   CPU 実行エンジンです。SIMD / AVX 最適化、ThreadPool / TaskGraph 実行を
   担当します。
@@ -95,12 +125,15 @@ var engine = new ControlEmulatorEngine(
   stream / event orchestration、graph execution を担当します。
 - `AIKernel.Control.Diagnostics` - Observability レイヤーです。
   Graph visualization、node timing、CPU / GPU load inspection、ReplayLog
-  integration を担当します。
+  integration、CTG trace / replay metadata formatting を担当します。
 
-## Python Package
+## Python Wrapper 参照
 
 `aikernel-governance` は、AIKernel.Control の public governance surface を
-Python から扱うための wrapper package です。
+Python から扱うために予約している wrapper 名です。
+
+0.1.2 development line では 同期 Python wrapper を公開します。既存の
+Python 関連資料は、参考および将来明示的に予定される Python release のために残します。
 
 C# package の境界を、単一の Python API として公開します。
 
@@ -111,9 +144,9 @@ C# package の境界を、単一の Python API として公開します。
 - CPU kernel と diagnostics wrapper
 - managed assembly discovery と pythonnet loading
 
-Python package は Control internals、scheduler logic、provider execution、
-CPU / GPU kernel を Python で再実装しません。C# assembly を同梱し、公開
-managed contract を呼び出す薄い wrapper layer として機能します。
+Python wrapper design は Control internals、scheduler logic、provider execution、
+CPU / GPU kernel を Python で再実装しません。公開 managed contract の上に置く
+薄い wrapper layer として扱います。
 
 ## Built-in Bonsai Model
 
@@ -126,7 +159,7 @@ managed contract を呼び出す薄い wrapper layer として機能します。
 バインドします。
 
 初期化と実行の状態は `IControlStateObserver` を通じて、以下のような
-決定論的 Phase Snapshot として通知されます。
+決定論的な execution state snapshot として通知されます。
 
 - `ModelDownload`
 - `Initializing`
@@ -166,6 +199,7 @@ Control はモデル重みやローカルモデルファイルを所有しませ
 - [Execution engine](docs/execution-engine/index-ja.md)
 - [Q1_0 CPU execution kernel](docs/execution-engine/q1-0-cpu-kernel-ja.md)
 - [Control pipelines](docs/pipelines/index-ja.md)
+- [CTG Control integration](docs/development/control-ctg-ja.md)
 - [Licensing](docs/licensing/index-ja.md)
 
 ## 設計方針
@@ -208,33 +242,24 @@ dotnet build AIKernel.Control.slnx
 
 ## パッケージインストール
 
-.NET host では NuGet package を使用します。
+.NET host では標準 Control surface の入口 package を使用します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
-dotnet add package AIKernel.Control.GPU --version 0.1.1
+dotnet add package AIKernel.Control --version 0.1.2
 ```
 
-Python host では PyPI package を使用します。
+依存面を小さくしたい host だけが split package を直接導入します。
 
 ```bash
-pip install aikernel-governance
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
 ```
 
-Python module は `aikernel_governance` として import します。
+Python wrapper は 0.1.2 public package line に同期した
+`aikernel-governance` として公開します。
 
-```python
-from aikernel_governance import ExecutionRequest, GovernanceClient
-```
-
-wheel は managed AIKernel.Control assemblies を `aikernel_governance/native`
-に同梱します。これは public C# contract surface への wrapper であり、
-governance semantics を Python で別実装するものではありません。
-
-package scope、assembly loading、publication guidance は
+0.1.2 の package scope と validation flow は
 [Python governance wrapper](docs/python/index-ja.md) を参照してください。
 
 ## コントリビュータ向けガイドライン

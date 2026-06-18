@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Title>AIKernel.Control</Title>
+    <PackageId>AIKernel.Control</PackageId>
+    <Description>Entry package for AIKernel.Control v0.1.2. Installs the Control Core, CPU, Emulator, Diagnostics, and GPU boundary packages for governed semantic execution hosts.</Description>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
+    <ProjectReference Include="..\AIKernel.Control.CPU\AIKernel.Control.CPU.csproj" />
+    <ProjectReference Include="..\AIKernel.Control.Emulator\AIKernel.Control.Emulator.csproj" />
+    <ProjectReference Include="..\AIKernel.Control.Diagnostics\AIKernel.Control.Diagnostics.csproj" />
+    <ProjectReference Include="..\AIKernel.Control.GPU\AIKernel.Control.GPU.csproj" />
+  </ItemGroup>
+</Project>

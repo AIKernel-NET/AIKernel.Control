@@ -2,10 +2,12 @@ using AIKernel.Abstractions.Control;
 
 namespace AIKernel.Control.Emulator;
 
+/// <summary>[EN] Documents this public package API member. [JA] DeterministicNodeScheduler を表します。</summary>
 /// <include file="docs.en.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.DeterministicNodeScheduler']" />
 /// <include file="docs.ja.xml" path="doc/members/member[@name='T:AIKernel.Control.Emulator.DeterministicNodeScheduler']" />
 public sealed class DeterministicNodeScheduler : INodeScheduler
 {
+    /// <summary>[EN] Documents this public package API member. [JA] ScheduleAsync を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.DeterministicNodeScheduler.ScheduleAsync']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='M:AIKernel.Control.Emulator.DeterministicNodeScheduler.ScheduleAsync']" />
     public ValueTask<IReadOnlyList<IExecutionNode>> ScheduleAsync(

@@ -13,36 +13,70 @@ Monolith は 0.1.x 系の安定化後に semantic runtime、capability graph、g
 
 ## インストール
 
-host の役割に合わせて Control package を導入します。
+標準 Control surface は入口 package から導入できます。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.1
-dotnet add package AIKernel.Control.CPU --version 0.1.1
-dotnet add package AIKernel.Control.Emulator --version 0.1.1
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.1
+dotnet add package AIKernel.Control --version 0.1.2
+```
+
+host の依存面を小さくしたい場合のみ、split package を直接導入します。
+
+```bash
+dotnet add package AIKernel.Control.Core --version 0.1.2
+dotnet add package AIKernel.Control.CPU --version 0.1.2
+dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.2
 ```
 
 concrete GPU backend を bind する host では `AIKernel.Control.GPU` も導入します。
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.1
+dotnet add package AIKernel.Control.GPU --version 0.1.2
 ```
 
-Python host では単一の governance wrapper package を使用します。
-
-```bash
-pip install aikernel-governance
-```
+local integration では、release task が公開を開始するまで stable `0.1.2` ではなく
+`0.1.2-dev{buildNumber}` の NuGet package を使います。Python validation では
+`0.1.2.dev{buildNumber}` の `aikernel-governance` wheel を使います。
 
 ## Runtime の役割
 
 | Package | 役割 |
 | --- | --- |
+| `AIKernel.Control` | 標準 Control surface を導入する dependency-only の入口 package。 |
 | `AIKernel.Control.Core` | Control-plane entry point と Bonsai provider contract。 |
 | `AIKernel.Control.CPU` | 検証と CPU host 向けの決定論的 CPU execution kernel。 |
 | `AIKernel.Control.Emulator` | step-by-step graph execution、replay、watch、breakpoint。 |
 | `AIKernel.Control.Diagnostics` | timing、graph、replay inspection surface。 |
 | `AIKernel.Control.GPU` | concrete GPU execution backend のための delegate boundary。 |
+
+## Opt-In CTG Policy
+
+Apply Policy phase で物理実行前に Core governance evaluator を呼び出す場合は、
+CTG Control integration を明示的に登録します。
+
+```csharp
+using AIKernel.Control.Core.Ctg;
+using AIKernel.Enums.Governance;
+
+services.AddCtgControl(new CtgControlCoordinatorOptions
+{
+    ProviderOutputs =
+    [
+        new ProviderVoteOutput
+        {
+            ProviderId = "provider.logos",
+            CouncilKind = CouncilKind.Logos,
+            VoteValue = CouncilVoteValue.Approve
+        }
+    ]
+});
+```
+
+Provider vote material は discrete-only です。欠けた council は `Unknown` に正規化し、
+複数 provider の一致は deterministic error とします。Control は Core gate evaluator を呼び出すだけで、
+CTG Gate rule は実装しません。
+
+[CTG Control integration](../development/control-ctg-ja.md) も参照してください。
 
 ## Asset Mounting
 
@@ -69,6 +103,9 @@ from aikernel_governance import ExecutionRequest, GovernanceClient
 bundled managed assembly を読み込み、意味論は C# package へ委譲します。Python
 wrapper を独立実装として扱わないでください。
 
+Python wrapper は独立実装ではありません。managed loading helper と generated managed
+API catalog を公開し、C# packages の薄い wrapper に留まります。
+
 ## 検証
 
 package 更新前に repository test を実行します。
@@ -76,7 +113,7 @@ package 更新前に repository test を実行します。
 ```powershell
 dotnet build AIKernel.Control.slnx -c Release -p:WarningsAsErrors=1591
 dotnet test AIKernel.Control.slnx -c Release --no-build
-py -m pytest python/tests
+dotnet pack AIKernel.Control.slnx -c Release --no-build --no-restore -p:UseLocalPackageVersion=true -p:LocalPackageBuildNumber=3 -o ..\artifacts\local-packages
 ```
 
 ## Failure Behavior

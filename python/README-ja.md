@@ -3,16 +3,11 @@
 [English](README.md)
 
 AIKernel.Control の public governance surface を Python から扱うための wrapper
-package です。
+surface です。
 
-stable package は PyPI に公開されます。
-
-```bash
-pip install aikernel-governance
-```
-
-distribution name は `aikernel-governance` です。module は
-`aikernel_governance` として import します。
+0.1.2 正典系列から、`aikernel-governance` は AIKernel.Control の public
+governance boundary を公開する PyPI package です。この package は managed C#
+assembly の薄い wrapper であり、CTG Gate logic を Python 側で再実装しません。
 
 ## Scope
 
@@ -28,14 +23,14 @@ Python API として公開します。
 - GPU delegate contract loader
 - managed assembly discovery と pythonnet loading
 
-この package は governance semantics を Python で別実装しません。
+この参照 package は governance semantics を Python で別実装しません。
 internal engine helper、transport-specific logic、OS-specific implementation、
 private runtime state は公開しません。
 
 ## Managed Assemblies
 
-wheel は public Control と contract assemblies を `aikernel_governance/native`
-に同梱します。
+Python package は、public Control と contract assemblies を
+`aikernel_governance/native` で解決します。
 
 - `AIKernel.Abstractions.dll`
 - `AIKernel.Dtos.dll`
@@ -47,9 +42,15 @@ wheel は public Control と contract assemblies を `aikernel_governance/native
 - `AIKernel.Control.GPU.dll`
 
 `governance_assemblies()` は、同梱 assembly、`AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`、
-NuGet global-packages cache の順に assembly を解決します。
+NuGet global-packages cache の順に assembly を解決する想定です。
 
 `load_governance_runtime()` は、解決した assembly を pythonnet 経由で読み込みます。
+
+## Managed API Catalog
+
+v0.1.2 package では generated managed API catalog を公開します。
+`managed_api_catalog()`、`managed_api_summary()`、`managed_type_names()`、
+`find_managed_type(full_name)` で確認できます。
 
 ## API
 
@@ -88,23 +89,17 @@ snapshot = client.snapshot("exec-001")
 pythonnet が利用できる場合、wrapper は `to_managed()` によって public C# DTO へ
 変換できます。
 
-## Build
+## Build and Validate
+
+local validation では Python wrapper の contract test を実行します。
 
 ```powershell
 cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
-py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
+py -m pytest python\tests
 ```
 
-## Source Validation
+## Distribution
 
-source-based local validation では、clean virtual environment を使用してください。
-
-```bash
-pip install --force-reinstall \
-  git+https://github.com/AIKernel-NET/AIKernel.Control.git#subdirectory=python
-```
+PyPI publishing は repository の GitHub Actions workflow が release tag を契機に
+Trusted Publishing で実行します。Python 側の試作を行う場合も managed assemblies
+の薄い wrapper に留め、CTG Gate rule を Python code に追加しないでください。

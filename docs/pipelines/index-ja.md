@@ -17,6 +17,10 @@ policy enforcement と replayable state transition を伴って、物理実行�
    `IControlPolicy` 実装が request と各 node metadata を評価します。Policy は execution を
    allow、deny、abort できます。すべての policy decision は replay / audit stream に記録されます。
 
+   CTG governance は opt-in の `AddCtgControl()` service を登録することでここに接続できます。
+   Control は provider vote output を正規化し、gate evaluation は AIKernel.Core に委譲します。
+   pipeline 内で CTG gate logic を重複実装しません。
+
 3. **Execute & Emit Replay/Audit Metadata**  
    Deterministic scheduler は contract identity に基づいて node を並べます。各 node transition は
    `ControlStateSnapshot`（`Scheduled`, `Running`, `Completed`, `Faulted`）を emit します。

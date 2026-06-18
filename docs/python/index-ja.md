@@ -2,12 +2,11 @@
 
 [English](index.md)
 
-`aikernel-governance` は、AIKernel.Control の public governance surface を
-Python から利用するための distribution です。
+`aikernel-governance` は、v0.1.2 正典シリーズにおける AIKernel.Control の public
+governance surface 用 Python distribution です。
 
-これは C# package の wrapper であり、Control を Python で再実装するものでは
-ありません。package は managed assemblies を同梱し、単一の import surface を
-公開します。
+この wrapper は C# packages の上にあります。Control や CTG を Python で再実装する
+ものではありません。単一の import surface を公開します。
 
 ```python
 from aikernel_governance import (
@@ -21,16 +20,18 @@ from aikernel_governance import (
 
 ## Install
 
+stable publication 後の install:
+
 ```bash
-pip install aikernel-governance
+pip install aikernel-governance==0.1.2
 ```
 
-distribution name は `aikernel-governance` です。import name は
-`aikernel_governance` です。
+local validation では `0.1.2.dev{buildNumber}` wheel を使います。release task が
+明示的に要求するまで、stable `0.1.2` artifact は作成しません。
 
 ## Scope
 
-package は public Control contract と public wrapper types を公開します。
+package は public Control contract と public wrapper type を公開します。
 
 - `ExecutionRequest`
 - `ExecutionResult`
@@ -38,19 +39,20 @@ package は public Control contract と public wrapper types を公開します�
 - `SnapshotMetadata`
 - `ProviderContract`
 - `GovernanceClient`
-- Bonsai provider、model、tokenizer、model-state wrapper
-- Emulator graph、node、scheduler、policy、engine wrapper
+- Bonsai provider、model、tokenizer、model-state wrappers
+- Emulator graph、node、scheduler、policy、engine wrappers
 - CPU kernel wrapper
 - Diagnostics replay approval wrapper
 - GPU delegate contract loader
+- generated managed API catalog helpers
 
 internal governance engine helper、transport-specific code、OS-specific
-implementation、private runtime internals は公開しません。
+implementation、private runtime internals、CTG Gate rule は公開しません。
 
 ## Managed Assemblies
 
-wheel は Control と contract assemblies を `aikernel_governance/native` に
-同梱します。
+wheel は Control / contract assemblies を `aikernel_governance/native` 配下に同梱、
+またはそこから解決します。
 
 - `AIKernel.Abstractions.dll`
 - `AIKernel.Dtos.dll`
@@ -61,37 +63,36 @@ wheel は Control と contract assemblies を `aikernel_governance/native` に
 - `AIKernel.Control.Emulator.dll`
 - `AIKernel.Control.GPU.dll`
 
-`governance_assemblies()` は、同梱 assembly、`AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`、
-NuGet global packages cache の順に assembly を解決します。
+`governance_assemblies()` は同梱 assembly、`AIKERNEL_GOVERNANCE_ASSEMBLY_PATH`、
+NuGet global-packages cache の順に assembly を解決します。
 
-`load_governance_runtime()` は、解決した assembly を pythonnet 経由で読み込みます。
+`load_governance_runtime()` は解決した assemblies を pythonnet 経由で読み込みます。
+
+## Managed API Catalog
+
+v0.1.2 package では generated managed API catalog を公開します。
+`managed_api_catalog()`、`managed_api_summary()`、`managed_type_names()`、
+`find_managed_type(full_name)` で確認できます。
 
 ## Build
 
 ```powershell
-cd C:\Users\HP\source\repos\AIKernel-NET\AIKernel.Control
-dotnet test AIKernel.Control.slnx -c Release --no-restore
-dotnet pack AIKernel.Control.slnx -c Release --no-restore
-cd python
-py -m pytest
+py -m compileall python\src python\tests
+py -m pytest python\tests
 py -m build --wheel
-py -m twine check dist\aikernel_governance-0.1.1-py3-none-any.whl
 ```
 
-## API Example
+PyPI publication は GitHub Actions Trusted Publishing と `pypi` environment で行います。
+## Trusted Publisher 設定
 
-```python
-from aikernel_governance import ExecutionRequest, GovernanceClient
+aikernel-governance project の PyPI Trusted Publisher は、この repository が発行する GitHub OIDC claims と一致している必要があります。
 
-request = ExecutionRequest(
-    model="bonsai-1.7b",
-    input="hello",
-    parameters={"execution_id": "exec-001"},
-)
+| Field | Value |
+| --- | --- |
+| PyPI project | aikernel-governance |
+| Owner | AIKernel-NET |
+| Repository | AIKernel.Control |
+| Workflow | publish-pypi.yml |
+| Environment | pypi |
 
-client = GovernanceClient(backend)
-result = client.submit(request)
-```
-
-`GovernanceClient` は public backend に委譲します。backend は
-`submit(request)`、`snapshot(id)`、`result(id)` を公開する必要があります。
+PyPI が `invalid-publisher` を返す場合、workflow を token credential 方式へ戻してはいけません。PyPI project 側の Trusted Publisher entry を上記の値に合わせて修正し、失敗した publish job を rerun します。

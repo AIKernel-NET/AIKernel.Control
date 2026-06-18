@@ -2,23 +2,14 @@
 
 [English](RELEASE_NOTES.md)
 
-## 0.1.1
+## 0.1.2
 
-**June 10th, 2026 - Governing the control plane.**
-**2026年6月10日--制御プレーンを統治する。**
+**2026年6月16日 - 統一 Control package line。**
 
-Governing the control plane: policies, schedulers, and emulators align into a
-deterministic governance layer. 制御プレーンの統治--ポリシー・スケジューラ・
-エミュレータが決定論的ガバナンス層へ整列する。
+AIKernel.Control 0.1.2 は、Control execution layer を AIKernel.NET / AIKernel.Core 0.1.2 に揃えます。
 
-AIKernel.Control 0.1.1 は、AIKernel Semantic OS package family の物理実行層と
-governance layer を同期します。
-
-- AIKernel.NET の public Control contract を利用します。対象は execution graph、node、request、result、policy、scheduler、state observer です。
-- CPU-only graph execution、breakpoint、watch、trace、replay-oriented test のための deterministic ControlEmulator を提供します。
-- allocation-free Q1_0 kernel と VFS/ROM model asset ownership を備えた、CPU 側 Bonsai 1.7B built-in provider boundary を追加します。
-- GPU execution は Control.GPU boundary に閉じ込め、device-specific execution が Core や Demo に漏れないようにします。
-- public governance surface を単一 API として公開する `aikernel-governance` Python package を追加します。managed assemblies の同梱と pythonnet loading を含みます。
-- Core は semantic graph、Control は physical execution mapping、Demo は runtime consumer である、という責務分離を文書化します。
-
-Control 0.1.1 は、統治された semantic graph を決定論的な物理実行へ接続する橋です。
+- 標準 Control surface の dependency-only entry package として `AIKernel.Control` を公開します。
+- targeted host 向けに `AIKernel.Control.Core`、`AIKernel.Control.CPU`、`AIKernel.Control.Emulator`、`AIKernel.Control.Diagnostics`、`AIKernel.Control.GPU` の split package を維持します。
+- release validation は NuGet.org package reference のみで解決します。
+- 同期 Python wrapper `aikernel-governance` を 0.1.2 release flow で公開します。
+- Gate logic を AIKernel.Core に保持しながら CTG Apply Policy integration を維持します。

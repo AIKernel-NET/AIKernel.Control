@@ -19,6 +19,11 @@ The initial 0.1.1 pipeline consists of three deterministic phases:
    metadata. The policy may allow, deny, or abort execution. All policy
    decisions are recorded in the replay/audit stream.
 
+   CTG governance can be connected here by registering the opt-in
+   `AddCtgControl()` services. Control normalizes provider vote output and
+   delegates gate evaluation to AIKernel.Core; it does not duplicate CTG gate
+   logic in the pipeline.
+
 3. **Execute & Emit Replay/Audit Metadata**  
    The deterministic scheduler orders nodes by contract identity. Each node
    transition emits a `ControlStateSnapshot` (`Scheduled`, `Running`,
