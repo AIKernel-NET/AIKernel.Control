@@ -16,27 +16,27 @@ Monolith は 0.1.x 系の安定化後に semantic runtime、capability graph、g
 標準 Control surface は入口 package から導入できます。
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 host の依存面を小さくしたい場合のみ、split package を直接導入します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.2
-dotnet add package AIKernel.Control.CPU --version 0.1.2
-dotnet add package AIKernel.Control.Emulator --version 0.1.2
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.2
+dotnet add package AIKernel.Control.Core --version 0.1.3
+dotnet add package AIKernel.Control.CPU --version 0.1.3
+dotnet add package AIKernel.Control.Emulator --version 0.1.3
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.3
 ```
 
 concrete GPU backend を bind する host では `AIKernel.Control.GPU` も導入します。
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.2
+dotnet add package AIKernel.Control.GPU --version 0.1.3
 ```
 
-local integration では、release task が公開を開始するまで stable `0.1.2` ではなく
-`0.1.2-dev{buildNumber}` の NuGet package を使います。Python validation では
-`0.1.2.dev{buildNumber}` の `aikernel-governance` wheel を使います。
+local integration では、release task が公開を開始するまで stable `0.1.3` ではなく
+`0.1.3-dev{buildNumber}` の NuGet package を使います。Python validation では
+`0.1.3.dev{buildNumber}` の `aikernel-governance` wheel を使います。
 
 ## Runtime の役割
 

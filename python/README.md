@@ -4,7 +4,7 @@
 
 Python wrapper surface for AIKernel.Control.
 
-Starting with the 0.1.2 canon line, `aikernel-governance` is the PyPI package
+Starting with the 0.1.3 canon line, `aikernel-governance` is the PyPI package
 for the public AIKernel.Control governance boundary. The package remains a thin
 wrapper over managed C# assemblies and does not re-implement CTG Gate logic in
 Python.
@@ -50,7 +50,7 @@ global-packages cache.
 
 ## Managed API Catalog
 
-The v0.1.2 package exposes the generated managed API catalog through
+The v0.1.3 package exposes the generated managed API catalog through
 `managed_api_catalog()`, `managed_api_summary()`, `managed_type_names()`, and
 `find_managed_type(full_name)`.
 

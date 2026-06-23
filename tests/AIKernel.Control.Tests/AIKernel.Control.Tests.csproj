@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\src\AIKernel.Control.CPU\AIKernel.Control.CPU.csproj" />
     <ProjectReference Include="..\..\src\AIKernel.Control.Diagnostics\AIKernel.Control.Diagnostics.csproj" />
     <ProjectReference Include="..\..\src\AIKernel.Control.Emulator\AIKernel.Control.Emulator.csproj" />
+    <ProjectReference Include="..\..\src\AIKernel.Control.GPU\AIKernel.Control.GPU.csproj" />
   </ItemGroup>
 
   <ItemGroup>

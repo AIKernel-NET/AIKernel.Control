@@ -31,6 +31,6 @@ visual, auditory, health, compass, or spatial sensors.
 For repository ownership and promotion rules, see the
 [Cross-Repository Developer Guide v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/cross-repository-developer-guide-v0.1.1.1.md).
 
-## v0.1.2 Alignment
+## v0.1.3 Alignment
 
-`PerceptionControlSignal`, `PerceptionControlRequest`, `PerceptionPipelineSelection`, and retry intent carriers are adapter-side carriers. They can be replaced by canonical perception/control contracts when AIKernel.NET v0.1.2 adds or consolidates interfaces.
+`PerceptionControlSignal`, `PerceptionControlRequest`, `PerceptionPipelineSelection`, and retry intent carriers are adapter-side carriers. They can be replaced by canonical perception/control contracts when AIKernel.NET v0.1.3 adds or consolidates interfaces.

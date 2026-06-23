@@ -45,13 +45,13 @@ fallback routing must be explicitly opted in.
 ## Python Boundary
 
 `aikernel-governance` is the Python wrapper name for the same public Control
-boundary in the 0.1.2 canonical series. Python packaging wraps the managed C#
+boundary in the 0.1.3 canonical series. Python packaging wraps the managed C#
 assemblies and the public governance surface through pythonnet; it does not
 reimplement CTG, policy, emulator, or scheduling logic.
 
-Stable Python packages are created only when the 0.1.2 publication task opens.
-Local validation uses `0.1.2.dev<build-number>` wheels that match the managed
-`0.1.2-dev<build-number>` package family.
+Stable Python packages are created only when the 0.1.3 publication task opens.
+Local validation uses `0.1.3.dev<build-number>` wheels that match the managed
+`0.1.3-dev<build-number>` package family.
 
 Python sees the contract boundary: execution requests, results, snapshots,
 provider metadata, Bonsai public wrappers, emulator wrappers, CPU kernel

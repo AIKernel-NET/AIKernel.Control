@@ -14,9 +14,9 @@ Monolith は 0.1.x 系の安定化後に control plane と Semantic OS layer を
 
 ## リポジトリ横断整合
 
-共有の repository boundary、v0.1.2 development versioning、依存関係順、
+共有の repository boundary、v0.1.3 development versioning、依存関係順、
 PyPI Trusted Publishing、Python wrapper scope は
-[Package Release Alignment v0.1.2](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/package-release-alignment-v0.1.2-ja.md)
+[AIKernel GPU rev3 Migration v0.1.3](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/migration/v0.1.3-gpu-rev3-migration.md)
 で定義します。履歴としての v0.1.1.1 validation rule は
 [AIKernel Repository Alignment v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/repository-alignment-v0.1.1.1-ja.md)
 に残します。
@@ -68,12 +68,12 @@ dotnet test AIKernel.Control.slnx -c Release --no-build
 ## 運用チェックリスト
 
 - 対応する `AIKernel.Control.*` package を同じ version family で導入します。
-- v0.1.2 development では、local NuGet package version は
-  `0.1.2-dev{buildNumber}`、local Python wheel version は
-  `0.1.2.dev{buildNumber}` のような形式を使います。
+- v0.1.3 development では、local NuGet package version は
+  `0.1.3-dev{buildNumber}`、local Python wheel version は
+  `0.1.3.dev{buildNumber}` のような形式を使います。
 - model asset はローカルの場当たり的な path ではなく VFS / ROM 経由で mount
   します。
 - GPU execution を bind する前に、CPU / Emulator package で決定論的な検証を
   行います。
 - `aikernel-governance` は managed assemblies の薄い wrapper に保ち、stable publication
-  が明示的に開始された場合だけ v0.1.2 Trusted Publishing flow で公開します。
+  が明示的に開始された場合だけ v0.1.3 Trusted Publishing flow で公開します。

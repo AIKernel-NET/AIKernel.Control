@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Title>AIKernel.Control</Title>
     <PackageId>AIKernel.Control</PackageId>
-    <Description>Entry package for AIKernel.Control v0.1.2. Installs the Control Core, CPU, Emulator, Diagnostics, and GPU boundary packages for governed semantic execution hosts.</Description>
+    <Description>Entry package for AIKernel.Control v0.1.3. Installs the Control Core, CPU, Emulator, Diagnostics, and GPU boundary packages for governed semantic execution hosts.</Description>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>false</SuppressDependenciesWhenPacking>
     <NoWarn>$(NoWarn);NU5128</NoWarn>

@@ -36,9 +36,9 @@ Runtime 依存になることを防ぎます。
 Control は AIKernel.Demo に依存しません。Demo は Control を利用する側であり、
 Control は独立した Runtime Surface として動作します。
 
-AIKernel.Control 0.1.2 は AIKernel.Core 0.1.2 と同じ開発方針に従います。
+AIKernel.Control 0.1.3 は AIKernel.Core 0.1.3 と同じ開発方針に従います。
 NuGet package と同期した Python wrapper を公開し、local development package には
-`0.1.2-dev{build-number}` を使います。
+`0.1.3-dev{build-number}` を使います。
 
 ## クイックスタート
 
@@ -47,15 +47,15 @@ GPU や model asset を bind する前に、deterministic な Emulator と CPU p
 経由で mount します。
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 host の依存面を小さくしたい場合のみ、split package を直接導入します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.2
-dotnet add package AIKernel.Control.CPU --version 0.1.2
-dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Core --version 0.1.3
+dotnet add package AIKernel.Control.CPU --version 0.1.3
+dotnet add package AIKernel.Control.Emulator --version 0.1.3
 ```
 
 repository surface を検証します。
@@ -132,7 +132,7 @@ CTG Control surface は意図的に狭く保ちます。
 `aikernel-governance` は、AIKernel.Control の public governance surface を
 Python から扱うために予約している wrapper 名です。
 
-0.1.2 development line では 同期 Python wrapper を公開します。既存の
+0.1.3 development line では 同期 Python wrapper を公開します。既存の
 Python 関連資料は、参考および将来明示的に予定される Python release のために残します。
 
 C# package の境界を、単一の Python API として公開します。
@@ -245,21 +245,21 @@ dotnet build AIKernel.Control.slnx
 .NET host では標準 Control surface の入口 package を使用します。
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 依存面を小さくしたい host だけが split package を直接導入します。
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.2
-dotnet add package AIKernel.Control.CPU --version 0.1.2
-dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Core --version 0.1.3
+dotnet add package AIKernel.Control.CPU --version 0.1.3
+dotnet add package AIKernel.Control.Emulator --version 0.1.3
 ```
 
-Python wrapper は 0.1.2 public package line に同期した
+Python wrapper は 0.1.3 public package line に同期した
 `aikernel-governance` として公開します。
 
-0.1.2 の package scope と validation flow は
+0.1.3 の package scope と validation flow は
 [Python governance wrapper](docs/python/index-ja.md) を参照してください。
 
 ## コントリビュータ向けガイドライン

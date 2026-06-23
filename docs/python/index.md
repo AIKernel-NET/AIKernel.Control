@@ -3,7 +3,7 @@
 [日本語](index-ja.md)
 
 `aikernel-governance` is the Python distribution for the public AIKernel.Control
-governance surface in the v0.1.2 canonical series.
+governance surface in the v0.1.3 canonical series.
 
 The wrapper sits over the C# packages; it is not a Python reimplementation of
 Control or CTG. It exposes a single import surface:
@@ -23,11 +23,11 @@ from aikernel_governance import (
 Stable install, after publication opens:
 
 ```bash
-pip install aikernel-governance==0.1.2
+pip install aikernel-governance==0.1.3
 ```
 
-Local validation uses `0.1.2.dev{buildNumber}` wheels. Do not create stable
-`0.1.2` artifacts until the release task explicitly requests them.
+Local validation uses `0.1.3.dev{buildNumber}` wheels. Do not create stable
+`0.1.3` artifacts until the release task explicitly requests them.
 
 ## Scope
 
@@ -71,7 +71,7 @@ global packages cache.
 
 ## Managed API Catalog
 
-The v0.1.2 package exposes the generated managed API catalog through
+The v0.1.3 package exposes the generated managed API catalog through
 `managed_api_catalog()`, `managed_api_summary()`, `managed_type_names()`, and
 `find_managed_type(full_name)`.
 

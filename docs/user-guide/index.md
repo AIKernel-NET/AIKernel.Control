@@ -16,29 +16,29 @@ capability graph, and governance after the 0.1.x line stabilizes.
 Install the entry package for the standard Control surface:
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 Install split packages directly when your host intentionally wants a smaller
 dependency surface:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.2
-dotnet add package AIKernel.Control.CPU --version 0.1.2
-dotnet add package AIKernel.Control.Emulator --version 0.1.2
-dotnet add package AIKernel.Control.Diagnostics --version 0.1.2
+dotnet add package AIKernel.Control.Core --version 0.1.3
+dotnet add package AIKernel.Control.CPU --version 0.1.3
+dotnet add package AIKernel.Control.Emulator --version 0.1.3
+dotnet add package AIKernel.Control.Diagnostics --version 0.1.3
 ```
 
 Add `AIKernel.Control.GPU` only when the host binds a concrete GPU backend:
 
 ```bash
-dotnet add package AIKernel.Control.GPU --version 0.1.2
+dotnet add package AIKernel.Control.GPU --version 0.1.3
 ```
 
-During local integration, use `0.1.2-dev{buildNumber}` NuGet packages instead
-of stable `0.1.2` packages until the release task opens publication. Python
+During local integration, use `0.1.3-dev{buildNumber}` NuGet packages instead
+of stable `0.1.3` packages until the release task opens publication. Python
 validation uses the `aikernel-governance` wheel with version
-`0.1.2.dev{buildNumber}`.
+`0.1.3.dev{buildNumber}`.
 
 ## Runtime Roles
 
