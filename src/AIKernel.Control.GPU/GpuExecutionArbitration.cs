@@ -33,10 +33,10 @@ public sealed record GpuExecutionArbitrationRequest
     /// <summary>[EN] Input frame target kind consumed by this control action. [JA] この control action が消費する input frame target kind です。</summary>
     public GpuFrameTargetKind InputTargetKind { get; init; } = GpuFrameTargetKind.Unknown;
 
-    /// <summary>[EN] True when the action requires a native/browser rev3 pass bridge. [JA] action が native/browser rev3 pass bridge を必要とする場合 true です。</summary>
+    /// <summary>[EN] True when the action requires a native/browser canonical pass bridge. [JA] action が native/browser canonical pass bridge を必要とする場合 true です。</summary>
     public bool RequireNativePassBridge { get; init; }
 
-    /// <summary>[EN] True when the provider has a native/browser rev3 pass bridge. [JA] provider が native/browser rev3 pass bridge を持つ場合 true です。</summary>
+    /// <summary>[EN] True when the provider has a native/browser canonical pass bridge. [JA] provider が native/browser canonical pass bridge を持つ場合 true です。</summary>
     public bool NativePassBridgeAvailable { get; init; }
 
     /// <summary>[EN] True when user or policy forces CPU. [JA] user または policy が CPU を強制する場合 true です。</summary>
@@ -110,8 +110,8 @@ public sealed record GpuExecutionArbitrationDecision
     public IReadOnlyList<string> Tags { get; init; } = [];
 
     /// <summary>
-    /// [EN] Projects this decision into canonical rev3 diagnostics metadata.
-    /// [JA] この decision を canonical rev3 diagnostics metadata に投影します。
+    /// [EN] Projects this decision into canonical diagnostics metadata.
+    /// [JA] この decision を canonical diagnostics metadata に投影します。
     /// </summary>
     public IReadOnlyDictionary<string, string> ToDiagnosticsMetadata()
         => new SortedDictionary<string, string>(StringComparer.Ordinal)
@@ -129,10 +129,10 @@ public sealed record GpuExecutionArbitrationDecision
             [GpuControlMetadataKeys.NativePassBridgeRequired] = NativePassBridgeRequired.ToString().ToLowerInvariant(),
             [GpuControlMetadataKeys.NativePassBridgeAvailable] = NativePassBridgeAvailable.ToString().ToLowerInvariant(),
             [GpuControlMetadataKeys.Tags] = string.Join(",", Tags),
-            [GpuDiagnosticsMetadataKeys.Rev3PassId] = PassId,
-            [GpuDiagnosticsMetadataKeys.Rev3ExecutionMode] = UseGpu
-                ? GpuRev3ExecutionModes.ControlGpuApproved
-                : GpuRev3ExecutionModes.ControlCpuFallback,
+            [GpuDiagnosticsMetadataKeys.CanonicalPassId] = PassId,
+            [GpuDiagnosticsMetadataKeys.CanonicalExecutionMode] = UseGpu
+                ? GpuExecutionModes.ControlGpuApproved
+                : GpuExecutionModes.ControlCpuFallback,
             [GpuProviderMetadataKeys.Backend] = Backend.ToString(),
             [GpuProviderMetadataKeys.Fallback] = UsingCpuFallback ? Reason : GpuExecutionArbitrationReasons.None
         };
@@ -176,10 +176,10 @@ public static class GpuExecutionArbitrationReasons
 public static class GpuExecutionArbitrationExecutionModes
 {
     /// <summary>[EN] Control approved GPU execution. [JA] Control が GPU execution を承認しました。</summary>
-    public const string ControlGpuApproved = GpuRev3ExecutionModes.ControlGpuApproved;
+    public const string ControlGpuApproved = GpuExecutionModes.ControlGpuApproved;
 
     /// <summary>[EN] Control selected CPU fallback. [JA] Control が CPU fallback を選択しました。</summary>
-    public const string ControlCpuFallback = GpuRev3ExecutionModes.ControlCpuFallback;
+    public const string ControlCpuFallback = GpuExecutionModes.ControlCpuFallback;
 }
 
 /// <summary>

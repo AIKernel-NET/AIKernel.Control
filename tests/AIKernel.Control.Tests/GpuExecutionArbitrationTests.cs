@@ -30,10 +30,10 @@ public sealed class GpuExecutionArbitrationTests
         Assert.Contains(GpuOperationNames.ComputeDispatch, decision.Tags);
 
         var metadata = decision.ToDiagnosticsMetadata();
-        Assert.Equal(GpuOperationNames.ComputeDispatch, metadata[GpuDiagnosticsMetadataKeys.Rev3PassId]);
+        Assert.Equal(GpuOperationNames.ComputeDispatch, metadata[GpuDiagnosticsMetadataKeys.CanonicalPassId]);
         Assert.Equal(
             GpuExecutionArbitrationExecutionModes.ControlGpuApproved,
-            metadata[GpuDiagnosticsMetadataKeys.Rev3ExecutionMode]);
+            metadata[GpuDiagnosticsMetadataKeys.CanonicalExecutionMode]);
         Assert.Equal(GpuExecutionArbitrationReasons.None, metadata[GpuProviderMetadataKeys.Fallback]);
         Assert.Equal("render", metadata[GpuControlMetadataKeys.IntentId]);
         Assert.Equal("doom-hud", metadata[GpuControlMetadataKeys.ObjectiveId]);
@@ -67,7 +67,7 @@ public sealed class GpuExecutionArbitrationTests
         var metadata = decision.ToDiagnosticsMetadata();
         Assert.Equal(
             GpuExecutionArbitrationExecutionModes.ControlCpuFallback,
-            metadata[GpuDiagnosticsMetadataKeys.Rev3ExecutionMode]);
+            metadata[GpuDiagnosticsMetadataKeys.CanonicalExecutionMode]);
         Assert.Equal(GpuExecutionArbitrationReasons.GpuLostOneWayFallback, metadata[GpuProviderMetadataKeys.Fallback]);
         Assert.Equal("true", metadata[GpuControlMetadataKeys.NativePassBridgeAvailable]);
         Assert.Equal("false", metadata[GpuControlMetadataKeys.ZeroCopyRawTextureRequired]);
@@ -116,7 +116,7 @@ public sealed class GpuExecutionArbitrationTests
         Assert.Equal(GpuProviderCapabilities.SupportsSpatialReasoning, decision.MissingCapabilities);
 
         var metadata = decision.ToDiagnosticsMetadata();
-        Assert.Equal(GpuOperationNames.GpuSpatialReasoning, metadata[GpuDiagnosticsMetadataKeys.Rev3PassId]);
+        Assert.Equal(GpuOperationNames.GpuSpatialReasoning, metadata[GpuDiagnosticsMetadataKeys.CanonicalPassId]);
         Assert.Contains("SupportsSpatialReasoning", metadata[GpuControlMetadataKeys.MissingCapabilities], StringComparison.Ordinal);
         Assert.Contains("missing-capabilities", metadata[GpuControlMetadataKeys.Reason], StringComparison.Ordinal);
         Assert.True(GpuCanonicalValidation.ValidateControlArbitrationMetadata(metadata).IsValid);
