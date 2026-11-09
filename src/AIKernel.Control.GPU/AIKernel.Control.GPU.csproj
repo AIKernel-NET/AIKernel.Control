@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AIKernel.Dtos" Version="$(AIKernelContractPackageVersion)" />
+    <PackageReference Include="AIKernel.Enums" Version="$(AIKernelContractPackageVersion)" />
     <ProjectReference Include="..\AIKernel.Control.Core\AIKernel.Control.Core.csproj" />
   </ItemGroup>
 </Project>

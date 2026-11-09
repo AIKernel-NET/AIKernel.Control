@@ -5,7 +5,7 @@
 AIKernel.Control の public governance surface を Python から扱うための wrapper
 surface です。
 
-0.1.2 正典系列から、`aikernel-governance` は AIKernel.Control の public
+0.1.3 正典系列から、`aikernel-governance` は AIKernel.Control の public
 governance boundary を公開する PyPI package です。この package は managed C#
 assembly の薄い wrapper であり、CTG Gate logic を Python 側で再実装しません。
 
@@ -48,7 +48,7 @@ NuGet global-packages cache の順に assembly を解決する想定です。
 
 ## Managed API Catalog
 
-v0.1.2 package では generated managed API catalog を公開します。
+v0.1.3 package では generated managed API catalog を公開します。
 `managed_api_catalog()`、`managed_api_summary()`、`managed_type_names()`、
 `find_managed_type(full_name)` で確認できます。
 

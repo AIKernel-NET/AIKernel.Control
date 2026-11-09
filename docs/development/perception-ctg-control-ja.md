@@ -32,6 +32,6 @@ repository ownership と昇格ルールは
 [リポジトリ横断開発者ガイド v0.1.1.1](https://github.com/AIKernel-NET/AIKernel.NET/blob/main/docs/development/cross-repository-developer-guide-v0.1.1.1-ja.md)
 を参照してください。
 
-## v0.1.2 への整理
+## v0.1.3 への整理
 
-`PerceptionControlSignal`、`PerceptionControlRequest`、`PerceptionPipelineSelection`、retry intent carrier は adapter-side carrier です。AIKernel.NET v0.1.2 で canonical perception/control contract が追加・統合された場合は置き換え可能です。
+`PerceptionControlSignal`、`PerceptionControlRequest`、`PerceptionPipelineSelection`、retry intent carrier は adapter-side carrier です。AIKernel.NET v0.1.3 で canonical perception/control contract が追加・統合された場合は置き換え可能です。

@@ -37,9 +37,9 @@ dependency.
 Control does not depend on AIKernel.Demo. Demo projects consume Control as an
 independent runtime surface.
 
-AIKernel.Control 0.1.2 follows the same development policy as
-AIKernel.Core 0.1.2. The line publishes NuGet packages and a synchronized
-Python wrapper. Local development packages use `0.1.2-dev{build-number}`.
+AIKernel.Control 0.1.3 follows the same development policy as
+AIKernel.Core 0.1.3. The line publishes NuGet packages and a synchronized
+Python wrapper. Local development packages use `0.1.3-dev{build-number}`.
 
 ## Concept Elevation
 
@@ -61,16 +61,16 @@ model assets. Control does not vendor model weights; model assets should be
 mounted through VFS/ROM.
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 Install the split packages directly only when a host intentionally wants a
 smaller dependency surface:
 
 ```bash
-dotnet add package AIKernel.Control.Core --version 0.1.2
-dotnet add package AIKernel.Control.CPU --version 0.1.2
-dotnet add package AIKernel.Control.Emulator --version 0.1.2
+dotnet add package AIKernel.Control.Core --version 0.1.3
+dotnet add package AIKernel.Control.CPU --version 0.1.3
+dotnet add package AIKernel.Control.Emulator --version 0.1.3
 ```
 
 Validate the repository surface:
@@ -150,7 +150,7 @@ See [CTG Control integration](docs/development/control-ctg.md).
 `aikernel-governance` is the reserved Python wrapper name for the public
 governance surface of AIKernel.Control.
 
-The 0.1.2 development line publishes a synchronized PyPI wrapper. Existing
+The 0.1.3 development line publishes a synchronized PyPI wrapper. Existing
 Python materials remain in the repository for reference and future scheduled
 Python releases only.
 
@@ -253,13 +253,13 @@ Common project properties are centralized in `Directory.Build.props`.
 For .NET hosts:
 
 ```bash
-dotnet add package AIKernel.Control --version 0.1.2
+dotnet add package AIKernel.Control --version 0.1.3
 ```
 
 Python materials are published as the synchronized `aikernel-governance`
-wrapper for the 0.1.2 public package line.
+wrapper for the 0.1.3 public package line.
 
-See [Python governance wrapper](docs/python/index.md) for the 0.1.2 package
+See [Python governance wrapper](docs/python/index.md) for the 0.1.3 package
 scope and validation flow.
 
 ## Contributor Guidelines
