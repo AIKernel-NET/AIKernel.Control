@@ -75,7 +75,11 @@ public sealed class ProviderVoteAdapter
         {
             VoteId = CreateVoteId(context, output),
             CouncilKind = output.CouncilKind,
-            VoteValue = output.VoteValue,
+            VoteValue = output.VoteValue switch
+            {
+                CouncilVoteValue.Approve or CouncilVoteValue.Abstain or CouncilVoteValue.Reject => output.VoteValue,
+                _ => CouncilVoteValue.Unknown
+            },
             CanonReferences = output.CanonReferences,
             ObservedAt = observedAt,
             Metadata = metadata
