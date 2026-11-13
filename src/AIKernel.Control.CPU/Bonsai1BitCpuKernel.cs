@@ -27,10 +27,13 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.Q1BlockBytes']" />
     public const int Q1BlockBytes = Q1ScaleBytes + Q1PayloadBytes;
 
+    // Keep the published kernel identity and the instruction path on the same feature check.
+    private static bool UseAvx2 => Avx2.IsSupported;
+
     /// <summary>[EN] Documents this public package API member. [JA] KernelId を取得します。</summary>
     /// <include file="docs.en.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
     /// <include file="docs.ja.xml" path="doc/members/member[@name='F:AIKernel.Control.CPU.Bonsai1BitCpuKernel.KernelId']" />
-    public string KernelId => Avx2.IsSupported
+    public string KernelId => UseAvx2
         ? "bonsai.q1_0.cpu.avx2"
         : "bonsai.q1_0.cpu.scalar";
 
@@ -152,11 +155,9 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
         ReadOnlySpan<byte> packedSigns,
         ReadOnlySpan<float> input)
     {
-        if (Avx.IsSupported)
+        Span<float> signedValues = stackalloc float[Q1BlockElements];
+        if (UseAvx2)
         {
-            var positive = Vector256<float>.Zero;
-            var negative = Vector256<float>.Zero;
-
             for (var i = 0; i < packedSigns.Length; i++)
             {
                 var bits = packedSigns[i];
@@ -170,36 +171,43 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
                     input[offset + 5],
                     input[offset + 6],
                     input[offset + 7]);
-                var signs = Vector256.Create(
-                    (bits & 0x01) != 0 ? 1f : -1f,
-                    (bits & 0x02) != 0 ? 1f : -1f,
-                    (bits & 0x04) != 0 ? 1f : -1f,
-                    (bits & 0x08) != 0 ? 1f : -1f,
-                    (bits & 0x10) != 0 ? 1f : -1f,
-                    (bits & 0x20) != 0 ? 1f : -1f,
-                    (bits & 0x40) != 0 ? 1f : -1f,
-                    (bits & 0x80) != 0 ? 1f : -1f);
-                var signed = Avx.Multiply(values, signs);
-                positive = Avx.Add(positive, Avx.Max(signed, Vector256<float>.Zero));
-                negative = Avx.Add(negative, Avx.Min(signed, Vector256<float>.Zero));
+                // Flip only the sign bit, just like scalar negation (including zero and NaN).
+                var signMask = Vector256.Create(
+                    (bits & 0x01) != 0 ? 0 : int.MinValue,
+                    (bits & 0x02) != 0 ? 0 : int.MinValue,
+                    (bits & 0x04) != 0 ? 0 : int.MinValue,
+                    (bits & 0x08) != 0 ? 0 : int.MinValue,
+                    (bits & 0x10) != 0 ? 0 : int.MinValue,
+                    (bits & 0x20) != 0 ? 0 : int.MinValue,
+                    (bits & 0x40) != 0 ? 0 : int.MinValue,
+                    (bits & 0x80) != 0 ? 0 : int.MinValue).AsSingle();
+                var signed = Avx.Xor(values, signMask);
+                signed.CopyTo(signedValues.Slice(offset, 8));
             }
-
-            return HorizontalAdd(Avx.Add(positive, negative));
+        }
+        else
+        {
+            for (var i = 0; i < packedSigns.Length; i++)
+            {
+                var bits = packedSigns[i];
+                var offset = i * 8;
+                signedValues[offset] = ((bits & 0x01) != 0) ? input[offset] : -input[offset];
+                signedValues[offset + 1] = ((bits & 0x02) != 0) ? input[offset + 1] : -input[offset + 1];
+                signedValues[offset + 2] = ((bits & 0x04) != 0) ? input[offset + 2] : -input[offset + 2];
+                signedValues[offset + 3] = ((bits & 0x08) != 0) ? input[offset + 3] : -input[offset + 3];
+                signedValues[offset + 4] = ((bits & 0x10) != 0) ? input[offset + 4] : -input[offset + 4];
+                signedValues[offset + 5] = ((bits & 0x20) != 0) ? input[offset + 5] : -input[offset + 5];
+                signedValues[offset + 6] = ((bits & 0x40) != 0) ? input[offset + 6] : -input[offset + 6];
+                signedValues[offset + 7] = ((bits & 0x80) != 0) ? input[offset + 7] : -input[offset + 7];
+            }
         }
 
+        // Share the exact accumulation code: lane reductions change rounding, and separate
+        // addition expressions can propagate different NaN operands under different JIT tiers.
         var sum = 0f;
-        for (var i = 0; i < packedSigns.Length; i++)
+        foreach (var value in signedValues)
         {
-            var bits = packedSigns[i];
-            var offset = i * 8;
-            sum += ((bits & 0x01) != 0) ? input[offset] : -input[offset];
-            sum += ((bits & 0x02) != 0) ? input[offset + 1] : -input[offset + 1];
-            sum += ((bits & 0x04) != 0) ? input[offset + 2] : -input[offset + 2];
-            sum += ((bits & 0x08) != 0) ? input[offset + 3] : -input[offset + 3];
-            sum += ((bits & 0x10) != 0) ? input[offset + 4] : -input[offset + 4];
-            sum += ((bits & 0x20) != 0) ? input[offset + 5] : -input[offset + 5];
-            sum += ((bits & 0x40) != 0) ? input[offset + 6] : -input[offset + 6];
-            sum += ((bits & 0x80) != 0) ? input[offset + 7] : -input[offset + 7];
+            sum += value;
         }
 
         return sum;
@@ -223,18 +231,6 @@ public sealed class Bonsai1BitCpuKernel : IBonsaiInferenceKernel
             seed ^= seed << 5;
             activation[i] = ((seed & 1u) == 0u) ? -1f : 1f;
         }
-    }
-
-    private static float HorizontalAdd(Vector256<float> vector)
-    {
-        return vector.GetElement(0)
-            + vector.GetElement(1)
-            + vector.GetElement(2)
-            + vector.GetElement(3)
-            + vector.GetElement(4)
-            + vector.GetElement(5)
-            + vector.GetElement(6)
-            + vector.GetElement(7);
     }
 
     private static int RoundUp(
