@@ -234,6 +234,12 @@ public static class GpuExecutionArbitrator
             return Cpu(GpuExecutionArbitrationReasons.ReadbackRequiresFallback, request, ["cpu", "readback"]);
         }
 
+        // Capabilities alone cannot identify a GPU backend. Preserve earlier fallback reasons.
+        if (request.Backend == GpuBackend.Unknown || !Enum.IsDefined(request.Backend))
+        {
+            return Cpu("unknown-backend", request, ["cpu", "unknown-backend"]);
+        }
+
         return new GpuExecutionArbitrationDecision
         {
             IntentId = request.IntentId,
@@ -241,7 +247,7 @@ public static class GpuExecutionArbitrator
             ActionId = request.ActionId,
             UseGpu = true,
             PassId = request.PassId,
-            Backend = request.Backend == GpuBackend.Unknown ? GpuBackend.WebGpu : request.Backend,
+            Backend = request.Backend,
             Reason = GpuExecutionArbitrationReasons.GpuExecutionApproved,
             MissingCapabilities = GpuProviderCapabilities.None,
             RequiredCapabilities = request.RequiredCapabilities,
