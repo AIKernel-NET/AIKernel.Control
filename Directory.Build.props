@@ -44,4 +44,13 @@
     <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" />
     <None Include="$(MSBuildThisFileDirectory)assets\aikernel-logo128x128.png" Pack="true" PackagePath="\" />
   </ItemGroup>
+  <Target Name="GenerateControlBuildVersion" BeforeTargets="BeforeCompile">
+    <WriteLinesToFile File="$(IntermediateOutputPath)ControlBuildVersion.g.cs"
+                      Lines="namespace AIKernel.Control%3B internal static class ControlBuildVersion { internal const string Value = &quot;$(PackageVersion)&quot;%3B }"
+                      Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)ControlBuildVersion.g.cs" />
+      <FileWrites Include="$(IntermediateOutputPath)ControlBuildVersion.g.cs" />
+    </ItemGroup>
+  </Target>
 </Project>
