@@ -89,7 +89,7 @@ public sealed class ControlEmulatorEngine(
                 "Completed",
                 MergeMetadata(request.Metadata, executionMetadata));
         }
-        catch (OperationCanceledException)
+        catch (Exception ex) when (AIKernel.Common.Results.CancellationExceptionClassifier.IsCancellation(ex))
         {
             return new ControlExecutionResult(
                 request.ExecutionId,

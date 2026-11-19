@@ -128,7 +128,7 @@ public sealed class CtgControlCoordinator : ICtgControlCoordinator
 
             return envelope;
         }
-        catch (OperationCanceledException)
+        catch (Exception ex) when (CancellationExceptionClassifier.IsCancellation(ex))
         {
             throw;
         }
