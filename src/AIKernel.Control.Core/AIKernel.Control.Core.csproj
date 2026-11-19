@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="AIKernel.Abstractions" Version="$(AIKernelContractPackageVersion)" />
-    <PackageReference Include="AIKernel.Common" Version="$(AIKernelCorePackageVersion)" />
+    <ProjectReference Include="$(AIKernelCommonSourceProject)" Condition="'$(AIKernelCommonSourceProject)' != ''" />
+    <PackageReference Condition="'$(AIKernelCommonSourceProject)' == ''" Include="AIKernel.Common" Version="$(AIKernelCorePackageVersion)" />
     <PackageReference Include="AIKernel.Core" Version="$(AIKernelCorePackageVersion)" />
     <PackageReference Include="AIKernel.Dtos" Version="$(AIKernelContractPackageVersion)" />
     <PackageReference Include="AIKernel.Enums" Version="$(AIKernelContractPackageVersion)" />
