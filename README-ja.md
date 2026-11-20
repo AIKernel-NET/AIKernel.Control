@@ -266,8 +266,8 @@ Python wrapper は 0.1.3 public package line に同期した
 
 Control の変更は、AIKernel 共通の開発規律に従ってください。
 
-- [AIKernel 開発ガイドライン](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES-jp.md)
-- [AIKernel Development Guidelines](../AIKernel.NET/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES.md)
+- [AIKernel 開発ガイドライン](https://github.com/AIKernel-NET/AIKernel.NET/blob/dev/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES-jp.md)
+- [AIKernel Development Guidelines](https://github.com/AIKernel-NET/AIKernel.NET/blob/dev/docs/guidelines/AIKERNEL_DEVELOPMENT_GUIDELINES.md)
 
 Execution / governance code は fail-closed contract を公開し、Bonsai と emulator
 behavior を deterministic に保ち、public boundary の外へ implementation exception
