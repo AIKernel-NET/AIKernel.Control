@@ -41,7 +41,13 @@ public sealed class CouncilDecisionToGateInputAdapter
     private static CouncilVoteValue VoteFor(CouncilDecision decision, CouncilKind councilKind)
         => decision.Votes
             .Where(vote => vote.CouncilKind == councilKind)
-            .OrderBy(vote => vote.VoteId, StringComparer.Ordinal)
+            .OrderBy(vote => vote.VoteValue switch
+                    {
+                        CouncilVoteValue.Reject => 0,
+                        CouncilVoteValue.Abstain => 2,
+                        CouncilVoteValue.Approve => 3,
+                        _ => 1
+                    }).ThenBy(vote => vote.VoteId, StringComparer.Ordinal)
             .Select(vote => vote.VoteValue)
             .DefaultIfEmpty(CouncilVoteValue.Unknown)
             .First();

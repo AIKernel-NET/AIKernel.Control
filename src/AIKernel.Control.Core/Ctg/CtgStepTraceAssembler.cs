@@ -33,19 +33,13 @@ public sealed class CtgStepTraceAssembler
                 ["ctg.control.trace_stage"] = "apply_policy"
             });
 
-        return new StepGovernanceTrace
-        {
-            TraceId = CtgControlMetadata.FirstNonEmpty(context.TraceId, decisionGate.TraceId, context.OperationId),
-            StepId = CtgControlMetadata.StepId(context),
-            CouncilEvaluation = councilEvaluation,
-            DecisionGate = decisionGate,
-            CanonReferences = decisionGate.CanonReferences,
-            RejectReasons = decisionGate.RejectReasons,
-            ObservedAt = decisionGate.ObservedAt == default
-                ? CtgControlMetadata.ObservedAt(context)
-                : decisionGate.ObservedAt,
-            CorrelationId = CtgControlMetadata.FirstNonEmpty(context.CorrelationId, decisionGate.CorrelationId),
-            Metadata = metadata
-        };
+        var observedAt = decisionGate.ObservedAt == default ? CtgControlMetadata.ObservedAt(context) : decisionGate.ObservedAt;
+        var builder = new AIKernel.Core.Governance.CtgGovernanceTraceBuilder(AIKernel.Core.Time.KernelClock.Replay(observedAt));
+        return builder.BuildStepTrace(councilEvaluation, decisionGate,
+            stepId: CtgControlMetadata.StepId(context),
+            traceId: CtgControlMetadata.FirstNonEmpty(context.TraceId, decisionGate.TraceId, context.OperationId),
+            correlationId: CtgControlMetadata.FirstNonEmpty(context.CorrelationId, decisionGate.CorrelationId),
+            canonReferences: decisionGate.CanonReferences,
+            metadata: metadata);
     }
 }

@@ -100,7 +100,13 @@ public sealed class CouncilDecisionBuilder
             .ToDictionary(
                 group => group.Key,
                 group => group
-                    .OrderBy(vote => vote.VoteId, StringComparer.Ordinal)
+                    .OrderBy(vote => vote.VoteValue switch
+                    {
+                        CouncilVoteValue.Reject => 0,
+                        CouncilVoteValue.Abstain => 2,
+                        CouncilVoteValue.Approve => 3,
+                        _ => 1
+                    }).ThenBy(vote => vote.VoteId, StringComparer.Ordinal)
                     .First());
 
         return RequiredCouncils
